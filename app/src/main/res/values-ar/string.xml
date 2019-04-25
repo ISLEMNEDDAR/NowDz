@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NowDz</string>
+    <string name="nom_app">DZ Now</string>
+    <string name="titre_news">Ou va l\'algerie comme sa ? y a t\'il des solution</string>
+    <string name="entete_selection_jour">مجموعة اليوم ل ISLEM</string>
+    <string name="entete_articlejour">أعلى 5 مقالات في الوقت الراهن</string>
+    <string name="enable_dark_theme">تمكين سمة الظلام</string>
+    <string-array name="type_news">
+        <item>أكثر حداثة</item>
+        <item>الجزائر</item>
+        <item>رياضة</item>
+        <item>اقتصاد</item>
+        <item>الصحة</item>
+        <item>توظيف</item>
+        <item>ثقافة</item>
+    </string-array>
+</resources>

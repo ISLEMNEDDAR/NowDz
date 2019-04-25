@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">NowDz</string>
+    <string name="nom_app">DZNow</string>
+    <string name="titre_news">Ou va l\'algerie comme sa ? y a t\'il des solution</string>
+    <string name="entete_selection_jour">Selection du jour pour ISLEM</string>
+    <string name="entete_articlejour">Top 5 des article de moment</string>
+    <string name="enable_dark_theme">enable dark theme</string>
+    <string-array name="type_news">
+        <item>Plus récente</item>
+        <item>Algerie</item>
+        <item>Sport</item>
+        <item>Economie</item>
+        <item>Sante</item>
+        <item>Emploi</item>
+        <item>Culture</item>
+    </string-array>
+</resources>

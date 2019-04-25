@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/item_accuille"
+            android:title="Acuille"
+            android:icon="@drawable/ic_home_black_24dp"/>
+    <item
+            android:id="@+id/item_titre"
+            android:title="Titre"
+            android:icon="@drawable/ic_apps_black_24dp"/>
+    <item
+            android:id="@+id/item_favoris"
+            android:title="Favoris"
+            android:icon="@drawable/ic_star_border_black_24dp"/>
+
+
+</menu>
