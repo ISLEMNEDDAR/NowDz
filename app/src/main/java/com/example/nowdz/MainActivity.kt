@@ -1,37 +1,49 @@
 package com.example.nowdz
 
+
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.Toolbar
-import android.view.Menu
-import android.view.MenuItem
+import android.support.v7.widget.PopupMenu
+import android.util.Log
+import android.widget.Toast
+import android.content.Intent
+import android.net.Uri
+import com.example.nowdz.Fragment.*
+import android.widget.ImageView
 import com.example.nowdz.Fragment.AcuilleFragment
 import com.example.nowdz.Fragment.FavorisFragment
 import com.example.nowdz.Fragment.TitreFragement
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.card_news_secondaire.*
+
 
 
 class MainActivity : BaseActivity() {
+    private var settingMenu : ImageView?=null
 
-    private var topToolbar :Toolbar? =null
+
+    private var topToolbar: Toolbar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val setting = findViewById<ImageView>(R.id.setting_toolbar)
+
+        settingMenu = findViewById(R.id.setting_toolbar)
+        settingMenu!!.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
         chargerFagment(AcuilleFragment())
         setToolbar()
         navigation()
-
-
     }
 
     /**
      * Preparer le toolbar
      */
-    private fun setToolbar(){
+    private fun setToolbar() {
         topToolbar = findViewById(R.id.toolbar_accuille)
         setSupportActionBar(topToolbar)
     }
@@ -39,9 +51,9 @@ class MainActivity : BaseActivity() {
     /**
      * la navigation par le navigation bottom entre les fragement
      */
-    private fun navigation(){
-        navigation_bar.setOnNavigationItemSelectedListener{
-            var fragment : Fragment? = null
+    private fun navigation() {
+        navigation_bar.setOnNavigationItemSelectedListener {
+            var fragment: Fragment? = null
             when (it.itemId) {
                 R.id.item_accuille -> {
                     fragment = AcuilleFragment()
@@ -63,23 +75,66 @@ class MainActivity : BaseActivity() {
      * le changement de fragement
      */
     @SuppressLint("CommitTransaction")
-    private fun chargerFagment(fragment: Fragment?):Boolean{
-        if(fragment != null){
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_id,fragment).commit()
+    private fun chargerFagment(fragment: Fragment?): Boolean {
+        if (fragment != null) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_id, fragment).commit()
             return true
         }
         return false
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.overflow_menu, menu)
-        return true
+    /**
+     * Preparer l'historique
+
+    private fun setSavedActivity() {
+        val intent = Intent (this, Main2Activity::class.java)
+        startActivity(intent)
     }
+     */
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.settings)
-            startActivity(Intent(this, SettingsActivity::class.java))
+    /**
+     *  Le menu popup
+     */
 
-        return super.onOptionsItemSelected(item)
+    private fun popsurf ()
+    {
+        card2_menu.setOnClickListener {
+            val popupMenu = PopupMenu(this, it)
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_popup_save -> {
+                        Toast.makeText(this, "Showing Save Toast!", Toast.LENGTH_LONG).show()
+                        true
+                    }
+                    R.id.menu_popup_share -> {
+                        Toast.makeText(this, "Showing Share Toast!", Toast.LENGTH_LONG).show()
+                        true
+                    }
+                    R.id.menu_popup_access -> {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://resocoder.com"))
+                        startActivity(intent)
+                        true
+                    }
+                    R.id.menu_popup_hide -> {
+                        Toast.makeText(this, "Showing Hide Toast!", Toast.LENGTH_LONG).show()
+                        true
+                    }
+                    else -> false
+                }
+            }
+        popupMenu.inflate(R.menu.menu_popup)
+        try {
+            val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+            fieldMPopup.isAccessible = true
+            val mPopup = fieldMPopup.get(popupMenu)
+            mPopup.javaClass
+                .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
+                .invoke(mPopup, true)
+        } catch (e: Exception){
+            Log.e("Main", "Error showing menu icons.", e)
+        } finally {
+            popupMenu.show()
+        }
+        }
     }
 
 }

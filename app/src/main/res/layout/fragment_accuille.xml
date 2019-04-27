@@ -6,10 +6,10 @@
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
             <TextView
                     android:text="@string/entete_selection_jour"
                     android:layout_width="match_parent"
@@ -23,19 +23,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="18dp"
                     android:textSize="14sp"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:orientation="vertical">
             <include
                     android:layout_marginTop="10dp"
                     layout="@layout/card_news_une"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
+                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"/>
+
             <android.support.v7.widget.RecyclerView
                     android:layout_marginTop="10dp"
 
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:id="@+id/recycle_news_acuille"/>
 
-
+            <!--
+            <WebView
+                    android:id="@+id/web_view"
+                    android:layout_width="447dp"
+                    android:layout_height="match_parent"/>
+                    -->
+    </LinearLayout>
         </LinearLayout>
 
 

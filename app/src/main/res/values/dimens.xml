@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zero_dim">0dp</dimen>
+    <dimen name="width_image">45dp</dimen>
+    <dimen name="taille_police_toolbar">20sp</dimen>
+    <dimen name="height_image">30dp</dimen>
+    <dimen name="height_image2">20dp</dimen>
+    <dimen name="height_frame">675dp</dimen>
+    <dimen name="content_taille">15sp</dimen>
+</resources>

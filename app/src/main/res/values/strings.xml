@@ -1,12 +1,27 @@
 <resources>
     <string name="app_name">NowDz</string>
     <string name="nom_app">DZNow</string>
-    <string name="titre_news">Ou va l\'algerie comme sa ? y a t\'il des solution</string>
+    <string name="titre_news">Ou va l\'Algerie comme sa ? y a t\'il des solutions</string>
     <string name="entete_selection_jour">Selection du jour pour ISLEM</string>
-    <string name="entete_articlejour">Top 5 des article de moment</string>
-    <string name="enable_dark_theme">enable dark theme</string>
+    <string name="entete_articlejour">Top 5 des articles du moment</string>
+    <string name="entete_article_enregistre">Articles Enregistrés</string>
+    <string name="enable_dark_theme">Activer mode Dark</string>
+    <string name="nom_article">Article</string>
+    <string name="recherche_nom">search</string>
+    <string name="save_nom">enregistrer pour plus tard</string>
+    <string name="share_nom">Partager</string>
+    <string name="acess_nom">Acceder à</string>
+    <string name="hide_nom">Masquer les articles</string>
+    <string name="accuille_nom">Acceuil</string>
+    <string name="title_nom">Titre</string>
+    <string name="favoris_nom">Favoris</string>
+    <string name="link_favoris_nom">Tout afficher et gérer</string>
+    <string name="exemple_temps_5h">Il y a 5heurs</string>
+    <string name="a_la_une_il_y_a_5heurs">A la une - Il y a 5heurs</string>
+    <string name="classemnt_example">1.</string>
+    <string name="titrre2_exemple">L\'algerie d\'aujourd\'hui</string>
     <string-array name="type_news">
-        <item>Plus récente</item>
+        <item>Plus récents</item>
         <item>Algerie</item>
         <item>Sport</item>
         <item>Economie</item>

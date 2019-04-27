@@ -4,10 +4,11 @@
     <string name="nom_app">DZ Now</string>
     <string name="titre_news">Ou va l\'algerie comme sa ? y a t\'il des solution</string>
     <string name="entete_selection_jour">مجموعة اليوم ل ISLEM</string>
-    <string name="entete_articlejour">أعلى 5 مقالات في الوقت الراهن</string>
-    <string name="enable_dark_theme">تمكين سمة الظلام</string>
+    <string name="entete_articlejour">أعلى 5 مقالات مشاهدة</string>
+    <string name="enable_dark_theme">تفعيل الوضع المظلم</string>
+    <string name="entete_article_enregistre">Article Enregistrés</string>
     <string-array name="type_news">
-        <item>أكثر حداثة</item>
+        <item>الأكثر حداثة</item>
         <item>الجزائر</item>
         <item>رياضة</item>
         <item>اقتصاد</item>

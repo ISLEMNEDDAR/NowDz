@@ -12,24 +12,18 @@ import com.example.nowdz.R
  * le adapter
  */
 
-class RecycleViewHelper {
-
-    var list = ArrayList<String>()
-    private var recyclerView: RecyclerView? = null
-    var adapter: NewAdapter? = null
-
-    fun initLineaire(v: View,idRV : Int,orientationLayout:Int){
-        recyclerView = v.findViewById(idRV)
+interface RecycleViewHelper {
+    var itemRecycleView : RecyclerView?
+    /**
+     * la fonction qui initilaise le recycleview
+     */
+    fun initLineaire(v: View,idRV : Int,orientationLayout:Int,adapter : RecyclerView.Adapter<RecyclerView.ViewHolder>?){
+        itemRecycleView = v.findViewById(idRV)
         val horizontalLayoutManager = LinearLayoutManager(v.context, orientationLayout, false)
-        recyclerView!!.layoutManager = horizontalLayoutManager
-        recyclerView!!.adapter = adapter
+        itemRecycleView!!.layoutManager = horizontalLayoutManager
+        itemRecycleView!!.adapter = adapter!!
     }
-    fun ajouter(){
-        list.clear()
-        list.add("a")
-        list.add("a")
-        list.add("a")
-        list.add("a")
-        adapter!!.notifyDataSetChanged()
-    }
+
+
+
 }

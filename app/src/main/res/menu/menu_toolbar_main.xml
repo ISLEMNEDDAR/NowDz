@@ -5,7 +5,7 @@
                 android:orderInCategory="300"
                 android:icon="@drawable/ic_search_black_24dp"
                 app:showAsAction="ifRoom"
-                android:title="search">
+                android:title="@string/recherche_nom">
         </item>
 
 </menu>

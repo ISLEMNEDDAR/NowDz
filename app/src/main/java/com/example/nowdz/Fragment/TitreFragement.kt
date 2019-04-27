@@ -11,13 +11,14 @@ import android.support.v4.view.ViewPager
 import com.example.nowdz.Adapter.TitlePagerAdapter
 
 
+
 class TitreFragement : Fragment() {
     protected var mRecyclerTabLayout: RecyclerTabLayout? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_titre,null)
         val listTitle = resources.getStringArray(R.array.type_news).toList()
 
-        val adapter = TitlePagerAdapter()
+        val adapter = TitlePagerAdapter(activity)
         adapter.addAll(listTitle)
 
         val viewPager = v.findViewById<ViewPager>(R.id.content_vp)

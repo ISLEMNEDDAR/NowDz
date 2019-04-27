@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/borderedshape">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+        <TextView
+                android:text="@string/entete_article_enregistre"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp">
+                <include
+                        android:layout_marginTop="10dp"
+                        layout="@layout/card_news_favorite"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+
+                <include
+                        android:layout_marginTop="10dp"
+                        layout="@layout/diveder"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"/>
+                <include
+                        android:layout_marginTop="10dp"
+                        layout="@layout/card_news_favorite"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+                <include
+                        android:layout_marginTop="10dp"
+                        layout="@layout/diveder"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="50dp">
+                    <TextView
+                            android:id="@+id/linktext"
+                            android:text="@string/link_favoris_nom"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorBlue"
+                            android:gravity="center"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

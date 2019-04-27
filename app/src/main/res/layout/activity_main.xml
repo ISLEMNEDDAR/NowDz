@@ -2,7 +2,6 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:design="http://schemas.android.com/apk/res-auto"
@@ -11,53 +10,83 @@
             android:id="@+id/toolbar_accuille"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            style="@style/toolbar"
-            android:elevation="0dp"
-            android:layout_marginTop="0dp" android:layout_alignParentTop="true" android:layout_alignParentStart="true"
-            android:layout_marginLeft="0dp" android:layout_marginStart="0dp" android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true" android:layout_alignParentRight="true" android:layout_marginRight="0dp"
-            android:layout_marginEnd="0dp">
+            android:background="@color/colorLightGrey"
+            android:layout_marginTop="@dimen/zero_dim"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/zero_dim"
+            android:layout_marginStart="@dimen/zero_dim"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/zero_dim"
+            android:layout_marginEnd="@dimen/zero_dim">
 
-        <RelativeLayout
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            <ImageView
-                    android:id="@+id/search_toolbar"
-                    android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:weightSum="8">
+            <LinearLayout
+                    android:layout_width="@dimen/zero_dim"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_search_black_24dp"
-                    android:layout_alignParentBottom="true" android:layout_marginBottom="0dp"
-                    android:layout_alignParentStart="true" android:layout_marginLeft="0dp"
-                    android:layout_marginStart="0dp" android:layout_alignParentLeft="true"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="29dp"
-                    android:text="@string/nom_app"
-                    android:textSize="20sp"
-                    android:fontFamily="Malgun Gothic"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold"
-                    android:layout_alignParentEnd="true" android:layout_alignParentRight="true"
-                    android:layout_marginRight="147dp" android:layout_marginEnd="147dp"
-                    android:layout_alignParentStart="true" android:layout_marginLeft="148dp"
-                    android:layout_marginStart="148dp" android:layout_alignParentLeft="true"
-                    android:layout_alignParentBottom="true" android:layout_marginBottom="12dp"
-                    android:layout_marginTop="15dp" android:layout_alignParentTop="true"/>
-        </RelativeLayout>
+                    android:layout_weight="1">
+                <ImageView
+                        android:id="@+id/search_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_image2"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_search_black_24dp"
+                        android:visibility="visible"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="@dimen/zero_dim"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6">
+                <TextView
+                        android:id="@+id/name_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/zero_dim"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:text="@string/app_name"
+                        android:textSize="@dimen/taille_police_toolbar"
+                        android:textStyle="bold"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="@dimen/zero_dim"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                <ImageView
+                        android:id="@+id/setting_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/zero_dim"
+                        android:layout_gravity="center"
+                        android:src="@drawable/menu_black"
+                        android:visibility="visible"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </android.support.v7.widget.Toolbar>
     <FrameLayout
             android:id="@+id/fragment_id"
             android:layout_width="match_parent"
-            android:layout_height="675dp"
+            android:layout_height="@dimen/height_frame"
             android:layout_above="@+id/navigation_bar"
-            android:layout_marginBottom="0dp" android:layout_marginTop="0dp"
-            android:layout_below="@+id/toolbar_accuille" android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" android:layout_marginRight="0dp" android:layout_marginEnd="0dp"
-            android:layout_alignParentStart="true" android:layout_marginLeft="0dp" android:layout_marginStart="0dp"
-            android:layout_alignParentLeft="true"/>
+            android:layout_marginBottom="@dimen/zero_dim"
+            android:layout_marginTop="@dimen/zero_dim"
+            android:layout_below="@+id/toolbar_accuille"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/zero_dim"
+            android:layout_marginEnd="@dimen/zero_dim"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/zero_dim"
+            android:layout_marginStart="@dimen/zero_dim"
+            android:layout_alignParentLeft="true">
+    </FrameLayout>
     <android.support.design.widget.BottomNavigationView
             android:layout_width="match_parent"
-            android:background="@color/colorWhite"
+            android:background="@color/colorLightGrey"
             android:layout_height="wrap_content"
             android:id="@+id/navigation_bar"
             android:layout_gravity="bottom"
