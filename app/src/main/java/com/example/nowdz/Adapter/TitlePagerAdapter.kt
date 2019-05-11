@@ -11,9 +11,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 
 import android.view.View
-import com.example.nowdz.Fragment.AcuilleFragment
 import com.example.nowdz.R
-import com.example.nowdz.helper.RecycleViewHelper
 import com.example.nowdz.helper.onWebView
 
 

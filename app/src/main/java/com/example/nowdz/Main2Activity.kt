@@ -1,18 +1,15 @@
 package com.example.nowdz
 
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import com.example.nowdz.Adapter.ArticleEnregistreAdapter
-import com.example.nowdz.Adapter.NewAdapter
-import com.example.nowdz.helper.RecycleViewHelper
+import com.islem.rvhlibrary.RecycleViewHelper
+
 const val currentView =R.layout.activity_main2
-class Main2Activity : BaseActivity(),RecycleViewHelper {
+class Main2Activity : BaseActivity(), RecycleViewHelper {
     override var itemRecycleView: RecyclerView? = null
     private var articleList = ArrayList<String>()
     private var articleAdapter : ArticleEnregistreAdapter? = null

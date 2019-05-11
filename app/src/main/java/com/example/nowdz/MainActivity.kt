@@ -15,6 +15,7 @@ import android.widget.ImageView
 import com.example.nowdz.Fragment.AcuilleFragment
 import com.example.nowdz.Fragment.FavorisFragment
 import com.example.nowdz.Fragment.TitreFragement
+import com.islem.rvhlibrary.RecycleViewHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.card_news_secondaire.*
 
