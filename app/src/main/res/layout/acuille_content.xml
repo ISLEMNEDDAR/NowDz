@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:design="http://schemas.android.com/apk/res-auto"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include
+            android:id="@+id/toolbar_accuille"
+            layout="@layout/toolbar_acuille"
+    >
+    </include>
+    <FrameLayout
+            android:id="@+id/fragment_id"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_frame"
+            android:layout_above="@+id/navigation_bar"
+            android:layout_marginBottom="@dimen/zero_dim"
+            android:layout_marginTop="@dimen/zero_dim"
+            android:layout_below="@+id/toolbar_accuille"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/zero_dim"
+            android:layout_marginEnd="@dimen/zero_dim"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/zero_dim"
+            android:layout_marginStart="@dimen/zero_dim"
+            android:layout_alignParentLeft="true">
+    </FrameLayout>
+    <android.support.design.widget.BottomNavigationView
+            android:layout_width="match_parent"
+            android:background="#FFFFF1"
+            android:layout_height="wrap_content"
+            android:id="@+id/navigation_bar"
+            android:layout_gravity="bottom"
+            design:menu="@menu/menu_nav_bottom"
+            android:layout_alignParentStart="true" android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            app:itemIconTint="@"
+            />
+</RelativeLayout>

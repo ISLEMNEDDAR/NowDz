@@ -11,7 +11,9 @@
             android:label="DZNow"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,9 +23,9 @@
         </activity>
         <activity android:name=".ArticleActivity">
         </activity>
-        <activity android:name=".MainActivity"
-        android:theme="@style/AppDarkTheme">
-
+        <activity
+                android:name=".MainActivity"
+                android:theme="@style/AppDarkTheme">
         </activity>
         <activity android:name=".SettingsActivity">
         </activity>
