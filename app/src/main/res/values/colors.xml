@@ -4,9 +4,5 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBlue">#5454F2</color>
-    <color name="colorBlack">#000000</color>
-    <color name="colorGrey">#707070</color>
-    <color name="colorWhiteless">#F1F1F1</color>
-    <color name="colorLightGrey">#95707070</color>
-
+    <color name="colorLust">#E2231A</color>
 </resources>

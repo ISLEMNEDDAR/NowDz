@@ -45,7 +45,7 @@
                 <TextView
                         android:id="@+id/name_toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/zero_dim"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textAlignment="center"
                         android:text="@string/app_name"
