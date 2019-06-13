@@ -10,6 +10,8 @@ import android.util.Log
 import android.widget.Toast
 import android.content.Intent
 import android.net.Uri
+import android.view.Menu
+import android.view.MenuItem
 import com.example.nowdz.Fragment.*
 import android.widget.ImageView
 import com.example.nowdz.Fragment.AcuilleFragment
@@ -30,12 +32,10 @@ class MainActivity : BaseActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val setting = findViewById<ImageView>(R.id.setting_toolbar)
+        val setting = findViewById<ImageView>(R.id.extra_menu)
 
-        settingMenu = findViewById(R.id.setting_toolbar)
-        settingMenu!!.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
+        settingMenu = findViewById(R.id.extra_menu)
+
         chargerFagment(AcuilleFragment())
         setToolbar()
         navigation()
@@ -138,4 +138,26 @@ class MainActivity : BaseActivity() {
         }
     }
 
+
+    /**
+     *
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_toolbar_main,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    /**
+     *
+     */
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when(item!!.itemId){
+
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 }

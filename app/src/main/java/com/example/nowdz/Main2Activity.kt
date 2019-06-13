@@ -20,7 +20,7 @@ class Main2Activity : BaseActivity(), RecycleViewHelper {
         setContentView(currentView)
         backarrow = findViewById(R.id.back_toolbar)
         backarrow!!.setOnClickListener{
-            if ( getFragmentManager().getBackStackEntryCount() > 0)
+            if ( getFragmentManager().backStackEntryCount > 0)
             {
                 getFragmentManager().popBackStack()
             }

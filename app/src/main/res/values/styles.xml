@@ -9,9 +9,9 @@
     </style>
     <style name="AppDarkTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorBlue</item>
-        <item name="colorPrimaryDark">@color/colorBlack</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorLust</item>
+        <item name="colorPrimaryDark">@color/colorWhiteless</item>
+        <item name="colorAccent">@color/colorLust</item>
     </style>
     <style name="toolbar">
         <item name="android:background">@color/colorWhiteless</item>
