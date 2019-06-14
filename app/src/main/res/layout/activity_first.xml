@@ -5,10 +5,37 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FirstActivity">
-    <ImageView
+        tools:context=".FirstActivity"
+        android:background="@drawable/photobackground">
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/accuille"
-    />
+            android:background="@drawable/redbackground">
+        <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/logo"
+                android:layout_alignParentEnd="true" android:layout_alignParentRight="true"
+                android:layout_marginRight="156dp" android:layout_marginEnd="156dp"
+                android:layout_alignParentStart="true" android:layout_marginLeft="159dp"
+                android:layout_marginStart="159dp" android:layout_alignParentLeft="true"
+                android:layout_marginTop="198dp" android:layout_alignParentTop="true"/>
+        <ImageView
+                android:layout_width="171dp"
+                android:layout_height="63dp"
+                android:src="@drawable/title_app" android:layout_marginTop="323dp"
+                android:layout_alignParentTop="true"
+
+                android:layout_alignParentEnd="true" android:layout_alignParentRight="true"
+                android:layout_marginRight="118dp" android:layout_marginEnd="118dp"
+                android:layout_alignParentStart="true" android:layout_marginLeft="122dp"
+                android:layout_marginStart="122dp" android:layout_alignParentLeft="true"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:src="@drawable/content" android:layout_alignParentBottom="true"
+                android:layout_marginBottom="53dp"
+        android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
 </RelativeLayout>
