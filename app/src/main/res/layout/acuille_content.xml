@@ -34,6 +34,5 @@
             design:menu="@menu/menu_nav_bottom"
             android:layout_alignParentStart="true" android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            app:itemIconTint="@"
             />
 </RelativeLayout>
