@@ -6,14 +6,16 @@
                 android:id="@+id/search_menu"
                 android:orderInCategory="300"
                 android:icon="@drawable/ic_search"
+                android:iconTint="@color/colorWhiteless"
                 app:showAsAction="always"
+                app:actionViewClass="android.support.v7.widget.SearchView"
                 android:title="@string/recherche_nom">
         </item>
         <item
                 android:id="@+id/color_menu"
                 android:orderInCategory="300"
                 android:icon="@drawable/ic_color"
-                app:showAsAction="always"
+                app:showAsAction="ifRoom"
                 android:title="@string/recherche_nom">
         </item>
         <item

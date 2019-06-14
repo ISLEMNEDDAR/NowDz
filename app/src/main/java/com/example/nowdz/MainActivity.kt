@@ -15,10 +15,14 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import com.example.nowdz.Fragment.*
 import android.widget.ImageView
+import com.example.nowdz.Constante.DARK_THEME
+import com.example.nowdz.Constante.KEY_CURRENT_THEME
+import com.example.nowdz.Constante.LIGHT_THEME
 import com.example.nowdz.Fragment.AcuilleFragment
 import com.example.nowdz.Fragment.FavorisFragment
 import com.example.nowdz.Fragment.TitreFragement
@@ -26,6 +30,9 @@ import com.islem.rvhlibrary.RecycleViewHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.acuille_content.*
 import kotlinx.android.synthetic.main.card_news_secondaire.*
+
+
+
 
 
 
@@ -103,21 +110,11 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
             R.id.nav_home -> {
                 // Handle the camera action
             }
-            R.id.nav_gallery -> {
 
-            }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_tools -> {
-
-            }
             R.id.nav_share -> {
 
             }
-            R.id.nav_send -> {
 
-            }
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         drawerLayout.closeDrawer(GravityCompat.START)
@@ -169,37 +166,6 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
                         Toast.makeText(this, "Showing Hide Toast!", Toast.LENGTH_LONG).show()
                         true
                     }
-                    R.id.nav_home -> {
-                        // Handle the camera action
-                        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-                        drawerLayout.closeDrawer(GravityCompat.START)
-                        true
-                    }
-                    R.id.nav_gallery -> {
-                        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-                        drawerLayout.closeDrawer(GravityCompat.START)
-                        true
-                    }
-                    R.id.nav_slideshow -> {
-                        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-                        drawerLayout.closeDrawer(GravityCompat.START)
-                        true
-                    }
-                    R.id.nav_tools -> {
-                        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-                        drawerLayout.closeDrawer(GravityCompat.START)
-                        true
-                    }
-                    R.id.nav_share -> {
-                        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-                        drawerLayout.closeDrawer(GravityCompat.START)
-                        true
-                    }
-                    R.id.nav_send -> {
-                        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-                        drawerLayout.closeDrawer(GravityCompat.START)
-                        true
-                    }
                     else -> false
                 }
 
@@ -228,6 +194,26 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_toolbar_main,menu)
+
+
+        /**
+         *
+         */
+        val mSearch = menu!!.findItem(R.id.search_menu)
+
+        val mSearchView = mSearch.actionView as SearchView
+        mSearchView.queryHint = "Search"
+
+        mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                // filter
+                return true
+            }
+        })
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -237,9 +223,16 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when(item!!.itemId){
-
+            R.id.color_menu ->{
+                if(currentTheme == DARK_THEME) changeTheme(LIGHT_THEME, KEY_CURRENT_THEME,this@MainActivity)
+                else changeTheme(DARK_THEME, KEY_CURRENT_THEME,this@MainActivity)
+                recreate()
+            }
+            R.id.extra_menu->{
+                val settingIntent = Intent(this@MainActivity,SettingsActivity::class.java)
+                startActivity(settingIntent)
+            }
         }
-
         return super.onOptionsItemSelected(item)
     }
 }

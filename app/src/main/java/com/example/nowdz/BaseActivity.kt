@@ -4,22 +4,25 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
+import com.example.nowdz.Constante.DARK_THEME
+import com.example.nowdz.Constante.KEY_CURRENT_THEME
+import com.example.nowdz.Constante.LIGHT_THEME
+import com.example.nowdz.helper.ModeInterface
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity(),ModeInterface {
 
-    protected lateinit var currentTheme: String
+    protected var currentTheme: String? =null
     private lateinit var sharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this)
-        currentTheme = sharedPref.getString(KEY_CURRENT_THEME, LIGHT_THEME)
-        setAppTheme(currentTheme)
+        currentTheme = getCurrentTheme(this@BaseActivity, LIGHT_THEME, KEY_CURRENT_THEME)
+        setAppTheme(currentTheme!!)
     }
 
     override fun onResume() {
         super.onResume()
-        val selectedTheme = sharedPref.getString(KEY_CURRENT_THEME, LIGHT_THEME)
+        val selectedTheme = getCurrentTheme(this@BaseActivity, LIGHT_THEME, KEY_CURRENT_THEME)
         if(currentTheme != selectedTheme)
             recreate()
     }
