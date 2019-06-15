@@ -1,5 +1,6 @@
 package com.example.nowdz.helper
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,20 +10,20 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
+import com.example.nowdz.AffichageActivity
+import com.example.nowdz.ArticleEnregistreActivity
 import com.example.nowdz.BaseActivity
 import com.example.nowdz.Fragment.AcuilleFragment
-import com.example.nowdz.Main2Activity
 import com.example.nowdz.R
 
 class PopupFct(val context: Context,
                val view: View,
-               val activity: BaseActivity) : PopupMenu(context, view) {
-    fun onCLick() {
+               val activity: Activity) : PopupMenu(context, view),GlobalHelper {
+     fun onCLick() {
          setOnMenuItemClickListener {item ->
             when (item.itemId) {
                 R.id.menu_popup_save -> {
-                    Toast.makeText(context, "Showing Save Toast!", Toast.LENGTH_LONG).show()
-                    item.setIcon(R.drawable.ic_saved)
+                    switchActivity(context,AffichageActivity::class.java,activity)
                     true
                 }
                 R.id.menu_popup_share -> {
@@ -48,7 +49,7 @@ class PopupFct(val context: Context,
 
 
                         Log.i("webView","not null web")
-                    val intent = Intent (view.context, Main2Activity::class.java)
+                    val intent = Intent (view.context, ArticleEnregistreActivity::class.java)
                     activity!!.startActivity(intent)
                     true
 

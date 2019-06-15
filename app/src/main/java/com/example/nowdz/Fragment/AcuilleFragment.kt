@@ -18,6 +18,7 @@ import android.widget.Toast
 import com.example.nowdz.Adapter.NewAdapter
 import com.example.nowdz.ArticleActivity
 import com.example.nowdz.R
+import com.example.nowdz.helper.PopupFct
 import com.example.nowdz.helper.onWebView
 
 
@@ -30,60 +31,24 @@ class AcuilleFragment : Fragment(),onWebView {
         val v = inflater.inflate(R.layout.fragment_accuille,null)
         initRvNews(v)
         ajouterNews()
-        var popup : ImageView = v.findViewById(R.id.card1_menu)
-        val popupMenu = PopupMenu(v.context!!,v)
-        popup!!.setOnClickListener {
-            /***/
-                item ->
-            when (item.id) {
-                R.id.menu_popup_save -> {
-                    Toast.makeText(context, "Showing Save Toast!", Toast.LENGTH_LONG).show()
-                    true
-                }
-                R.id.menu_popup_share -> {
-                    val shareintent = Intent(Intent.ACTION_SEND)
-                    shareintent.type = "type/palin"
-                    val sharebody = "The body"
-                    val sharesub = "The subject"
-                    shareintent.putExtra(Intent.EXTRA_SUBJECT, sharebody)
-                    shareintent.putExtra(Intent.EXTRA_TEXT, sharesub)
-                    ContextCompat.startActivity(this!!.context!!,Intent.createChooser(shareintent, "Share article"),Bundle())
-                    Toast.makeText(context, "Showing Share Toast!", Toast.LENGTH_LONG).show()
-                    true
-                }
-                R.id.menu_popup_access -> {
-                    Toast.makeText(context, "Showing access Toast!", Toast.LENGTH_SHORT).show()
-
-                    Log.i("isClicked", "log success")
-                    showActivity(activity!!, ArticleActivity::class.java)
-
-
-                }
-                R.id.menu_popup_hide -> {
-                    Toast.makeText(context, "Showing Hide Toast!", Toast.LENGTH_LONG).show()
-                    true
-                }
-                else -> false
-            }
-
-
-
-          popupMenu.inflate(R.menu.menu_popup)
-
+        (v.findViewById<ImageView>(R.id.card1_menu)).setOnClickListener {
+            val popupMenu = PopupFct(this.context!!, it, activity!!)
+            popupMenu.onCLick()
+            popupMenu.inflate(R.menu.menu_popup)
             try {
-                val fieldMPopup = popupMenu!!::class.java.getDeclaredField("mPopup")
+                val fieldMPopup = PopupFct::class.java.getDeclaredField("mPopup")
                 fieldMPopup.isAccessible = true
                 val mPopup = fieldMPopup.get(popupMenu)
                 mPopup.javaClass
                     .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
                     .invoke(mPopup, true)
-            } catch (e: Exception) {
+            } catch (e: Exception){
                 Log.e("Main", "Error showing menu icons.", e)
             } finally {
                 popupMenu.show()
             }
         }
-            /***/
+        /***/
         return v
 
     }

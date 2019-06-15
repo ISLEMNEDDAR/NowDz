@@ -18,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.example.nowdz.Fragment.*
 import android.widget.ImageView
 import com.example.nowdz.Constante.DARK_THEME
@@ -26,6 +27,7 @@ import com.example.nowdz.Constante.LIGHT_THEME
 import com.example.nowdz.Fragment.AcuilleFragment
 import com.example.nowdz.Fragment.FavorisFragment
 import com.example.nowdz.Fragment.TitreFragement
+import com.example.nowdz.helper.PopupFct
 import com.islem.rvhlibrary.RecycleViewHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.acuille_content.*
@@ -140,53 +142,6 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
     }
      */
 
-    /**
-     *  Le menu popup
-     */
-
-    private fun popsurf () {
-        card2_menu.setOnClickListener {
-            val popupMenu = PopupMenu(this, it)
-            popupMenu.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.menu_popup_save -> {
-                        Toast.makeText(this, "Showing Save Toast!", Toast.LENGTH_LONG).show()
-                        true
-                    }
-                    R.id.menu_popup_share -> {
-                        Toast.makeText(this, "Showing Share Toast!", Toast.LENGTH_LONG).show()
-                        true
-                    }
-                    R.id.menu_popup_access -> {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://resocoder.com"))
-                        startActivity(intent)
-                        true
-                    }
-                    R.id.menu_popup_hide -> {
-                        Toast.makeText(this, "Showing Hide Toast!", Toast.LENGTH_LONG).show()
-                        true
-                    }
-                    else -> false
-                }
-
-
-
-            }
-        popupMenu.inflate(R.menu.menu_popup)
-        try {
-            val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
-            fieldMPopup.isAccessible = true
-            val mPopup = fieldMPopup.get(popupMenu)
-            mPopup.javaClass
-                .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
-                .invoke(mPopup, true)
-        } catch (e: Exception){
-            Log.e("Main", "Error showing menu icons.", e)
-        } finally {
-            popupMenu.show()
-        }
-        }
-    }
 
     /**
      *

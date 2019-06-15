@@ -17,6 +17,8 @@ import android.widget.Toast
 import com.example.nowdz.ArticleActivity
 import com.example.nowdz.BaseActivity
 import com.example.nowdz.R
+import com.example.nowdz.helper.GlobalHelper
+import com.example.nowdz.helper.PopupFct
 import com.example.nowdz.helper.onWebView
 
 class NewAdapter constructor(
@@ -26,7 +28,7 @@ class NewAdapter constructor(
     var activity: FragmentActivity?
 
 )
-    : RecyclerView.Adapter<NewAdapter.NewsViewHolder>(),onWebView {
+    : RecyclerView.Adapter<NewAdapter.NewsViewHolder>(),onWebView,GlobalHelper {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         //inflate the layout file
         val newView =
@@ -40,48 +42,11 @@ class NewAdapter constructor(
         val classement = position+2
         holder.posiotion.text = "$classement."
         holder.popup.setOnClickListener {
-            val popupMenu = PopupMenu(context, it)
-            popupMenu.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.menu_popup_save -> {
-                        Toast.makeText(context, "Showing Save Toast!", Toast.LENGTH_LONG).show()
-                        item.setIcon(R.drawable.ic_saved)
-                        true
-                    }
-                    R.id.menu_popup_share -> {
-                        val shareintent = Intent(Intent.ACTION_SEND)
-                        shareintent.type="type/palin"
-                        val sharebody ="The body"
-                        val sharesub= "The subject"
-                        shareintent.putExtra(Intent.EXTRA_SUBJECT,sharebody)
-                        shareintent.putExtra(Intent.EXTRA_TEXT,sharesub)
-                        startActivity(context,Intent.createChooser(shareintent,"Share article"), Bundle())
-                        Toast.makeText(context, "Showing Share Toast!", Toast.LENGTH_LONG).show()
-                        true
-                    }
-                    R.id.menu_popup_access -> {
-                        Toast.makeText(context, "Showing access Toast!", Toast.LENGTH_SHORT).show()
-
-                        Log.i("isClicked","log success")
-                        showActivity(activity!!, ArticleActivity::class.java)
-
-                        true
-
-                        //var wv : WebView = view.findViewById(R.id.read_webview)
-                    }
-                    R.id.menu_popup_hide -> {
-                        Toast.makeText(context, "Showing Hide Toast!", Toast.LENGTH_LONG).show()
-                        true
-                    }
-                    else -> false
-                }
-            }
-
-
+            val popupMenu = PopupFct(context, it,activity!!)
+            popupMenu.onCLick()
             popupMenu.inflate(R.menu.menu_popup)
-
             try {
-                val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+                val fieldMPopup = PopupFct::class.java.getDeclaredField("mPopup")
                 fieldMPopup.isAccessible = true
                 val mPopup = fieldMPopup.get(popupMenu)
                 mPopup.javaClass

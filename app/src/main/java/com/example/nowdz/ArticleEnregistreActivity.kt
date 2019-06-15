@@ -9,7 +9,7 @@ import com.example.nowdz.Adapter.ArticleEnregistreAdapter
 import com.islem.rvhlibrary.RecycleViewHelper
 
 const val currentView =R.layout.activity_article_enregistre
-class Main2Activity : BaseActivity(), RecycleViewHelper {
+class ArticleEnregistreActivity : BaseActivity(), RecycleViewHelper {
     override var itemRecycleView: RecyclerView? = null
     private var articleList = ArrayList<String>()
     private var articleAdapter : ArticleEnregistreAdapter? = null
@@ -31,7 +31,7 @@ class Main2Activity : BaseActivity(), RecycleViewHelper {
         init(view)
     }
     private fun init(v : View){
-        articleAdapter = ArticleEnregistreAdapter(articleList,v.context,v)
+        articleAdapter = ArticleEnregistreAdapter(articleList,v.context,v,this@ArticleEnregistreActivity)
         initLineaire(v,R.id.recycleview_enregistre,LinearLayoutManager.VERTICAL,articleAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
         ajouter()
     }
