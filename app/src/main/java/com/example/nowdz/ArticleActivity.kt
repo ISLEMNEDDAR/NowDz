@@ -16,19 +16,18 @@ class ArticleActivity : BaseActivity(),onWebView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article)
-        mywebview = findViewById(com.example.nowdz.R.id.web_view) as WebView
+        mywebview = findViewById(com.example.nowdz.R.id.web_view)
         if (mywebview == null) { print("mWebView is null")}
-        if (mywebview!!.getSettings() == null) { print("Settings is null")}
+        if (mywebview!!.settings == null) { print("Settings is null")}
         mywebview!!.loadUrl("https://www.tsa-algerie.com")
         // Enable Javascript
-        val webSettings = mywebview!!.getSettings()
-        webSettings.setJavaScriptEnabled(true)
+        val webSettings = mywebview!!.settings
+        webSettings.javaScriptEnabled = true
         // Force links and redirects to open in the WebView instead of in a browser
-        mywebview!!.setWebViewClient(WebViewClient())
+        mywebview!!.webViewClient = WebViewClient()
 
         backarrow = findViewById(R.id.back_toolbar)
         home = findViewById(R.id.home_toolbar)
-        setting = findViewById(R.id.menu_toolbar)
         backarrow!!.setOnClickListener{
             if ( getFragmentManager().getBackStackEntryCount() > 0)
             {
@@ -39,9 +38,7 @@ class ArticleActivity : BaseActivity(),onWebView {
         home!!.setOnClickListener {
             showActivity(this,MainActivity::class.java)
         }
-        setting!!.setOnClickListener {
-            showActivity(this,SettingsActivity::class.java)
-        }
+
 
     }
 }

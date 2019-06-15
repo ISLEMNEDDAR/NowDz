@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDelegate
 import com.example.nowdz.Constante.DARK_THEME
 import com.example.nowdz.Constante.KEY_CURRENT_THEME
 import com.example.nowdz.Constante.LIGHT_THEME

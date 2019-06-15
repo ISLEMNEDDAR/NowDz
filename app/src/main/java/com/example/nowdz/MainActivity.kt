@@ -223,11 +223,6 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when(item!!.itemId){
-            R.id.color_menu ->{
-                if(currentTheme == DARK_THEME) changeTheme(LIGHT_THEME, KEY_CURRENT_THEME,this@MainActivity)
-                else changeTheme(DARK_THEME, KEY_CURRENT_THEME,this@MainActivity)
-                recreate()
-            }
             R.id.extra_menu->{
                 val settingIntent = Intent(this@MainActivity,SettingsActivity::class.java)
                 startActivity(settingIntent)

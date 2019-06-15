@@ -2,12 +2,113 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             android:padding="10dp">
-    <Switch
-            android:id="@+id/mintTheme"
+                                             android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_accuille"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/content_taille"
-            android:text="@string/enable_dark_theme" />
+            android:layout_height="?attr/actionBarSize"
+            style="@style/toolbar"
+            android:layout_marginTop="@dimen/zero_dim"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/zero_dim"
+            android:layout_marginStart="@dimen/zero_dim"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/zero_dim"
+            android:layout_marginEnd="@dimen/zero_dim">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="8">
+        <LinearLayout
+                android:layout_width="@dimen/zero_dim"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            <ImageView
+                    android:id="@+id/back_toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:src="@drawable/ic_back"
+                    android:layout_gravity="center"
+            />
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="@dimen/zero_dim"
+                android:layout_height="match_parent"
+                android:layout_weight="7">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Paramètre"
+                    android:textSize="@dimen/taille_police_toolbar"
+                    android:textColor="@color/colorWhiteless"
+                    android:gravity="start|center"
+            />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+            android:id="@+id/fragment_id"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_frame"
+            android:layout_above="@+id/navigation_bar"
+            android:layout_marginBottom="@dimen/zero_dim"
+            android:layout_marginTop="@dimen/zero_dim"
+            android:layout_below="@+id/toolbar_accuille"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/zero_dim"
+            android:layout_marginEnd="@dimen/zero_dim"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/zero_dim"
+            android:layout_marginStart="@dimen/zero_dim"
+            android:layout_alignParentLeft="true">
+        <!--  <WebView
+                  android:id="@+id/web_view"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+                    </WebView>-->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+        android:orientation="vertical">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:text="Paramtre generale"
+            android:gravity="center"/>
+            <include
+                    layout="@layout/diveder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            />
+
+            <Switch
+                    android:id="@+id/mintTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/content_taille"
+                    android:text="@string/enable_dark_theme"
+                    android:layout_marginTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"/>
+            <Switch
+                    android:id="@+id/language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/content_taille"
+                    android:text="Langue Arabe/Francais"
+                    android:layout_marginTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"/>
+        </LinearLayout>
+
+    </FrameLayout>
 </RelativeLayout>

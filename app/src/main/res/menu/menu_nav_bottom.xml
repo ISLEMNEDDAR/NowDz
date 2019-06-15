@@ -3,15 +3,15 @@
     <item
             android:id="@+id/item_accuille"
             android:title="@string/accuille_nom"
-            android:icon="@drawable/ic_home_black_24dp"/>
+            android:icon="@drawable/ic_home"/>
     <item
             android:id="@+id/item_titre"
             android:title="@string/title_nom"
-            android:icon="@drawable/ic_apps_black_24dp"/>
+            android:icon="@drawable/ic_app"/>
     <item
             android:id="@+id/item_favoris"
             android:title="@string/favoris_nom"
-            android:icon="@drawable/ic_star_border_black_24dp"/>
+            android:icon="@drawable/ic_star"/>
 
 
 </menu>

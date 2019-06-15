@@ -8,7 +8,7 @@ import android.widget.ImageView
 import com.example.nowdz.Adapter.ArticleEnregistreAdapter
 import com.islem.rvhlibrary.RecycleViewHelper
 
-const val currentView =R.layout.activity_main2
+const val currentView =R.layout.activity_article_enregistre
 class Main2Activity : BaseActivity(), RecycleViewHelper {
     override var itemRecycleView: RecyclerView? = null
     private var articleList = ArrayList<String>()

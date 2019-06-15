@@ -11,15 +11,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.nowdz.Main2Activity
 import com.example.nowdz.R
+import com.example.nowdz.helper.GlobalHelper
 
-class FavorisFragment : Fragment() {
+class FavorisFragment : Fragment(),GlobalHelper {
     private var linktext : TextView?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_favoris,null)
         linktext = v.findViewById(R.id.linktext)
         linktext!!.setOnClickListener{
-            val intent = Intent (v.context, Main2Activity::class.java)
-            activity!!.startActivity(intent)
+            switchActivity(v.context,Main2Activity::class.java,activity!!)
         }
         return v
     }

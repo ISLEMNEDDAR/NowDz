@@ -13,8 +13,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-
-
+        <activity
+                android:name=".AffichageActivity"
+                android:label="@string/title_activity_affichage"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

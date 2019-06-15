@@ -6,15 +6,15 @@
 
 <item
         android:id="@+id/menu_popup_save"
-        android:title="@string/save_nom"
-        android:icon="@drawable/ic_save"/>
+        android:title="Lire L'Article"
+        android:icon="@drawable/ic_read"/>
 <item
         android:id="@+id/menu_popup_share"
         android:title="@string/share_nom"
         android:icon="@drawable/ic_share"/>
 <item
         android:id="@+id/menu_popup_access"
-        android:title="@string/acess_nom"
+        android:title="Accéder au Site"
         android:icon="@drawable/ic_access"/>
 <item
         android:id="@+id/menu_popup_hide"
