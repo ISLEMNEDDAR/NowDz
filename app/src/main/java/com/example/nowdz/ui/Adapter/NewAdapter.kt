@@ -40,7 +40,7 @@ class NewAdapter constructor(
         val article = newsList[position]
         val classement = position+2
         val suivi = holder.favoris
-        toggleSuivi(suivi.tag == "suivi",suivi,R.drawable.ic_saved,R.drawable.ic_save)
+        toggleSuivi(article.suivi,suivi,R.drawable.ic_saved,R.drawable.ic_save)
         holder.posiotion.text = "$classement."
         holder.card.setOnClickListener {
             switchActivityExtra(this.context, AffichageActivity::class.java,activity!!,"article",article)
@@ -51,7 +51,8 @@ class NewAdapter constructor(
             popupMenu.inflat(R.menu.menu_popup)
         }
         suivi.setOnClickListener {
-            suiviProc(suivi)
+            suiviProc(suivi,article)
+            notifyDataSetChanged()
         }
         ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
     }

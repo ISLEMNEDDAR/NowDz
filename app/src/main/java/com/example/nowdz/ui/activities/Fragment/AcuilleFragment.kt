@@ -44,7 +44,7 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper {
         initFirstNews()
         initRvNews(v)
         ajouterNews(ArticleController.getRestArticle())
-        toggleSuivi(suivi.tag == "suivi",suivi,R.drawable.ic_saved,R.drawable.ic_save)
+        toggleSuivi(ArticleController.getFirstArticle().suivi,suivi,R.drawable.ic_saved,R.drawable.ic_save)
         (v.findViewById<CardView>(R.id.card1_accuille)).setOnClickListener {
             switchActivityExtra(this.context!!, AffichageActivity::class.java,activity!!,"article",ArticleController.getFirstArticle())
         }
@@ -54,7 +54,7 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper {
             popupMenu.inflat(R.menu.menu_popup)
         }
         (suivi).setOnClickListener{
-            suiviProc(suivi)
+            suiviProc(suivi,ArticleController.getFirstArticle())
         }
         /***/
         return v

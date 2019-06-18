@@ -29,6 +29,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp">
                 <include
+                        android:id="@+id/favoris1"
                         android:layout_marginTop="10dp"
                         layout="@layout/card_news_favorite"
                         android:layout_height="wrap_content"
@@ -40,6 +41,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"/>
                 <include
+                        android:id="@+id/favoris2"
                         android:layout_marginTop="10dp"
                         layout="@layout/card_news_favorite"
                         android:layout_height="wrap_content"

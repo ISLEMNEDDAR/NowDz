@@ -14,29 +14,29 @@ import kotlin.collections.ArrayList
 object ArticleController {
 
 
-            var khabar : Source = Source(
+            private var khabar : Source = Source(
                 name = "الخبر",
                 url = "https://www.elkhabar.com/",
                 logo=R.drawable.khabar_logo
             )
-            var soir : Source = Source(
+            private var soir : Source = Source(
                 name="Le Soir",
                 url ="https://www.lesoirdalgerie.com/",
                 logo=R.drawable.soir_logo
             )
-            var liberte : Source = Source(
+            private var liberte : Source = Source(
                 name = "La Liberté",
                 url="https://www.liberte-algerie.com/",
                 logo=R.drawable.liberte_logo
 
             )
-            var echourouk : Source = Source(
+            private var echourouk : Source = Source(
                 name ="الشروق" ,
                 url="https://www.echoroukonline.com/",
                 logo=R.drawable.echourouk_logo
 
             )
-            var article0: Article = Article(
+            private var article0: Article = Article(
                 journal = khabar,
                 author = "ل.ب",
                 titre = "توقيف حفيد جمال ولد عباس",
@@ -52,7 +52,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article1: Article = Article(
+            private var article1: Article = Article(
                 journal = khabar,
                 titre = "الخضر يتقدم بمركزين",
                 urltoImage = R.drawable.article_image,
@@ -68,7 +68,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article2: Article = Article(
+            private var article2: Article = Article(
                 journal = khabar,
                 titre = "\"دوري في \"أولاد الحلال\" علامة فارقة في مساري الفني\"",
                 urltoImage = R.drawable.article2_img,
@@ -112,7 +112,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article3: Article = Article(
+            private var article3: Article = Article(
                 journal = khabar,
                 titre = "جلسة لمجلس الأمن بعد استهداف سفينتين في الخليج",
                 urltoImage = R.drawable.article3_img,
@@ -137,7 +137,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article4: Article = Article(
+            private var article4: Article = Article(
                 journal = soir,
                 titre = "Ouyahia, la chute !",
                 urltoImage = R.drawable.article4_img,
@@ -164,7 +164,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article5: Article = Article(
+            private var article5: Article = Article(
                 journal = soir,
                 titre = "Belkebla, l’autre face cachée des Verts",
                 urltoImage = R.drawable.article5_img,
@@ -178,7 +178,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article6: Article = Article(
+            private var article6: Article = Article(
                 journal = soir,
                 titre = "«Par Azar», une belle rencontre avec l’art",
                  urltoImage= R.drawable.article6_img,
@@ -197,7 +197,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article7: Article = Article(
+            private var article7: Article = Article(
                 journal = liberte,
                 titre = "Un joyau aux innombrables potentialités écoculturelles",
                 urltoImage = R.drawable.article7_img,
@@ -221,7 +221,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article8: Article = Article(
+            private var article8: Article = Article(
                 journal = liberte,
                 titre = "Reprise du dialogue au Soudan",
                 urltoImage = R.drawable.article8_img,
@@ -239,7 +239,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article9: Article = Article(
+            private var article9: Article = Article(
                 journal = echourouk,
                 titre = "يداع الجنرال المتقاعد علي غديري الحبس المؤقت",
                 urltoImage = R.drawable.article9_img,
@@ -258,7 +258,7 @@ object ArticleController {
                 suivi = false
             )
 
-            var article10: Article = Article(
+            private var article10: Article = Article(
                 journal = echourouk,
                 titre = "سريلانكا تسترد خمسة متورطين في تفجيرات عيد الفصح",
                 urltoImage = R.drawable.article3_img,
@@ -297,7 +297,7 @@ object ArticleController {
             )
 
 
-            var listArticle : ArrayList<Article> = arrayListOf(
+            private var listArticle : ArrayList<Article> = arrayListOf(
                 article0,
                 article1,
                 article2,
@@ -310,6 +310,8 @@ object ArticleController {
                 article9,
                 article10
             )
+
+            private var listArticleFavoris = ArrayList<Article>()
 
     /**
      *avoir le premier article
@@ -350,4 +352,94 @@ object ArticleController {
         titre.text = articleUn.titre
         heurs.text = "a la une -$year"
     }
+
+    /**
+     * Ajouter favoris
+     */
+    fun addFavoris(article : Article){
+        listArticleFavoris.add(article)
+    }
+    /**
+     * Avoir favoris
+     */
+    fun getAllFavoris() : ArrayList<Article>{
+        val listfavoris = ArrayList<Article>()
+        listfavoris.addAll(this.listArticleFavoris)
+        return listfavoris
+    }
+    /**
+     * Supprimer des Favoris
+     */
+    fun removeFavoris(article: Article){
+        listArticleFavoris.remove(article)
+    }
+
+    /**
+     * Ajouter article
+     */
+    fun addArticle(article:Article){
+        this.listArticle.add(article)
+    }
+
+    /**
+     * Supprimer Article
+     */
+    fun removeArticle(article : Article){
+        this.listArticle.remove(article)
+    }
+
+    /**
+     * desuivre un article
+     */
+    fun desuivreArticle(article : Article):ArrayList<Article>{
+        removeFavoris(article)
+        removeArticle(article)
+        article.suivi = false
+        addArticle(article)
+        return this.listArticle
+    }
+
+    /**
+     * suivre un article
+     */
+    fun suivreArticle(article : Article):ArrayList<Article>{
+        removeArticle(article)
+        article.suivi = true
+        addArticle(article)
+        addFavoris(article)
+        return this.listArticle
+    }
+
+    /**
+     * avoir la taille de listfavoris
+     */
+    fun tailleFavoris() : Int{
+        return this.listArticleFavoris.size
+    }
+
+    /**
+     * avoir les deux premiere favoris
+     */
+    fun avoirDeuxFavoris() : ArrayList<Article>{
+        val deuxPremmierFavoris = ArrayList<Article>()
+        var listFavoris = this.listArticleFavoris
+        if(!this.listArticleFavoris.isEmpty()){
+            deuxPremmierFavoris.add(listFavoris[0])
+            deuxPremmierFavoris.add(listFavoris[1])
+        }
+        return deuxPremmierFavoris
+    }
+    /**
+     * avoir les reste
+     */
+    fun avoirRestFavoris() : ArrayList<Article>{
+        val restFavoris = ArrayList<Article>()
+        var listFavoris = this.listArticleFavoris
+        for(i in 2 until listFavoris.size){
+            restFavoris.add(listFavoris[i])
+        }
+        return restFavoris
+    }
+
+
 }

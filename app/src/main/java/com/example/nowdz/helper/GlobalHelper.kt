@@ -8,6 +8,8 @@ import android.os.Parcelable
 import android.support.v4.app.FragmentActivity
 import android.widget.ImageView
 import com.example.nowdz.R
+import com.example.nowdz.controller.ArticleController
+import com.example.nowdz.model.Article
 import com.squareup.picasso.Picasso
 
 interface GlobalHelper{
@@ -21,14 +23,15 @@ interface GlobalHelper{
         intent.putExtra(tag,parcel)
         activity.startActivity(intent)
     }
-    fun suiviProc(suivi : ImageView){
-        if (suivi.tag == "suivi"){
+    fun suiviProc(suivi : ImageView,article : Article){
+        if (article.suivi){
             //faire le desabonnement
             processusSuivre(R.drawable.ic_save,suivi,"nonSuivi")
+            ArticleController.desuivreArticle(article)
         }else{
             // l'abonnement
             processusSuivre(R.drawable.ic_saved,suivi,"suivi")
-
+            ArticleController.suivreArticle(article)
         }
     }
     fun processusSuivre(drawable :Int, image : ImageView, tag : String){
