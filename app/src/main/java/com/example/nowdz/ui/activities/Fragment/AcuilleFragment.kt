@@ -19,10 +19,12 @@ import com.example.nowdz.helper.PopupFct
 import com.example.nowdz.helper.onWebView
 import com.example.nowdz.model.Article
 import com.example.nowdz.ui.activities.AffichageActivity
+import com.islem.rvhlibrary.RecycleViewHelper
 import kotlin.collections.ArrayList
 
 
-class AcuilleFragment : Fragment(),onWebView,GlobalHelper {
+class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
+    override var itemRecycleView: RecyclerView?=null
     private val newsList = ArrayList<Article>()
     private var newsRecyclerView: RecyclerView? = null
     private var newsAdapter: NewAdapter? = null
@@ -63,16 +65,13 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper {
 
     @SuppressLint("SetTextI18n")
     private fun initFirstNews(){
-        var articleUn = ArticleController.getFirstArticle()
+        val articleUn = ArticleController.getFirstArticle()
         ArticleController.construireArticle(articleUn,image_news!!,logo!!,titre!!,heurs!!)
 
     }
     private fun initRvNews(v: View){
-        newsRecyclerView = v.findViewById(R.id.recycle_news_acuille)
         newsAdapter = NewAdapter(newsList,v.context,v,activity)
-        val horizontalLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        newsRecyclerView!!.layoutManager = horizontalLayoutManager
-        newsRecyclerView!!.adapter = newsAdapter
+        initLineaire(v,R.id.recycle_news_acuille,LinearLayoutManager.VERTICAL,newsAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
     }
     private fun ajouterNews(restArticle: ArrayList<Article>) {
         newsList.addAll(restArticle)

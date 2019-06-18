@@ -23,16 +23,22 @@ interface GlobalHelper{
         intent.putExtra(tag,parcel)
         activity.startActivity(intent)
     }
-    fun suiviProc(suivi : ImageView,article : Article){
+
+    /**
+     * le system de suive qui retourne un tableau de favoris
+     */
+    fun suiviProc(suivi : ImageView,article : Article):ArrayList<Article>{
         if (article.suivi){
             //faire le desabonnement
             processusSuivre(R.drawable.ic_save,suivi,"nonSuivi")
             ArticleController.desuivreArticle(article)
+
         }else{
             // l'abonnement
             processusSuivre(R.drawable.ic_saved,suivi,"suivi")
             ArticleController.suivreArticle(article)
         }
+        return ArticleController.getAllFavoris()
     }
     fun processusSuivre(drawable :Int, image : ImageView, tag : String){
         image.setImageResource(drawable)

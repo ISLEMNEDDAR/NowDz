@@ -424,8 +424,17 @@ object ArticleController {
         val deuxPremmierFavoris = ArrayList<Article>()
         var listFavoris = this.listArticleFavoris
         if(!this.listArticleFavoris.isEmpty()){
-            deuxPremmierFavoris.add(listFavoris[0])
-            deuxPremmierFavoris.add(listFavoris[1])
+            when(this.listArticleFavoris.size){
+                1->{
+                    deuxPremmierFavoris.add(listFavoris[0])
+                }
+                else ->{
+                    deuxPremmierFavoris.add(listFavoris[0])
+                    deuxPremmierFavoris.add(listFavoris[1])
+                }
+
+            }
+
         }
         return deuxPremmierFavoris
     }

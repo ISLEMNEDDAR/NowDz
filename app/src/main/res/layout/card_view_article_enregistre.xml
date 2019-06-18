@@ -8,6 +8,7 @@
                                     android:layout_marginBottom="5dp"
                                     android:layout_marginRight="16dp"
                                     android:layout_marginLeft="16dp"
+                                    android:id="@+id/card_enregistrer"
 >
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
@@ -34,7 +35,7 @@
                           android:layout_weight="1">
 
                 <ImageView
-                        android:src="@drawable/logo_tsa"
+                        android:id="@+id/logo"
                         android:layout_width="50dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"/>
@@ -45,8 +46,7 @@
 
                     android:layout_weight="1">
                 <TextView
-                        android:text="@string/titre_news"
-                        android:layout_width="match_parent"
+                        android:id="@+id/titre" android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textAlignment="center"
@@ -63,7 +63,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
-                        android:text="@string/exemple_temps_5h"
                         android:textAlignment="center"
                         android:layout_gravity="center"
                         android:textSize="12sp"/>
@@ -83,7 +82,7 @@
                             android:layout_marginEnd="13dp"
                     />
                     <ImageView
-                            android:id="@+id/card1_newspaper"
+                            android:id="@+id/favoris_card"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_save"

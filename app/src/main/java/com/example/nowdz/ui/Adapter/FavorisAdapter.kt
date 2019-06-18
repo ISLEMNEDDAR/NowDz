@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.nowdz.*
+import com.example.nowdz.R
 import com.example.nowdz.controller.ArticleController
 import com.example.nowdz.helper.GlobalHelper
 import com.example.nowdz.helper.PopupFct
@@ -17,14 +17,13 @@ import com.example.nowdz.helper.onWebView
 import com.example.nowdz.model.Article
 import com.example.nowdz.ui.activities.AffichageActivity
 
-class ArticleEnregistreAdapter constructor(
-    private val newsList: ArrayList<Article>,
+class FavorisAdapter constructor(
+    private var newsList: ArrayList<Article>,
     internal var context: Context,
     var view: View,
     var activity: Activity?
 
-)
-    : RecyclerView.Adapter<ArticleEnregistreAdapter.ArticleViewHolder>(),onWebView,GlobalHelper {
+) : RecyclerView.Adapter<FavorisAdapter.ArticleViewHolder>(), onWebView, GlobalHelper {
     //constructor(newsList: ArrayList<String>,context: Context,view: View) : this(newsList,context,view,null)
 
 
@@ -32,7 +31,7 @@ class ArticleEnregistreAdapter constructor(
 
         //inflate the layout file
         val newView =
-            LayoutInflater.from(parent.context).inflate(R.layout.card_view_article_enregistre, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.card_news_favorite, parent, false)
 
         return ArticleViewHolder(newView)
     }
@@ -51,9 +50,11 @@ class ArticleEnregistreAdapter constructor(
         }
         suivi.setOnClickListener {
             suiviProc(suivi,article)
+            newsList = ArticleController.avoirDeuxFavoris()
             notifyDataSetChanged()
         }
         ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+
 
     }
 
@@ -62,15 +63,13 @@ class ArticleEnregistreAdapter constructor(
     }
 
     inner class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        internal var card : CardView = view.findViewById(R.id.card_enregistrer)
-        internal var logo : ImageView = view.findViewById(R.id.logo)
-        internal var titre : TextView = view.findViewById(R.id.titre)
-        internal var imageNews : ImageView = view.findViewById(R.id.news_image)
+        internal var card : CardView = view.findViewById(R.id.card_favorite)
+        internal var logo : ImageView = view.findViewById(R.id.site_logo)
+        internal var titre : TextView = view.findViewById(R.id.cad2_news_titre)
+        internal var imageNews : ImageView = view.findViewById(R.id.image_card2)
         internal var date : TextView = view.findViewById(R.id.cadr1_date)
-        internal var popup : ImageView = view.findViewById(R.id.card1_menu)
+        internal var popup : ImageView = view.findViewById(R.id.card2_menu)
         internal var favoris : ImageView = view.findViewById(R.id.favoris_card)
-
     }
 
 }
