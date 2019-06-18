@@ -450,5 +450,17 @@ object ArticleController {
         return restFavoris
     }
 
+    /**
+     * list Article par categori
+     */
+    fun ListPerCategory(category : String) : ArrayList<Article>{
+        val listCategory = ArrayList<Article>()
+        for(article in listArticle){
+            if (article.categorie.category.equals(category)){
+                listCategory.add(article)
+            }
+        }
+        return listCategory
+    }
 
 }

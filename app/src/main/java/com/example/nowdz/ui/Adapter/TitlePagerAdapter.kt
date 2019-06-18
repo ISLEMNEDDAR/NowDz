@@ -12,22 +12,28 @@ import android.view.LayoutInflater
 
 import android.view.View
 import com.example.nowdz.R
+import com.example.nowdz.controller.ArticleController
 import com.example.nowdz.helper.onWebView
 import com.example.nowdz.model.Article
+import com.example.nowdz.model.Categories
 import com.example.nowdz.ui.Adapter.NewAdapter
+import com.islem.rvhlibrary.RecycleViewHelper
 
 
-class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter() {
-    private val list = ArrayList<Article>()
+class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(),RecycleViewHelper {
+    override var itemRecycleView: RecyclerView? = null
+    private var listArticle = ArrayList<Article>()
     private var newsRecyclerView: RecyclerView? = null
     private var newsAdapter: NewAdapter? = null
-    private var mItems: List<String> = ArrayList()
-    private var web : onWebView?=null
+    private var mItems: ArrayList<String> = ArrayList()
+
+    /**
+     * instancier l'item de titre
+     */
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(container.context)
             .inflate(R.layout.inter_fragment_title, container, false)
-        initRvNews(view)
-        ajouterNews()
+        initRvNews(view,getPageTitle(position)!!)
         container.addView(view)
         return view
     }
@@ -55,15 +61,14 @@ class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter() {
     fun addAll(items: List<String>) {
         mItems = ArrayList(items)
     }
-    private fun initRvNews(v: View){
-        newsRecyclerView = v.findViewById(R.id.title_content_rv)
-        newsAdapter = NewAdapter(list,v.context,v,activity)
-        val horizontalLayoutManager = LinearLayoutManager(v.context, LinearLayoutManager.VERTICAL, false)
-        newsRecyclerView!!.layoutManager = horizontalLayoutManager
-        newsRecyclerView!!.adapter = newsAdapter
+    private fun initRvNews(v: View,category: String){
+        listArticle = ArticleController.ListPerCategory(category)
+        newsAdapter = NewAdapter(listArticle,v.context,v,activity)
+        initLineaire(v,R.id.title_content_rv,LinearLayoutManager.VERTICAL,newsAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
+
     }
     private fun ajouterNews(){
-        list.clear()
+        listArticle.clear()
         newsAdapter!!.notifyDataSetChanged()
     }
 
