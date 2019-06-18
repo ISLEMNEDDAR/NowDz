@@ -1,9 +1,11 @@
-package com.example.nowdz
+package com.example.nowdz.ui
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.nowdz.R
+import com.example.nowdz.ui.activities.MainActivity
 
 class FirstActivity : AppCompatActivity() {
 

@@ -1,15 +1,12 @@
-package com.example.nowdz.Fragment
+package com.example.nowdz.ui.Fragment
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.nowdz.ArticleEnregistreActivity
+import com.example.nowdz.ui.ArticleEnregistreActivity
 import com.example.nowdz.R
 import com.example.nowdz.helper.GlobalHelper
 
@@ -19,7 +16,7 @@ class FavorisFragment : Fragment(),GlobalHelper {
         val v = inflater.inflate(R.layout.fragment_favoris,null)
         linktext = v.findViewById(R.id.linktext)
         linktext!!.setOnClickListener{
-            switchActivity(v.context,ArticleEnregistreActivity::class.java,activity!!)
+            switchActivity(v.context, ArticleEnregistreActivity::class.java,activity!!)
         }
         return v
     }

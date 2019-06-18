@@ -1,0 +1,51 @@
+{
+  "article1" : {
+    "journal" : {
+
+    },
+    "author" : "",
+    "titre" : "",
+    "url" : "",
+    "urltoImage" : "",
+    "published_at" : "",
+    "content" : "",
+    "categorie" : ""
+  },
+  "article2" : {
+    "journal" : {
+
+    },
+    "author" : "",
+    "titre" : "",
+    "url" : "",
+    "urltoImage" : "",
+    "published_at" : "",
+    "content" : "",
+    "categorie" : ""
+  },
+  "article3" : {
+    "journal" : {
+
+    },
+    "author" : "",
+    "titre" : "",
+    "url" : "",
+    "urltoImage" : "",
+    "published_at" : "",
+    "content" : "",
+    "categorie" : ""
+  },
+  "article4" : {
+    "journal" : {
+
+    },
+    "author" : "",
+    "titre" : "",
+    "url" : "",
+    "urltoImage" : "",
+    "published_at" : "",
+    "content" : "",
+    "categorie" : ""
+  }
+}
+

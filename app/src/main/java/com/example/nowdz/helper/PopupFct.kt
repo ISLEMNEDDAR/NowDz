@@ -9,8 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
-import com.example.nowdz.ui.AffichageActivity
-import com.example.nowdz.ui.ArticleEnregistreActivity
+import com.example.nowdz.ui.activities.AffichageActivity
 import com.example.nowdz.R
 import com.example.nowdz.ui.ArticleActivity
 

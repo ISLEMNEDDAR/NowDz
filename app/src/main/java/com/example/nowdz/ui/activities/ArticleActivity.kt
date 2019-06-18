@@ -1,12 +1,13 @@
-package com.example.nowdz
+package com.example.nowdz.ui
 
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ImageView
+import com.example.nowdz.R
 import com.example.nowdz.helper.onWebView
+import com.example.nowdz.ui.activities.BaseActivity
+import com.example.nowdz.ui.activities.MainActivity
 
 class ArticleActivity : BaseActivity(),onWebView {
     var mywebview: WebView? = null
@@ -16,7 +17,7 @@ class ArticleActivity : BaseActivity(),onWebView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article)
-        mywebview = findViewById(com.example.nowdz.R.id.web_view)
+        mywebview = findViewById(R.id.web_view)
         if (mywebview == null) { print("mWebView is null")}
         if (mywebview!!.settings == null) { print("Settings is null")}
         mywebview!!.loadUrl("https://www.tsa-algerie.com")
@@ -36,7 +37,7 @@ class ArticleActivity : BaseActivity(),onWebView {
             super.onBackPressed()
         }
         home!!.setOnClickListener {
-            showActivity(this,MainActivity::class.java)
+            showActivity(this, MainActivity::class.java)
         }
 
 

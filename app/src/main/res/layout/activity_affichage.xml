@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.AffichageActivity">
+        tools:context=".ui.activities.AffichageActivity">
 
     <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -25,11 +25,12 @@
                 app:expandedTitleTextAppearance="@android:color/transparent"
                 android:fitsSystemWindows="true"
         >
-            <ImageView android:layout_width="match_parent" android:layout_height="250dp"
-                       android:scaleType="center"
-                       android:contentDescription="photo de news"
-                       android:src="@drawable/news_image"
-                        app:layout_collapseMode="parallax"
+            <ImageView
+                    android:id="@+id/affichage_image_news"
+                    android:layout_width="match_parent" android:layout_height="250dp"
+                    android:scaleType="center"
+                    android:contentDescription="photo de news"
+                    app:layout_collapseMode="parallax"
 
             />
             <android.support.v7.widget.Toolbar
@@ -88,14 +89,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 <TextView
+                        android:id="@+id/affichage_titre_news"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorBlack"
-                android:padding="12dp"
-                android:textSize="20sp"
-                android:text="Messi Remporte la coupe d'amerique avec l'equipe d'argentine"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack"
+                        android:padding="12dp"
+                        android:textSize="20sp"/>
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -108,6 +109,7 @@
                             android:layout_gravity="center"
                     />
                     <TextView
+                            android:id="@+id/affichage_date"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="9"
@@ -115,19 +117,17 @@
                             android:textStyle="bold"
                             android:textColor="@color/colorBlack"
                             android:padding="12dp"
-                            android:textSize="14sp"
-                            android:text="12-03-2019"/>
+                            android:textSize="14sp"/>
 
                 </LinearLayout>
                 <TextView
+                        android:id="@+id/affichage_content"
                         android:lineSpacingMultiplier="1.5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:padding="12dp"
-                        android:textSize="13sp"
-                        android:text="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique"/>
-
+                        android:textSize="13sp"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </android.support.v4.widget.NestedScrollView>

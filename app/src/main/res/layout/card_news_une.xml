@@ -17,8 +17,7 @@
             <ImageView
                     android:id="@+id/news_image"
                     android:layout_width="match_parent"
-                    android:layout_height="173dp"
-                    android:background="@drawable/news_image"/>
+                    android:layout_height="173dp"/>
         </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"
@@ -38,7 +37,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold"/>
                 <ImageView
-                        android:src="@drawable/logo_tsa"
+                        android:id="@+id/logo_icon"
                         android:layout_width="50dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"/>
@@ -55,7 +54,8 @@
                         android:layout_gravity="center"
                         android:textAlignment="center"
                         android:textStyle="bold"
-                        android:textSize="17dp"/>
+                        android:textSize="17sp"
+                        android:id="@+id/titre_news"/>
             </LinearLayout>
             <LinearLayout
                     android:layout_width="match_parent"
@@ -91,6 +91,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_save"
+                            android:tag="suivi"
                             android:layout_toStartOf="@+id/card1_menu" android:layout_marginRight="4dp"
                             android:layout_marginEnd="4dp" android:layout_toLeftOf="@+id/card1_menu"/>
                 </RelativeLayout>

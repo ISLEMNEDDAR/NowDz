@@ -3,15 +3,43 @@ package com.example.nowdz.helper
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.media.Image
+import android.os.Parcelable
 import android.support.v4.app.FragmentActivity
+import android.widget.ImageView
+import com.example.nowdz.R
+import com.squareup.picasso.Picasso
 
 interface GlobalHelper{
 
-    fun switchActivity(contextSource : Context,contextDist:Class<*>,activity :Activity){
+    fun switchActivity(contextSource : Context,contextDist:Class<*>,activity :Activity) {
         val intent = Intent(contextSource, contextDist)
-        activity!!.startActivity(intent)
+        activity.startActivity(intent)
     }
+    fun switchActivityExtra(contextSource : Context,contextDist:Class<*>,activity :Activity,tag :String,parcel :Parcelable) {
+        val intent = Intent(contextSource, contextDist)
+        intent.putExtra(tag,parcel)
+        activity.startActivity(intent)
+    }
+    fun suiviProc(suivi : ImageView){
+        if (suivi.tag == "suivi"){
+            //faire le desabonnement
+            processusSuivre(R.drawable.ic_save,suivi,"nonSuivi")
+        }else{
+            // l'abonnement
+            processusSuivre(R.drawable.ic_saved,suivi,"suivi")
 
-
-
+        }
+    }
+    fun processusSuivre(drawable :Int, image : ImageView, tag : String){
+        image.setImageResource(drawable)
+        image.tag = tag
+    }
+    fun toggleSuivi(suivi : Boolean, imageSuivi : ImageView, drawableSuivi : Int, drawableNonSuivi : Int){
+        if (suivi){
+            processusSuivre(R.drawable.ic_saved,imageSuivi,"Suivi")
+        }else{
+            processusSuivre(R.drawable.ic_save,imageSuivi,"nonSuivi")
+        }
+    }
 }

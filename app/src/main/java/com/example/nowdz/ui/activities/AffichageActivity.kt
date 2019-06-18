@@ -1,20 +1,39 @@
-package com.example.nowdz
+package com.example.nowdz.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView
+import android.widget.TextView
+import com.example.nowdz.R
+import com.example.nowdz.controller.ArticleController
+import com.example.nowdz.model.Article
 
 import kotlinx.android.synthetic.main.activity_affichage.*
 
-class AffichageActivity : AppCompatActivity() {
-
+class AffichageActivity : BaseActivity() {
+    /**
+     * Declaration
+     */
+    var image_news :ImageView? = null
+    var titre : TextView? = null
+    var date : TextView? = null
+    var contenu : TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_affichage)
         setSupportActionBar(toolbar_affichage)
+        /**
+         * Initialisation
+         */
+        image_news = findViewById(R.id.affichage_image_news)
+        titre = findViewById(R.id.affichage_titre_news)
+        date = findViewById(R.id.affichage_date)
+        contenu  = findViewById(R.id.affichage_content)
 
+        initAffichage()
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -42,6 +61,19 @@ class AffichageActivity : AppCompatActivity() {
             )
         }
 
+    }
+
+    private fun initAffichage(){
+        val intent = intent
+        if (intent != null){
+            val article = intent.getParcelableExtra<Article>("article")
+            if(article != null){
+                image_news!!.setImageResource(article.urltoImage!!)
+                titre!!.text = article.titre
+                date!!.text = article.published_at.toString()
+                contenu!!.text = article.content
+            }
+        }
     }
 
 }

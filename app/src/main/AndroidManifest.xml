@@ -14,7 +14,7 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".ui.AffichageActivity"
+                android:name=".ui.activities.AffichageActivity"
                 android:label="@string/title_activity_affichage"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>

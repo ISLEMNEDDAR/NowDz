@@ -1,16 +1,11 @@
-package com.example.nowdz
+package com.example.nowdz.ui.activities
 
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
-import android.support.v7.widget.PopupMenu
-import android.util.Log
-import android.widget.Toast
 import android.content.Intent
-import android.content.res.Resources
-import android.net.Uri
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -18,24 +13,13 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import com.example.nowdz.Fragment.*
 import android.widget.ImageView
-import com.example.nowdz.Constante.DARK_THEME
-import com.example.nowdz.Constante.KEY_CURRENT_THEME
-import com.example.nowdz.Constante.LIGHT_THEME
-import com.example.nowdz.Fragment.AcuilleFragment
-import com.example.nowdz.Fragment.FavorisFragment
-import com.example.nowdz.Fragment.TitreFragement
-import com.example.nowdz.helper.PopupFct
-import com.islem.rvhlibrary.RecycleViewHelper
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.nowdz.ui.activities.Fragment.AcuilleFragment
+import com.example.nowdz.ui.Fragment.FavorisFragment
+import com.example.nowdz.ui.Fragment.TitreFragement
+import com.example.nowdz.R
+import com.example.nowdz.ui.SettingsActivity
 import kotlinx.android.synthetic.main.acuille_content.*
-import kotlinx.android.synthetic.main.card_news_secondaire.*
-
-
-
-
 
 
 class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListener  {
@@ -47,24 +31,36 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        /**
+         * Initialisation
+         */
         val setting = findViewById<ImageView>(R.id.extra_menu)
-
         settingMenu = findViewById(R.id.extra_menu)
 
+        /**
+         * Methode
+         */
         chargerFagment(AcuilleFragment())
         setToolbar()
+        initDrawerMenu()
+        navigation()
+    }
+    /**
+     *
+     */
+    private fun initDrawerMenu(){
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, topToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this, drawerLayout, topToolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
         toggle.drawerArrowDrawable.color = resources.getColor(R.color.colorWhiteless)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
-        navigation()
     }
-
     /**
      *
      */
@@ -178,8 +174,8 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when(item!!.itemId){
-            R.id.extra_menu->{
-                val settingIntent = Intent(this@MainActivity,SettingsActivity::class.java)
+            R.id.extra_menu ->{
+                val settingIntent = Intent(this@MainActivity, SettingsActivity::class.java)
                 startActivity(settingIntent)
             }
         }

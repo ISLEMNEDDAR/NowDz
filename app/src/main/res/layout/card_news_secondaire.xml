@@ -101,10 +101,11 @@
                         android:layout_marginEnd="13dp"
                 />
                 <ImageView
-                        android:id="@+id/card2_newspaper"
+                        android:id="@+id/favoris_card"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_save"
+                        android:tag="nonSuivi"
                         android:layout_toStartOf="@+id/card2_menu" android:layout_marginRight="4dp"
                         android:layout_marginEnd="4dp" android:layout_toLeftOf="@+id/card2_menu"/>
             </RelativeLayout>
