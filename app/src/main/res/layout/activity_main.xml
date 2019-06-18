@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:design="http://schemas.android.com/apk/res-auto" xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".MainActivity"
+        tools:context=".ui.activities.MainActivity"
         android:id="@+id/drawer_layout">
     <include
         android:id="@+id/content_id"

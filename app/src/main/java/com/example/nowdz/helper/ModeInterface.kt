@@ -2,9 +2,6 @@ package com.example.nowdz.helper
 
 import android.content.Context
 import android.preference.PreferenceManager
-import com.example.nowdz.Constante.DARK_THEME
-import com.example.nowdz.Constante.KEY_CURRENT_THEME
-import com.example.nowdz.Constante.LIGHT_THEME
 
 interface ModeInterface {
 

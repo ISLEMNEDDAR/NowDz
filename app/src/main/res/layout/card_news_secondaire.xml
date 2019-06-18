@@ -8,6 +8,7 @@
                                     android:layout_marginRight="10dp"
                                     android:layout_marginLeft="10dp"
                                     app:cardCornerRadius="15sp"
+                                    android:id="@+id/card_secondaire"
 
 >
     <LinearLayout 

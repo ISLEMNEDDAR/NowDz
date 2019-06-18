@@ -6,15 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
-import com.example.nowdz.AffichageActivity
-import com.example.nowdz.ArticleEnregistreActivity
-import com.example.nowdz.BaseActivity
-import com.example.nowdz.Fragment.AcuilleFragment
+import com.example.nowdz.ui.AffichageActivity
+import com.example.nowdz.ui.ArticleEnregistreActivity
 import com.example.nowdz.R
+import com.example.nowdz.ui.ArticleActivity
 
 class PopupFct(val context: Context,
                val view: View,
@@ -23,7 +21,7 @@ class PopupFct(val context: Context,
          setOnMenuItemClickListener {item ->
             when (item.itemId) {
                 R.id.menu_popup_save -> {
-                    switchActivity(context,AffichageActivity::class.java,activity)
+                    switchActivity(context, AffichageActivity::class.java,activity)
                     true
                 }
                 R.id.menu_popup_share -> {
@@ -49,7 +47,7 @@ class PopupFct(val context: Context,
 
 
                         Log.i("webView","not null web")
-                    val intent = Intent (view.context, ArticleEnregistreActivity::class.java)
+                    val intent = Intent (view.context, ArticleActivity::class.java)
                     activity!!.startActivity(intent)
                     true
 
@@ -64,4 +62,20 @@ class PopupFct(val context: Context,
         }
 
     }
+      fun inflat(id : Int){
+         this.inflate(R.menu.menu_popup)
+
+         try {
+             val fieldMPopup = android.support.v7.widget.PopupMenu::class.java.getDeclaredField("mPopup")
+             fieldMPopup.isAccessible = true
+             val mPopup = fieldMPopup.get(this)
+             mPopup.javaClass
+                 .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
+                 .invoke(mPopup, true)
+         } catch (e: Exception){
+             Log.e("Main", "Error showing menu icons.", e)
+         } finally {
+             this.show()
+         }
+     }
 }

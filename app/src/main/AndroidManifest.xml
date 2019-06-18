@@ -14,28 +14,28 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".AffichageActivity"
+                android:name=".ui.AffichageActivity"
                 android:label="@string/title_activity_affichage"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".FirstActivity">
+        <activity android:name=".ui.FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ArticleActivity">
+        <activity android:name=".ui.ArticleActivity">
         </activity>
         <activity
-                android:name=".MainActivity"
+                android:name=".ui.activities.MainActivity"
                 android:theme="@style/AppDarkTheme">
         </activity>
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".ui.SettingsActivity">
         </activity>
-        <activity android:name=".BaseActivity">
+        <activity android:name=".ui.activities.BaseActivity">
         </activity>
-        <activity android:name=".ArticleEnregistreActivity">
+        <activity android:name=".ui.ArticleEnregistreActivity">
         </activity>
     </application>
 
