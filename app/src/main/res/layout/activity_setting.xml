@@ -42,7 +42,7 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Paramètre"
+                    android:text="@string/action_settings"
                     android:textSize="@dimen/taille_police_toolbar"
                     android:textColor="@color/colorWhiteless"
                     android:gravity="start|center"
@@ -82,7 +82,7 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:text="Paramtre generale"
+                    android:text="@string/paramtre_generale"
             android:gravity="center"/>
             <include
                     layout="@layout/diveder"
@@ -104,7 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/content_taille"
-                    android:text="Langue Arabe/Francais"
+                    android:text="@string/langue_francais_arabe"
                     android:layout_marginTop="10dp"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"/>

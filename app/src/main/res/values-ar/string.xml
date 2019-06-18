@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NowDz</string>
-    <string name="nom_app">DZ Now</string>
-    <string name="titre_news">Ou va l\'algerie comme sa ? y a t\'il des solution</string>
-    <string name="entete_selection_jour">مجموعة اليوم ل ISLEM</string>
-    <string name="entete_articlejour">أعلى 5 مقالات مشاهدة</string>
-    <string name="enable_dark_theme">تفعيل الوضع المظلم</string>
-    <string name="entete_article_enregistre">Article Enregistrés</string>
-    <string-array name="type_news">
-        <item>الأكثر حداثة</item>
-        <item>الجزائر</item>
-        <item>رياضة</item>
-        <item>اقتصاد</item>
-        <item>الصحة</item>
-        <item>توظيف</item>
-        <item>ثقافة</item>
-    </string-array>
+    <string name="entete_selection_jour">ختيار اليوم</string>
+    <string name="entete_articlejour">أهم مقالات اللحظة</string>
+    <string name="entete_article_enregistre">المقالات المسجلة</string>
+    <string name="enable_dark_theme">تمكين وضع الظلام</string>
+    <string name="nom_article">مقالة</string>
+    <string name="recherche_nom">بحث</string>
+    <string name="save_nom">حفظ في وقت لاحق</string>
+    <string name="share_nom">مشاركة</string>
+    <string name="acess_nom">الوصول إلى</string>
+    <string name="hide_nom">إخفاء المقالات</string>
+    <string name="accuille_nom">الرئيسية</string>
+    <string name="title_nom">الرئيسية</string>
+    <string name="favoris_nom">المسجلة</string>
+    <string name="link_favoris_nom">عرض الكل وإدارته</string>
+    <string name="classemnt_example">1.</string>
+    <string name="action_settings">إعدادات</string>
+    <string name="paramtre_generale">الإعدادات العامة</string>
+    <string name="langue_francais_arabe">اللغة الفرنسية / العربية</string>
+    <string name="neddar_islem">NEDDAR ISLEM</string>
+    <string name="title_activity_test">testActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_affichage">AffichageActivity</string>
+    <string name="acuille">الرئيسية</string>
+    <string name="communicate"></string>
+    <string name="d_connnecter">خروج</string>
+    <string name="lire_l_article">اقرأ المقال</string>
+    <string name="acc_der_au_site">الوصول إلى الموقع</string>
 </resources>

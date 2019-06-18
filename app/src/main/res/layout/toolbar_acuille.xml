@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/titre_fonction"
-            android:text="Now Dz"
+            android:text="@string/app_name"
             android:textSize="18sp"
             android:textAlignment="textStart"
             android:layout_marginLeft="0dp"

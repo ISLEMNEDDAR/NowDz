@@ -18,7 +18,6 @@ import com.example.nowdz.ui.activities.Fragment.AcuilleFragment
 import com.example.nowdz.ui.activities.Fragment.FavorisFragment
 import com.example.nowdz.ui.Fragment.TitreFragement
 import com.example.nowdz.R
-import com.example.nowdz.ui.SettingsActivity
 import kotlinx.android.synthetic.main.acuille_content.*
 
 

@@ -7,15 +7,15 @@
         <item
                 android:id="@+id/nav_home"
                 android:icon="@drawable/ic_home"
-                android:title="Acuille"/>
+                android:title="@string/acuille"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                     android:id="@+id/nav_share"
                     android:icon="@drawable/ic_log_out"
-                    android:title="Déconnnecter"/>
+                    android:title="@string/d_connnecter"/>
 
         </menu>
     </item>

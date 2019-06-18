@@ -15,7 +15,6 @@
             tools:ignore="GoogleAppIndexingWarning">
         <activity
                 android:name=".ui.activities.AffichageActivity"
-                android:label="@string/title_activity_affichage"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".ui.FirstActivity">
@@ -31,7 +30,7 @@
                 android:name=".ui.activities.MainActivity"
                 android:theme="@style/AppDarkTheme">
         </activity>
-        <activity android:name=".ui.SettingsActivity">
+        <activity android:name=".ui.activities.SettingsActivity">
         </activity>
         <activity android:name=".ui.activities.BaseActivity">
         </activity>

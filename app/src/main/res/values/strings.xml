@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">NowDz</string>
-    <string name="nom_app">DZNow</string>
-    <string name="titre_news">Ou va l\'Algerie comme sa ? y a t\'il des solutions</string>
-    <string name="entete_selection_jour">Selection du jour pour ISLEM</string>
-    <string name="entete_articlejour">Top 5 des articles du moment</string>
+    <string name="entete_selection_jour">Selection du jour</string>
+    <string name="entete_articlejour">Top des articles du moment</string>
     <string name="entete_article_enregistre">Articles Enregistrés</string>
     <string name="enable_dark_theme">Activer mode Dark</string>
     <string name="nom_article">Article</string>
@@ -16,41 +14,20 @@
     <string name="title_nom">Titre</string>
     <string name="favoris_nom">Favoris</string>
     <string name="link_favoris_nom">Tout afficher et gérer</string>
-    <string name="exemple_temps_5h">Il y a 5heurs</string>
-    <string name="a_la_une_il_y_a_5heurs">A la une - Il y a 5heurs</string>
     <string name="classemnt_example">1.</string>
-    <string name="titrre2_exemple">L\'algerie d\'aujourd\'hui</string>
-    <string-array name="type_news">
-        <item>Plus récents</item>
-        <item>Algerie</item>
-        <item>Sport</item>
-        <item>Economie</item>
-        <item>Sante</item>
-        <item>Emploi</item>
-        <item>Culture</item>
-    </string-array>
+    <string name="action_settings" translatable="false">Paramètre</string>
+    <string name="paramtre_generale">Paramtre generale</string>
+    <string name="langue_francais_arabe">langue francais/arabe</string>
+    <string name="neddar_islem">NEDDAR ISLEM</string>
     <string name="title_activity_test">testActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
-    <string name="title_activity_login">Sign in</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
     <string name="title_activity_affichage">AffichageActivity</string>
+    <string name="acuille">Acuille</string>
+    <string name="communicate">Communicate</string>
+    <string name="d_connnecter">Déconnnecter</string>
+    <string name="lire_l_article">lire Article</string>
+    <string name="acc_der_au_site">Acceder Article</string>
 </resources>

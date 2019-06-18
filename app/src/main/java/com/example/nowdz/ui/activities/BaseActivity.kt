@@ -3,15 +3,14 @@ package com.example.nowdz.ui.activities
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.example.nowdz.DARK_THEME
-import com.example.nowdz.KEY_CURRENT_THEME
-import com.example.nowdz.LIGHT_THEME
-import com.example.nowdz.R
+import com.example.nowdz.*
+import com.example.nowdz.helper.LocaleHelper
 import com.example.nowdz.helper.ModeInterface
 
 open class BaseActivity : AppCompatActivity(),ModeInterface {
 
     protected var currentTheme: String? =null
+    protected var currentLangue : String? = null
     private lateinit var sharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +19,13 @@ open class BaseActivity : AppCompatActivity(),ModeInterface {
             LIGHT_THEME,
             KEY_CURRENT_THEME
         )
+
+        currentLangue = getCurrentTheme(this@BaseActivity,
+            FRENCH,
+            KEY_CURRENT_LANGUE)
+
         setAppTheme(currentTheme!!)
+        LocaleHelper.setLocale(this@BaseActivity,currentLangue)
     }
 
     override fun onResume() {
@@ -29,7 +34,10 @@ open class BaseActivity : AppCompatActivity(),ModeInterface {
             LIGHT_THEME,
             KEY_CURRENT_THEME
         )
-        if(currentTheme != selectedTheme)
+        val selectedLangue = getCurrentTheme(this@BaseActivity,
+            FRENCH,
+            KEY_CURRENT_LANGUE)
+        if(currentTheme != selectedTheme || currentLangue != selectedLangue)
             recreate()
     }
 
