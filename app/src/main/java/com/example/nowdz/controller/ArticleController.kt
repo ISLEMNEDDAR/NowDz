@@ -453,7 +453,7 @@ object ArticleController {
     /**
      * list Article par categori
      */
-    fun ListPerCategory(category : String) : ArrayList<Article>{
+    fun ListPerCategory(category : Int) : ArrayList<Article>{
         val listCategory = ArrayList<Article>()
         for(article in listArticle){
             if (article.categorie.category.equals(category)){

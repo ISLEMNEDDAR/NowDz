@@ -4,7 +4,7 @@ import com.example.nowdz.model.Categories
 
 object CategorieController {
 
-    private val listTitle = arrayListOf<String>(
+    private val listTitle = arrayListOf<Int>(
         Categories.INTERNATIONAL.category,
         Categories.SPORT.category,
         Categories.ALGERIE.category,
@@ -14,7 +14,7 @@ object CategorieController {
         Categories.POLITICS.category,
         Categories.SANTE.category
     )
-    private val listCategories = arrayListOf<Categories>(
+    private var listCategories = arrayListOf<Categories>(
         Categories.INTERNATIONAL,
         Categories.SPORT,
         Categories.ALGERIE,
@@ -25,19 +25,32 @@ object CategorieController {
         Categories.SANTE
     )
 
+
     /**
-     * Avoir tous les titres
+     * Avoir tous les titres suivi
      */
-    fun getAllCategorie():ArrayList<String>{
-        return this.listTitle
+    fun getAllTitre():ArrayList<Int>{
+        val list = ArrayList<Int>()
+        for(cat in this.listCategories){
+            if (cat.affichee){
+                list.add(cat.category)
+            }
+        }
+        return list
     }
 
     /**
      * Avoir tous les Categorie
      */
-    fun getAlltitre() : ArrayList<Categories>{
+    fun getAllCategorie() : ArrayList<Categories>{
         return this.listCategories
     }
 
+    fun putAllCategorie(categories: ArrayList<Categories>){
+        this.listCategories.addAll(categories)
+    }
+    fun removelisteCatg(){
+        this.listCategories.clear()
+    }
 
 }

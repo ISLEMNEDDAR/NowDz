@@ -1,12 +1,14 @@
 package com.example.nowdz.model
 
-enum class Categories(val category : String) {
-    ALGERIE("ALGERIE"),
-    SPORT("SPORT"),
-    ECONOMIE("ECONOMIE"),
-    SANTE("SANTE"),
-    EMPLOI("EMPLOI"),
-    CULTURE("CULTURE"),
-    POLITICS("POLITICS"),
-    INTERNATIONAL("INTERNATIONAL")
+import com.example.nowdz.R
+
+enum class Categories(val category : Int,var affichee : Boolean) {
+    ALGERIE(R.string.algerie,true),
+    SPORT(R.string.sport,false),
+    ECONOMIE(R.string.economie,true),
+    SANTE(R.string.sante,true),
+    EMPLOI(R.string.emploi,false),
+    CULTURE(R.string.culture,true),
+    POLITICS(R.string.politics,true),
+    INTERNATIONAL(R.string.international,true)
 }

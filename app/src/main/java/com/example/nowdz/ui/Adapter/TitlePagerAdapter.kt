@@ -1,4 +1,4 @@
-package com.example.nowdz.Adapter
+package com.example.nowdz.ui.Adapter
 
 import android.support.v4.app.FragmentActivity
 import android.support.v4.view.PagerAdapter
@@ -25,7 +25,8 @@ class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(),Recyc
     private var listArticle = ArrayList<Article>()
     private var newsRecyclerView: RecyclerView? = null
     private var newsAdapter: NewAdapter? = null
-    private var mItems: ArrayList<String> = ArrayList()
+    private var numItems: ArrayList<Int> = ArrayList()
+    private var titleItem : ArrayList<String> = ArrayList()
 
     /**
      * instancier l'item de titre
@@ -33,7 +34,7 @@ class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(),Recyc
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(container.context)
             .inflate(R.layout.inter_fragment_title, container, false)
-        initRvNews(view,getPageTitle(position)!!)
+        initRvNews(view,getColorItem(position))
         container.addView(view)
         return view
     }
@@ -43,7 +44,7 @@ class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(),Recyc
     }
 
     override fun getCount(): Int {
-        return mItems.size
+        return numItems.size
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
@@ -51,26 +52,28 @@ class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(),Recyc
     }
 
     override fun getPageTitle(position: Int): String? {
-        return mItems[position]
+        return titleItem[position]
     }
 
-    fun getColorItem(position: Int): String {
-        return mItems[position]
+    fun getColorItem(position: Int): Int {
+        return numItems[position]
     }
 
-    fun addAll(items: List<String>) {
-        mItems = ArrayList(items)
+    fun addAllNum(items: List<Int>) {
+        numItems = ArrayList(items)
     }
-    private fun initRvNews(v: View,category: String){
+
+    fun addAllTitle(item : List<String>){
+        titleItem = ArrayList(item)
+    }
+    private fun initRvNews(v: View,category: Int){
+        println(category)
         listArticle = ArticleController.ListPerCategory(category)
+        println(listArticle.toString())
         newsAdapter = NewAdapter(listArticle,v.context,v,activity)
         initLineaire(v,R.id.title_content_rv,LinearLayoutManager.VERTICAL,newsAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
+    }
 
-    }
-    private fun ajouterNews(){
-        listArticle.clear()
-        newsAdapter!!.notifyDataSetChanged()
-    }
 
 
 }

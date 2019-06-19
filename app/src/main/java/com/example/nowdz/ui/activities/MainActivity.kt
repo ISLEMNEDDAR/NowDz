@@ -16,7 +16,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import com.example.nowdz.ui.activities.Fragment.AcuilleFragment
 import com.example.nowdz.ui.activities.Fragment.FavorisFragment
-import com.example.nowdz.ui.Fragment.TitreFragement
+import com.example.nowdz.ui.activities.Fragment.TitreFragement
 import com.example.nowdz.R
 import kotlinx.android.synthetic.main.acuille_content.*
 

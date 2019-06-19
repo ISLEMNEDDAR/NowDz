@@ -80,6 +80,7 @@
                             android:layout_width="21dp"
                             android:layout_height="24dp"
                             android:src="@drawable/menu_black"
+
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="13dp"

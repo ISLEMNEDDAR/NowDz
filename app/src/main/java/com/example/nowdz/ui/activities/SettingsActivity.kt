@@ -1,14 +1,19 @@
 package com.example.nowdz.ui.activities
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.ImageView
 import com.example.nowdz.*
+import com.example.nowdz.controller.CategorieController
 import com.example.nowdz.helper.LocaleHelper
 import com.example.nowdz.helper.ModeInterface
+import com.example.nowdz.model.Categories
 import com.example.nowdz.ui.activities.BaseActivity
 import kotlinx.android.synthetic.main.activity_setting.*
-
+import kotlinx.android.synthetic.main.card_view_article_enregistre.*
 
 
 class SettingsActivity : BaseActivity(),ModeInterface {
@@ -20,7 +25,7 @@ class SettingsActivity : BaseActivity(),ModeInterface {
 
         themechange()
         langueChange()
-
+        thematiqueChange()
         val backarrow = findViewById<ImageView>(R.id.back_toolbar)
         backarrow!!.setOnClickListener{
             if ( fragmentManager.backStackEntryCount > 0)
@@ -32,6 +37,41 @@ class SettingsActivity : BaseActivity(),ModeInterface {
         }
     }
 
+
+    private fun thematiqueChange(){
+        thematique.setOnClickListener {
+            val dialog : Dialog
+            val categories:ArrayList<Categories> = CategorieController.getAllCategorie().clone() as ArrayList<Categories>
+            val titre : Array<String> = Array(categories.size){i->getString(categories[i].category)}
+            val affiche : BooleanArray = BooleanArray(categories.size)
+
+            for (i in 0 until categories.size){
+                affiche[i] = categories[i].affichee
+            }
+            val itemsSelected = ArrayList<Int>()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Selectionner Thematique a voir : ")
+            val negativeButton = builder.setMultiChoiceItems(
+                titre, affiche
+            ) { dialog, selectedItemId, isSelected ->
+                affiche[selectedItemId] = isSelected
+            }
+
+                .setPositiveButton(getString(R.string.done)) { dialog, id ->
+                    //Your logic when OK button is clicked
+                    for (i in 0 until affiche.size) {
+                        categories[i].affichee = affiche[i]
+                    }
+                    println("OK ${categories.toString()}")
+                    CategorieController.removelisteCatg()
+                    CategorieController.putAllCategorie(categories)
+                    recreate()
+                }
+                .setNegativeButton(getString(R.string.cancel)) { dialog, id -> }
+            dialog = builder.create()
+            dialog.show()
+        }
+    }
     private fun themechange(){
         val currentTheme = getCurrentTheme(this@SettingsActivity,
             LIGHT_THEME,

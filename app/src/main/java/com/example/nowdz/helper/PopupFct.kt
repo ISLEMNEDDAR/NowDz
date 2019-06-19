@@ -19,10 +19,6 @@ class PopupFct(val context: Context,
      fun onCLick() {
          setOnMenuItemClickListener {item ->
             when (item.itemId) {
-                R.id.menu_popup_save -> {
-                    switchActivity(context, AffichageActivity::class.java,activity)
-                    true
-                }
                 R.id.menu_popup_share -> {
                     val shareintent = Intent(Intent.ACTION_SEND)
                     shareintent.type="type/palin"

@@ -5,13 +5,15 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorLust</item>
         <item name="colorPrimaryDark">@color/colorGrey</item>
-        <item name="colorAccent">@color/colorWhiteless</item>
+        <item name="colorAccent">@color/colorLust</item>
+        <item name="android:textColor">@color/colorBlack</item>
     </style>
     <style name="AppDarkTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorLust</item>
         <item name="colorPrimaryDark">#000</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorWhiteless</item>
 
     </style>
     <style name="toolbar">

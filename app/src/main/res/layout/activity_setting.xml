@@ -108,6 +108,17 @@
                     android:layout_marginTop="10dp"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"/>
+
+            <TextView
+                    android:id="@+id/thematique"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/choisissez_vos_thematiqe"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"/>
+
+
         </LinearLayout>
 
     </FrameLayout>

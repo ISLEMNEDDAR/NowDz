@@ -12,7 +12,7 @@
     <string name="acess_nom">الوصول إلى</string>
     <string name="hide_nom">إخفاء المقالات</string>
     <string name="accuille_nom">الرئيسية</string>
-    <string name="title_nom">الرئيسية</string>
+    <string name="title_nom">الموضوعات</string>
     <string name="favoris_nom">المسجلة</string>
     <string name="link_favoris_nom">عرض الكل وإدارته</string>
     <string name="classemnt_example">1.</string>
@@ -30,4 +30,16 @@
     <string name="d_connnecter">خروج</string>
     <string name="lire_l_article">اقرأ المقال</string>
     <string name="acc_der_au_site">الوصول إلى الموقع</string>
+    <string name="international">الدولية</string>
+    <string name="algerie">الجزائر</string>
+    <string name="sport">رياضة</string>
+    <string name="sante">الصحة</string>
+    <string name="emploi">توظيف</string>
+    <string name="culture">ثقافة</string>
+    <string name="politics">سياسة</string>
+    <string name="economie">علم الاقتصاد</string>
+    <string name="choisissez_vos_thematiqe">اختيار الموضوعات</string>
+    <string name="done">!تم</string>
+    <string name="cancel">إلغاء</string>
+
 </resources>

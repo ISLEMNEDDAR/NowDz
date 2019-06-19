@@ -88,12 +88,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 <TextView
+                        android:layout_gravity="center"
                         android:id="@+id/affichage_titre_news"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:textStyle="bold"
-                        android:textColor="@color/colorBlack"
                         android:padding="12dp"
                         android:textSize="20sp"/>
                 <LinearLayout
@@ -114,7 +114,6 @@
                             android:layout_weight="9"
                             android:layout_marginTop="12dp"
                             android:textStyle="bold"
-                            android:textColor="@color/colorBlack"
                             android:padding="12dp"
                             android:textSize="14sp"/>
 

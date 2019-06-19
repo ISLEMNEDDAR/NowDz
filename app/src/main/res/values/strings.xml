@@ -30,4 +30,15 @@
     <string name="d_connnecter">Déconnnecter</string>
     <string name="lire_l_article">lire Article</string>
     <string name="acc_der_au_site">Acceder Article</string>
+    <string name="international">INTERNATIONAL</string>
+    <string name="algerie">ALGERIE</string>
+    <string name="sport">SPORT</string>
+    <string name="sante">SANTE</string>
+    <string name="emploi">EMPLOI</string>
+    <string name="culture">CULTURE</string>
+    <string name="politics">POLITICS</string>
+    <string name="economie">ECONOMIE</string>
+    <string name="choisissez_vos_thematiqe">Choisissez Vos Thematiqe</string>
+    <string name="done">Done!</string>
+    <string name="cancel">Cancel</string>
 </resources>
