@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.nowdz.R
-import com.example.nowdz.ui.activities.MainActivity
+import com.example.nowdz.ui.activities.LoginActivity
 
 class FirstActivity : AppCompatActivity() {
 
@@ -16,7 +16,7 @@ class FirstActivity : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed({
             // do something
-            val intent = Intent(this@FirstActivity, MainActivity::class.java)
+            val intent = Intent(this@FirstActivity, LoginActivity::class.java)
             // If you just use this that is not a valid context. Use ActivityName.this
             startActivity(intent)
             this@FirstActivity.finish()

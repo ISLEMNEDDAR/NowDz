@@ -14,6 +14,11 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
+                android:name=".ui.activities.LoginActivity"
+                android:label="@string/title_activity_login"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
                 android:name=".ui.activities.AffichageActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
