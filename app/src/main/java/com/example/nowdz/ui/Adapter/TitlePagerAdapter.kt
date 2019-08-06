@@ -13,14 +13,14 @@ import android.view.LayoutInflater
 import android.view.View
 import com.example.nowdz.R
 import com.example.nowdz.controller.ArticleController
+import com.example.nowdz.helper.RecycleViewHelper
 import com.example.nowdz.helper.onWebView
 import com.example.nowdz.model.Article
 import com.example.nowdz.model.Categories
 import com.example.nowdz.ui.Adapter.NewAdapter
-import com.islem.rvhlibrary.RecycleViewHelper
 
 
-class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(),RecycleViewHelper {
+class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(), RecycleViewHelper {
     override var itemRecycleView: RecyclerView? = null
     private var listArticle = ArrayList<Article>()
     private var newsRecyclerView: RecyclerView? = null

@@ -16,10 +16,10 @@ import com.example.nowdz.R
 import com.example.nowdz.controller.ArticleController
 import com.example.nowdz.helper.GlobalHelper
 import com.example.nowdz.helper.PopupFct
+import com.example.nowdz.helper.RecycleViewHelper
 import com.example.nowdz.helper.onWebView
 import com.example.nowdz.model.Article
 import com.example.nowdz.ui.activities.AffichageActivity
-import com.islem.rvhlibrary.RecycleViewHelper
 import kotlin.collections.ArrayList
 
 

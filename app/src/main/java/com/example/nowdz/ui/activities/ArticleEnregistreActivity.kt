@@ -8,9 +8,9 @@ import android.widget.ImageView
 import com.example.nowdz.ui.Adapter.ArticleEnregistreAdapter
 import com.example.nowdz.R
 import com.example.nowdz.controller.ArticleController
+import com.example.nowdz.helper.RecycleViewHelper
 import com.example.nowdz.model.Article
 import com.example.nowdz.ui.activities.BaseActivity
-import com.islem.rvhlibrary.RecycleViewHelper
 
 const val currentView = R.layout.activity_article_enregistre
 class ArticleEnregistreActivity : BaseActivity(), RecycleViewHelper {

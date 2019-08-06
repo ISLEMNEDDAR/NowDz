@@ -12,8 +12,8 @@ import com.example.nowdz.ui.activities.ArticleEnregistreActivity
 import com.example.nowdz.R
 import com.example.nowdz.controller.ArticleController
 import com.example.nowdz.helper.GlobalHelper
+import com.example.nowdz.helper.RecycleViewHelper
 import com.example.nowdz.ui.Adapter.FavorisAdapter
-import com.islem.rvhlibrary.RecycleViewHelper
 
 class FavorisFragment : Fragment(),GlobalHelper, RecycleViewHelper {
     override var itemRecycleView: RecyclerView? =null
