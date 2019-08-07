@@ -1,4 +1,4 @@
-package com.example.sayaradzmb.servics
+package com.example.nowdz.Service
 
 import com.example.nowdz.model.User
 import retrofit2.Call

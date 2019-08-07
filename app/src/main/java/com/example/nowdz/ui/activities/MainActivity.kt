@@ -14,17 +14,23 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
+import com.example.nowdz.Google_Token
 import com.example.nowdz.ui.activities.Fragment.AcuilleFragment
 import com.example.nowdz.ui.activities.Fragment.FavorisFragment
 import com.example.nowdz.ui.activities.Fragment.TitreFragement
 import com.example.nowdz.R
+import com.example.nowdz.helper.SharedPreferenceInterface
+import com.example.nowdz.helper.SharedPreferencesHelper
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import kotlinx.android.synthetic.main.acuille_content.*
 
 
-class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListener  {
+class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListener,SharedPreferenceInterface {
     private var settingMenu : ImageView?=null
-
-
+    private var mGoogleSignInClient : GoogleSignInClient? = null
+    private var pref: SharedPreferencesHelper? = null
     private var topToolbar: Toolbar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -179,5 +185,52 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    /**
+     * Google
+     */
+
+    /**
+     * on start activity
+     */
+    override fun onStart() {
+        super.onStart()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(Google_Token)
+            .requestEmail()
+            .build()
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+    }
+    /**
+     * deconnection Google
+     */
+    private fun googleDeconnexion(){
+        //signIn out from the the google account
+        mGoogleSignInClient!!.signOut()
+            .addOnCompleteListener(this) {
+                pref = sharedPref(this@MainActivity,"google")
+                pref!!.sharedPreferences.edit().clear().apply()
+                deconnecter()
+            }
+
+        // revokeAccess
+        mGoogleSignInClient!!.revokeAccess()
+            .addOnCompleteListener(this) {
+                // ...
+            }
+    }
+
+    /**
+     * Pour Deconnecter
+     */
+    private fun deconnecter(){
+        val login = Intent(this@MainActivity, LoginActivity::class.java)
+        startActivity(login)
+        this@MainActivity.finish()
     }
 }
