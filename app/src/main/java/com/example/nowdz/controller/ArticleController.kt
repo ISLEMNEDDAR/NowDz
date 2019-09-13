@@ -364,70 +364,11 @@ object ArticleController {
         listfavoris.addAll(this.listArticleFavoris)
         return listfavoris
     }
-    /**
-     * Supprimer des Favoris
-     */
-    fun removeFavoris(article: Article){
-        listArticleFavoris.remove(article)
-    }
+
 
     /**
-     * Ajouter article
-     */
-    fun addArticle(article:Article){
-        this.listArticle.add(article)
-    }
-
-    /**
-     * Supprimer Article
-     */
-    fun removeArticle(article : Article){
-        this.listArticle.remove(article)
-    }
-
-    /**
-     * desuivre un article
      *
-     * update dataBase
      */
-    fun desuivreArticle(article : Article):ArrayList<Article>{
-        removeFavoris(article)
-        removeArticle(article)
-        article.suivi = false
-        addArticle(article)
-        return this.listArticle
-    }
-
-    /**
-     * suivre un article
-     * update database
-     */
-    fun suivreArticle(article : Article){
-        /*removeArticle(article)
-        article.suivi = true
-        addArticle(article)
-        addFavoris(article)
-        return this.listArticle*/
-
-    }
-
-
-
-
-
-    /**
-     * avoir les reste
-     *
-     * select from database
-     */
-    fun avoirRestFavoris() : ArrayList<Article>{
-        val restFavoris = ArrayList<Article>()
-        var listFavoris = this.listArticleFavoris
-        for(i in 2 until listFavoris.size){
-            restFavoris.add(listFavoris[i])
-        }
-        return restFavoris
-    }
 
     /**
      * list Article par categori

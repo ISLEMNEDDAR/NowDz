@@ -12,6 +12,10 @@
             android:id="@+id/item_favoris"
             android:title="@string/favoris_nom"
             android:icon="@drawable/ic_star"/>
+    <item
+            android:id="@+id/item_preference"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/pr_ferance" />
 
 
 </menu>

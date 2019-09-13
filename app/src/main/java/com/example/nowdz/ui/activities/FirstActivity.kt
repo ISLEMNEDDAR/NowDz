@@ -17,7 +17,7 @@ class FirstActivity : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed({
             // do something
-            val intent = Intent(this@FirstActivity,MainActivity::class.java)
+            val intent = Intent(this@FirstActivity,LoginActivity::class.java)
             // If you just use this that is not a valid context. Use ActivityName.this
             startActivity(intent)
             this@FirstActivity.finish()

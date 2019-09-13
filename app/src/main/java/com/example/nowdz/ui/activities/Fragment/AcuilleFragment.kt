@@ -22,17 +22,6 @@ import com.example.nowdz.model.Article
 import com.example.nowdz.ui.activities.AffichageActivity
 import kotlin.collections.ArrayList
 
-
-
-
-
-
-
-
-
-
-
-
 class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
     val PAGE_SIZE = 10
     override var itemRecycleView: androidx.recyclerview.widget.RecyclerView?=null

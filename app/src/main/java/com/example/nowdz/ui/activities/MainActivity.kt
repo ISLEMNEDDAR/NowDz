@@ -21,6 +21,7 @@ import com.example.nowdz.ui.activities.Fragment.TitreFragement
 import com.example.nowdz.R
 import com.example.nowdz.helper.SharedPreferenceInterface
 import com.example.nowdz.helper.SharedPreferencesHelper
+import com.example.nowdz.ui.activities.Fragment.PreferenceFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -102,6 +103,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
                 R.id.item_titre -> {
                     fragment = TitreFragement()
+                }
+                R.id.item_preference ->{
+                    fragment =PreferenceFragment()
                 }
             }
             return@setOnNavigationItemSelectedListener chargerFagment(fragment)
