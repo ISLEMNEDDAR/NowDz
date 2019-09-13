@@ -1,27 +1,37 @@
 package com.example.nowdz.ui.activities
 
-import android.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
-import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import com.example.nowdz.*
 import com.example.nowdz.controller.CategorieController
-import com.example.nowdz.helper.LocaleHelper
 import com.example.nowdz.helper.ModeInterface
+import com.example.nowdz.helper.SharedPreferencesHelper
 import com.example.nowdz.model.Categories
-import com.example.nowdz.ui.activities.BaseActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import kotlinx.android.synthetic.main.activity_setting.*
-import kotlinx.android.synthetic.main.card_view_article_enregistre.*
 
 
 class SettingsActivity : BaseActivity(),ModeInterface {
-
+    private var pref: SharedPreferencesHelper? = null
+    private var mGoogleSignInClient : GoogleSignInClient? = null
+    private var deconnexionButton : Button?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
 
+        /**
+         *
+         */
+        deconnexionButton = findViewById(R.id.deconnexionButton)
+        deconnexionButton!!.setOnClickListener {
+            googleDeconnexion()
+        }
 
         themechange()
         langueChange()
@@ -100,5 +110,46 @@ class SettingsActivity : BaseActivity(),ModeInterface {
                 changeTheme(FRENCH, KEY_CURRENT_LANGUE,this@SettingsActivity)
             recreate()
         }
+    }
+
+    /**
+     * on start activity
+     */
+    override fun onStart() {
+        super.onStart()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(SharedPreferencesHelper(this@SettingsActivity, NOM_FICHER_LOGIN).avoirIdUserS())
+            .requestEmail()
+            .build()
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+    }
+    /**
+     * Pour Deconnecter
+     */
+    private fun deconnecter(){
+        val login = Intent(this@SettingsActivity, LoginActivity::class.java)
+        startActivity(login)
+        this@SettingsActivity.finish()
+    }
+    /**
+     * deconnection Google
+     */
+    private fun googleDeconnexion(){
+        //signIn out from the the google account
+        mGoogleSignInClient!!.signOut()
+            .addOnCompleteListener(this) {
+                pref = SharedPreferencesHelper(this@SettingsActivity, NOM_FICHER_LOGIN)
+                pref!!.sharedPreferences.edit().clear().apply()
+                deconnecter()
+            }
+
+        // revokeAccess
+        mGoogleSignInClient!!.revokeAccess()
+            .addOnCompleteListener(this) {
+                // ...
+            }
     }
 }

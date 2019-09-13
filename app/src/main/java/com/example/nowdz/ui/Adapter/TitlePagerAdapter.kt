@@ -1,9 +1,9 @@
 package com.example.nowdz.ui.Adapter
 
-import android.support.v4.app.FragmentActivity
-import android.support.v4.view.PagerAdapter
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager.widget.PagerAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import android.view.ViewGroup
 
@@ -21,9 +21,9 @@ import com.example.nowdz.ui.Adapter.NewAdapter
 
 
 class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(), RecycleViewHelper {
-    override var itemRecycleView: RecyclerView? = null
+    override var itemRecycleView: androidx.recyclerview.widget.RecyclerView? = null
     private var listArticle = ArrayList<Article>()
-    private var newsRecyclerView: RecyclerView? = null
+    private var newsRecyclerView: androidx.recyclerview.widget.RecyclerView? = null
     private var newsAdapter: NewAdapter? = null
     private var numItems: ArrayList<Int> = ArrayList()
     private var titleItem : ArrayList<String> = ArrayList()
@@ -71,7 +71,8 @@ class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(), Recy
         listArticle = ArticleController.ListPerCategory(category)
         println(listArticle.toString())
         newsAdapter = NewAdapter(listArticle,v.context,v,activity)
-        initLineaire(v,R.id.title_content_rv,LinearLayoutManager.VERTICAL,newsAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
+        initLineaire(v,R.id.title_content_rv,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,newsAdapter as androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>)
     }
 
 

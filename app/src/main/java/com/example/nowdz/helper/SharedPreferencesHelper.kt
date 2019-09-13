@@ -1,10 +1,8 @@
 package com.example.nowdz.helper
 
-import android.R.id.edit
+
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.Context.MODE_PRIVATE
-import android.util.Log
 import com.example.nowdz.model.User
 import java.math.BigInteger
 
@@ -36,9 +34,11 @@ class SharedPreferencesHelper(internal var context: Context,nom_fichier : String
         val id = pref.getString("idUser",null)
         return id!!.toBigInteger()
     }
-
-
-
+    fun avoirIdUserS() : String{
+        val pref = sharedPreferences
+        val id = pref.getString("idUser",null)
+        return id!!
+    }
 
     companion object {
         private val TAG = "SharedPreferencesHelper"

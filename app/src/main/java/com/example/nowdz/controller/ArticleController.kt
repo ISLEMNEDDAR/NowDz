@@ -7,32 +7,32 @@ import com.example.nowdz.R
 import com.example.nowdz.model.Article
 import com.example.nowdz.model.Categories
 import com.example.nowdz.model.Source
+import com.example.nowdz.viewModel.ArticleViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 object ArticleController {
-
-
+        private lateinit var articleViewModel: ArticleViewModel
             private var khabar : Source = Source(
                 name = "الخبر",
-                url = "https://www.elkhabar.com/",
+                urlJourrnal = "https://www.elkhabar.com/",
                 logo=R.drawable.khabar_logo
             )
             private var soir : Source = Source(
                 name="Le Soir",
-                url ="https://www.lesoirdalgerie.com/",
+                urlJourrnal ="https://www.lesoirdalgerie.com/",
                 logo=R.drawable.soir_logo
             )
             private var liberte : Source = Source(
                 name = "La Liberté",
-                url="https://www.liberte-algerie.com/",
+                urlJourrnal="https://www.liberte-algerie.com/",
                 logo=R.drawable.liberte_logo
 
             )
             private var echourouk : Source = Source(
                 name ="الشروق" ,
-                url="https://www.echoroukonline.com/",
+                urlJourrnal="https://www.echoroukonline.com/",
                 logo=R.drawable.echourouk_logo
 
             )
@@ -48,7 +48,7 @@ object ArticleController {
                         "وأفادت ذات المصادر أن حفيد جمال ولد عباس، الموجود حاليا رهن الحجز تحت النظر، عند الشرطة، ألقي عليه القبض بعد أن \"شوهد وهو يحرض الشباب المحتج على التخريب\".\n" +
                         "\n" +
                         "يذكر أن المعني، وهو الذي يحمل اسم جده، مسبوق قضائيا، وسبق وأن تم القبض عليه مع مجموعة أشرار نظمت عملية سطو على محل للمجوهرات في مدينة أرزيو بولاية وهران، حين كان جده وزيرا للتضامن الوطني. وقد أحيل حينها كل المقبوض عليهم في تلك القضية أمام محكمة الجنايات لدى مجلس قضاء وهران، باستثنائه هو، والذي تم \"إخراجه من الملف الجنائي في مجلس قضاء وهران\". كما أفادت ذات المصادر أنه \"مسبوق في العديد من القضايا أمام محكمة عين تموشنت\".",
-                categorie = Categories.POLITICS,
+                categorie = "POLITICS",
                 suivi = false
             )
 
@@ -62,7 +62,7 @@ object ArticleController {
                         "ومن جهتهما يحتل المنافسان الآخران للجزائر في الدور الأول من المنافسة الإفريقية، كينيا وتانزانيا على التوالي المركزين 105 (+3) و 131 (دون تغيير)، فيما احتل منتخب مالي الذي سيلتقي الخضر وديا يوم الأحد المقبل بالدوحة القطرية المركز ال62 (+3) . \n" +
                         "وعلى الصعيد العالمي بقي المنتخب البلجيكي في الصدارة بمجموع (1746نقطة ) متقدما على كل من فرنسا في المركز الثاني ب (1718نقطة) والبرازيل في المركز الثالث ب(1681نقطة ) ثم انجلترا في المركز الرابع ب (1652 نقطة ). \n" +
                         "وسيصدر التصنيف المقبل للاتحاد الدولي يوم 25 يوليو المقبل.",
-                categorie = Categories.SPORT,
+                categorie = "SPORT",
                 published_at = Date(2019, 6, 14, 12, 20),
                 author = "ف.ن/ وأج",
                 suivi = false
@@ -105,7 +105,7 @@ object ArticleController {
                         " \n" +
                         "\n" +
                         "أعترف، رغم أن مساري يمتد منذ سنة 1974 بالمشاركة في عدد لا يحصى من المسرحيات رفقة العملاق عبد القادر علولة، وحوالي عشرين عمل تلفزيوني وثلاثة أعمال سينمائية، أن السهيلي تمكن من إخراج الأحسن من كل الممثلين، فتحية كبيرة له ولكل فريق الإخراج حتى التقنيين وطريقة كتابة النص والحوارات والإخراج القوي. والمخرج كان يشتغل مع كل ممثل ويأخذ الوقت الكافي لشرح ما يريده من اللقطة، دون إهمال الجزئيات الصغيرة. كما أن الخبرة المكتسبة مع الراحل علولة سهلت من مهمتي، بحيث كان يقول لنا تقمصوا الشخصية بكل حرية، مع التعبير الجسدي. صراحة، ارتحنا كثيرا مع نصر الدين لدرجة أن بعض الممثلين تحملوا لقطات عنف وضرب بكل أريحية. كما أنوّه بدور المنتج والفريق التقني في توفير أحسن الظروف لأداء الدور، وهو ما عشته شخصيا عندما وجدت صعوبة في إتمام التمثيل وفقدت التركيز بسبب التوتر الشديد وضيق الوقت؛ لأنني كنت مطالبة بإنهاء التمثيل داخل الشقة المستأجرة في فترة لا تتعدى عشرة أيام. لكن وقوف فريق الإنتاج والتقنيين إلى جانبي، ساعدني على تجاوز الأمر والعودة إلى التمثيل. أستعيد دائما طريقة تعامل علولة مع الممثلين وملازمته لغاية إتقان الدور وإعطائه ما يريده منه.",
-                categorie = Categories.CULTURE,
+                categorie = "CULTURE",
                 published_at = Date(2019, 6, 11),
                 author = "جعفر بن صالح",
                 url = "",
@@ -130,7 +130,7 @@ object ArticleController {
                         "\n" +
                         "وأفادت وكالة الأنباء الإيرانية الرسمية \"إرنا\" بإجلاء 44 بحارا من متن الناقلتين المنكوبتين القادمتين من قطر والسعودية.\n" +
                         "\n",
-                categorie = Categories.INTERNATIONAL,
+                categorie = "INTERNATIONAL",
                 published_at = Date(13, 6, 2019, 12, 20),
                 author = "إ.ب/رويترز",
                 url="",
@@ -157,7 +157,7 @@ object ArticleController {
                         " \n" +
                         "\n" +
                         "Scènes de liesse aux abords de la Cour suprême et de la prison d’El-Harrach",
-                categorie = Categories.POLITICS,
+                categorie = "POLITICS",
                 published_at = Date(13, 6, 2019, 11, 0),
                 author = "Abla Chérif",
                 url = "",
@@ -171,7 +171,7 @@ object ArticleController {
                 content = "A peine deux jours à Doha qu’un nouveau scandale frappe aux portes des Verts de Djamel Belmadi déjà fortement «défoncées» par le cas Atal signalé en mars dernier mais révélé publiquement à la veille du départ de la sélection en stage précompétitif de la CAN-2019 au Qatar.\n" +
                         "L’EN de football est-elle devenue maudite qu’il faudrait procéder à sa dissolution pour ne pas s’encombrer d’autres farces qui sont légion dans la pratique du jeu à onze en Algérie ? Chicha, cocaïne, mœurs et autres «excès» qui ne sont pas le propre des seuls sportifs, sont des scandales qui ont marqué l’ambiance «moderne» des Verts. Ce n’est pas que les sélections des années 1970, 80 et 90 n’ont pas connu ce genre d’histoires parfois tolérées, gérées pour certains cas, souvent ignorées et dissimulées du grand public, mais qui ont fini avec le temps à affecter la réputation et de l’EN et des éléments qui sont à l’origine de ces erreurs de jeunesse. C’est tellement facile de nos jours de sanctionner les auteurs de tels actes qui nuisent à la discipline du groupe. Les preuves sont là. Implacables. \n" +
                         "Les sanctions si exemplaires, si punitives qu’elles soient n’empêchent pourtant pas les récidives. Avant Belkebla il y a eu Boudebouz et avant Boudebouz il y a d’autres affaires du genre, parfois autrement plus gravissimes, dont les auteurs sont aujourd’hui de bons pères de famille. Pour dire que l’écart de Haris Belkebla est un éternel recommencement. Le joueur de Reims qui n’est plus apparu dans les radars des sélectionneurs algériens depuis le match contre l’Argentine aux JO de Rio-2016 (il était suspendu lors du 3è match du premier tour contre le Portugal) a été sélectionné pour la CAN-2019 à la grande surprise de tous. Belmadi l’a retenu alors que d’autres éléments évoluant aussi bien en Algérie qu’à l’étranger avaient le profil pour remplacer les Taïder (choix technique), Bentaleb et Chita (blessés et opérés) ainsi que Mehdi Abeid pas totalement remis de sa blessure et qui manquait de compétition (il n’a disputé que les 5 dernières minutes du play-off entre Dijon, son club, et Lens, où il a été formé, et ce, après deux mois d’inactivité due à une blessure contractée en sélection contre la Tunisie, le 26 mars dernier). Le Brestois qui a certes réussi l’accession avec son club en Ligue 1 Conforama n’était pas le médian tant espéré par Belmadi pour combler les lacunes de la sélection dans ce compartiment. Le sélectionneur national s’est peut-être rappelé de l’ancien Tourangeau dès lors que le Stade Brestois a réussi l’exploit de remonter parmi l’élite après six années de purgatoire en comptant sur son milieu algérien auteur de bonnes statistiques (36 matchs joués dont 33 en Ligue 2, 4 buts marqués et seulement 8 cartons jaunes reçus). Son entraîneur à Brest, Jean-Marc Furlan, dit de lui que c’est un joueur précieux. Dans un entretien à nos confères de Le Buteur, l’ancien coach de l’ESTAC où évoluaient d’autres ex-internationaux algériens dont Rafik Saïfi, Farid Ghazi, Karim Ziani, Mehdi Meniri et Mohamed Berradja a ainsi résumé le profil de Belkebla. «Ce qui est intéressant chez Haris c’est sa grande récupération et un très grand volume de jeu. Pour moi sincèrement, c’est le vrai footballeur, qui a beaucoup d’endurance et qui connaît et adore ce sport. Il possède tout ce qu’on aime dans un milieu de terrain moderne. Une bonne récupération de balles et une très bonne lecture du jeu», confiait-il. Et de préciser à la question de la sélection surprise de son joueur : «Belkebla a cette personnalité qui peut lui permettre de vite s’intégrer. Maintenant, techniquement, tactiquement et sur le plan stratégique, c’est vraiment un très bon élément. Sur le plan aérobie, c’est un marathonien. C’est aussi très important pour un milieu de terrain». Et de montrer cette autre facette du joueur qui peut surprendre à la lumière de ce qui s’est passé à Doha. «Je peux vous dire que c’est une belle personne. C’est un garçon très bien éduqué et très agréable à vivre dans le vestiaire et en dehors. C’est aussi important pour un entraîneur», a-t-il indiqué. ",
-                categorie = Categories.SPORT,
+                categorie = "SPORT",
                 published_at = Date(13, 6, 2019, 11, 0),
                 author = "Mohamed Bouchama",
                 url = "",
@@ -190,7 +190,7 @@ object ArticleController {
                         "«Le besoin que je ressens de dessiner des branches et des racines est vital ; la femme et la vie, j’aime les honorer dans mes dessins», explique-t-elle. Dans ses œuvres à la galerie Ifru Design, l’homme, surtout la femme, sont souvent en fusion avec les racines et les arbres, comme un prolongement naturel l’un de l’autre. Les dessins réalisés à l’encre de Chine (noir) sur du blanc, sont enjolivés de rose ou d’un camaïeu de couleurs. Comme elle nous l’avait expliqué elle-même lors du vernissage, cette exposition est comme un «retour aux racines». C’est aussi, pour Azar, un hommage à l’Algérie, son pays, son histoire, sa culture et à la femme algérienne, source de tant de fierté éternelle.  \n" +
                         "Les œuvres d’Azar sont vivantes ! «Renaissance des esprits quand parle le dessin», nous dit un extrait du poème accompagnant cette très belle exposition. Chaque rencontre laisse une impression. «J’aime conserver les belles âmes par l’encre et le papier.»\n" +
                         "L’expo  «Par Azar», à la galerie Ifru Design au Télemly, restera ouverte jusqu’au 19 juin 2019, au bonheur des belles âmes.",
-                categorie = Categories.CULTURE,
+                categorie = "CULTURE",
                 published_at = Date(13, 6, 2019, 11, 0),
                 author = "Kader Bakou",
                 url = "",
@@ -214,7 +214,7 @@ object ArticleController {
                         "Parlant des résultats de la mission de terrain effectuée dans une partie de ce site prioritaire du 15 février au 3 mars de l’année en cours, on a fait savoir que les informations obtenues ont permis de procéder à une localisation des potentialités à valoriser et à l’identification des contraintes à surmonter. Aussi, un diagnostic initial a été élaboré afin d’aboutir à la connaissance approfondie du territoire et du coup parvenir à déterminer l’ensemble de ses atouts et ses lacunes. Les résultats ont surtout donné lieu à l’identification des acteurs impliqués dans le processus de gestion laissant penser à un management basé sur la diversification des dispositifs communicationnels et informationnels. “La mobilisation des acteurs est incontournable dans la promotion d’un espace naturel et le développement durable.\n" +
                         "\n" +
                         "Tout acteur, institutionnel, non institutionnel, société civile et population locale, participe chacun à sa manière au diagnostic des besoins et à l’optimisation de la connaissance du territoire”, souligne la représentante de la direction nationale du PPCA en mettant l’accent sur l’importance du déploiement à l’échelle locale d’une intelligence collective pour la valorisation patrimoniale et territoriale grâce au croisement des données éco-biologiques et ethnosociologiques. ",
-                categorie = Categories.CULTURE,
+                categorie = "CULTURE",
                 published_at = Date(13, 6, 2019, 11, 0),
                 author = "Rabah Kareche",
                 url = "",
@@ -232,7 +232,7 @@ object ArticleController {
                         "Il a également déclaré que “l’ALC a accepté de mettre fin au mouvement de désobéissance civile à partir d’aujourd'hui (hier soir)” et “les deux parties ont accepté de reprendre prochainement les discussions”, sans pour autant en donner la date exacte. Rappelons que les pourparlers entre les deux camps ont été suspendus unilatéralement par l’armée le 20 mai, après l’échec de la réunion consacrée à la composition de la future instance de transition, censée diriger le pays pendant trois ans. Le diplomate éthiopien a souligné, dans des déclarations rapportées par le média soudanais al-Shorooq, qu’il s’attellera à “éviter que les deux parties versent dans l’escalade verbale à travers des accusations réciproques”, afin d’“avancer sérieusement dans notre médiation”, tout en se disant “confiant que le Soudan dépassera cette période difficile”. À noter que le Conseil de sécurité des Nations unies a condamné fermement mardi soir la violence au Soudan et a appelé les militaires au pouvoir et le mouvement de contestation à œuvrer pour trouver une issue à la crise.\n" +
                         "\n" +
                         "Dans un communiqué, les membres du Conseil ont demandé la fin immédiate des violences contre les civils et souligné l’importance du respect des droits humains. L’annonce de la reprise des négociations intervient alors que les meneurs de la contestation avaient annoncé, lundi soir, qu’ils publieraient prochainement la composition de leur propre instance dirigeante avec un Premier ministre. Elle intervient également au lendemain de l’annonce de la venue cette semaine du secrétaire d’État américain adjoint chargé de l’Afrique, Tibor Nagy. Par ailleurs, un groupe d’experts en droits humains de l’ONU a demandé hier une enquête onusienne sur les violences commises au Soudan contre des “manifestants pacifiques” qui demandaient le départ des généraux au pouvoir depuis la chute du président Omar al-Bachir. “Compte tenu de l’ampleur et de la gravité des violations des droits humains signalées et de la nécessité d'agir rapidement pour empêcher une nouvelle escalade, nous demandons au Conseil des droits de l'homme d’ouvrir une enquête indépendante sur les violations (...) au Soudan”, ont déclaré ces cinq experts dans un communiqué.",
-                categorie = Categories.INTERNATIONAL,
+                categorie = "INTERNATIONAL",
                 published_at = Date(13, 6, 2019, 11, 0),
                 author = "Merzak Tigrine",
                 url = "",
@@ -251,7 +251,7 @@ object ArticleController {
                         " \n" +
                         "وأكد صفحة غديري في بيان ثان أنه وجهت له تهمتان من قبل المحكمة هما “المشاركة في تسليم معلومات إلى عملاء دول أجنبية تمس بالاقتصاد الوطني”\n" +
                         "أما الثانية فهي “المساهمة في وقت السلم في مشروع لإضعاف الروح المعنوية للجيش قصد الإضرار بالدفاع الوطني” ونفت أن تكون محاكمته بسبب ما تم تداوله إعلاميا حول تزوير توكيلات الإنتخابات.",
-                categorie = Categories.POLITICS,
+                categorie = "POLITICS",
                 published_at = Date(13, 6, 2019),
                 author = "عبد الرزاق بوالقمح",
                 url = "",
@@ -289,7 +289,7 @@ object ArticleController {
                         "وأقال رئيس سريلانكا ماثريبالا سيريسينا رئيس الاستخبارات وضمن استقالة وزير الدولة لشؤون الدفاع وعلّق مهام قائد الشرطة.\n" +
                         "\n" +
                         "وردا على ذلك، قال هؤلاء إن سيريسينا تجاهل البروتوكولات الأمنية وينبغي أن يتحمل بنفسه المسؤولية بسبب الثغرات الرئيسية التي سمحت بتنفيذ العمليات الانتحارية.",
-                categorie = Categories.INTERNATIONAL,
+                categorie = "INTERNATIONAL",
                 published_at = Date(14, 6, 2019),
                 author = "me in future",
                 url = "",
@@ -297,7 +297,7 @@ object ArticleController {
             )
 
 
-            private var listArticle : ArrayList<Article> = arrayListOf(
+        var listArticle : ArrayList<Article> = arrayListOf(
                 article0,
                 article1,
                 article2,
@@ -315,6 +315,8 @@ object ArticleController {
 
     /**
      *avoir le premier article
+     *
+     * web service
      */
     fun getFirstArticle():Article{
         return this.listArticle[0]
@@ -322,6 +324,8 @@ object ArticleController {
 
     /**
      * avoir tous les autre article
+     *
+     * web service
      */
     fun getRestArticle():ArrayList<Article>{
         val arrayArticle = ArrayList<Article>()
@@ -331,9 +335,7 @@ object ArticleController {
         return arrayArticle
     }
 
-    fun getAllArticle(){
 
-    }
 
     /**
      * construire l'article i
@@ -353,12 +355,7 @@ object ArticleController {
         heurs.text = "a la une -$year"
     }
 
-    /**
-     * Ajouter favoris
-     */
-    fun addFavoris(article : Article){
-        listArticleFavoris.add(article)
-    }
+
     /**
      * Avoir favoris
      */
@@ -390,6 +387,8 @@ object ArticleController {
 
     /**
      * desuivre un article
+     *
+     * update dataBase
      */
     fun desuivreArticle(article : Article):ArrayList<Article>{
         removeFavoris(article)
@@ -401,45 +400,25 @@ object ArticleController {
 
     /**
      * suivre un article
+     * update database
      */
-    fun suivreArticle(article : Article):ArrayList<Article>{
-        removeArticle(article)
+    fun suivreArticle(article : Article){
+        /*removeArticle(article)
         article.suivi = true
         addArticle(article)
         addFavoris(article)
-        return this.listArticle
+        return this.listArticle*/
+
     }
 
-    /**
-     * avoir la taille de listfavoris
-     */
-    fun tailleFavoris() : Int{
-        return this.listArticleFavoris.size
-    }
 
-    /**
-     * avoir les deux premiere favoris
-     */
-    fun avoirDeuxFavoris() : ArrayList<Article>{
-        val deuxPremmierFavoris = ArrayList<Article>()
-        var listFavoris = this.listArticleFavoris
-        if(!this.listArticleFavoris.isEmpty()){
-            when(this.listArticleFavoris.size){
-                1->{
-                    deuxPremmierFavoris.add(listFavoris[0])
-                }
-                else ->{
-                    deuxPremmierFavoris.add(listFavoris[0])
-                    deuxPremmierFavoris.add(listFavoris[1])
-                }
 
-            }
 
-        }
-        return deuxPremmierFavoris
-    }
+
     /**
      * avoir les reste
+     *
+     * select from database
      */
     fun avoirRestFavoris() : ArrayList<Article>{
         val restFavoris = ArrayList<Article>()
@@ -456,7 +435,7 @@ object ArticleController {
     fun ListPerCategory(category : Int) : ArrayList<Article>{
         val listCategory = ArrayList<Article>()
         for(article in listArticle){
-            if (article.categorie.category.equals(category)){
+            if (article.categorie.equals(category)){
                 listCategory.add(article)
             }
         }

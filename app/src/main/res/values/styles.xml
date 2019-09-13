@@ -17,7 +17,7 @@
 
     </style>
     <style name="toolbar">
-        <item name="android:background">@color/colorLust</item>
+        <item name="background">@color/colorLust</item>
         <item name="android:textColor">@color/colorWhiteless</item>
     </style>
     <style name="AppTheme.NoActionBar">

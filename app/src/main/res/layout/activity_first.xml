@@ -7,14 +7,14 @@
         android:layout_height="match_parent"
         tools:context=".ui.FirstActivity"
         android:background="@drawable/photobackground">
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/redbackground">
         <ImageView
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:src="@drawable/logo"
+                app:srcCompat="@drawable/logo"
                 android:layout_marginTop="160dp"
                 app:layout_constraintTop_toTopOf="parent" android:id="@+id/imageView2"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
@@ -23,7 +23,7 @@
         <ImageView
                 android:layout_width="171dp"
                 android:layout_height="63dp"
-                android:src="@drawable/title_app"
+                app:srcCompat="@drawable/title_app"
                 android:layout_marginTop="76dp"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
@@ -33,10 +33,10 @@
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:src="@drawable/content"
+                app:srcCompat="@drawable/content"
                 tools:layout_editor_absoluteX="0dp" android:layout_marginBottom="44dp"
                 app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" app:layout_constraintVertical_bias="0.931"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

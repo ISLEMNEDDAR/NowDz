@@ -2,7 +2,7 @@ package com.example.nowdz.ui.activities
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nowdz.*
 import com.example.nowdz.helper.LocaleHelper
 import com.example.nowdz.helper.ModeInterface

@@ -2,10 +2,10 @@ package com.example.nowdz.ui.activities.Fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.CardView
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,11 +23,25 @@ import com.example.nowdz.ui.activities.AffichageActivity
 import kotlin.collections.ArrayList
 
 
+
+
+
+
+
+
+
+
+
+
 class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
-    override var itemRecycleView: RecyclerView?=null
+    val PAGE_SIZE = 10
+    override var itemRecycleView: androidx.recyclerview.widget.RecyclerView?=null
     private val newsList = ArrayList<Article>()
-    private var newsRecyclerView: RecyclerView? = null
+    private var newsRecyclerView: androidx.recyclerview.widget.RecyclerView? = null
     private var newsAdapter: NewAdapter? = null
+    private val isLastPage = false
+    private val currentPage = 1
+    private val isLoading = false
     /**
      * le contenu de card
      */
@@ -47,7 +61,7 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
         initRvNews(v)
         ajouterNews(ArticleController.getRestArticle())
         toggleSuivi(ArticleController.getFirstArticle().suivi,suivi,R.drawable.ic_saved,R.drawable.ic_save)
-        (v.findViewById<CardView>(R.id.card1_accuille)).setOnClickListener {
+        (v.findViewById<androidx.cardview.widget.CardView>(R.id.card1_accuille)).setOnClickListener {
             switchActivityExtra(this.context!!, AffichageActivity::class.java,activity!!,"article",ArticleController.getFirstArticle())
         }
         (v.findViewById<ImageView>(R.id.card1_menu)).setOnClickListener {
@@ -71,12 +85,52 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
     }
     private fun initRvNews(v: View){
         newsAdapter = NewAdapter(newsList,v.context,v,activity)
-        initLineaire(v,R.id.recycle_news_acuille,LinearLayoutManager.VERTICAL,newsAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>)
+        var rv = v.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recycle_news_acuille)
+        val horizontalLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            v.context,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
+        rv!!.layoutManager = horizontalLayoutManager
+        rv.adapter = newsAdapter
+        val layoutManager = horizontalLayoutManager
+
+        /**
+         * ajudter le recycler view
+         */
+        val recyclerViewOnScrollListener = object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+
+            override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                if (!isLoading && !isLastPage) {
+                    if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
+                        && firstVisibleItemPosition >= 0
+                        && totalItemCount >= PAGE_SIZE
+                    ) {
+                        loadMoreItems()
+                    }
+                }
+            }
+        }
+        rv.addOnScrollListener(recyclerViewOnScrollListener)
     }
     private fun ajouterNews(restArticle: ArrayList<Article>) {
         newsList.addAll(restArticle)
         newsAdapter!!.notifyDataSetChanged()
     }
+
+
+    private fun loadMoreItems(){
+        //ajouterNews(ArticleController.getRestArticle())
+    }
+
 
 
 }

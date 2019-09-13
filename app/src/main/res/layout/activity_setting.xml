@@ -3,7 +3,7 @@
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent">
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_accuille"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -31,7 +31,7 @@
                     android:id="@+id/back_toolbar"
                     android:layout_width="wrap_content"
                     android:layout_height="39dp"
-                    android:src="@drawable/ic_back"
+                    app:srcCompat="@drawable/ic_back"
                     android:layout_gravity="center"
             />
         </LinearLayout>
@@ -52,7 +52,7 @@
 
 
     </LinearLayout>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
             android:id="@+id/fragment_id"
@@ -117,7 +117,19 @@
                     android:text="@string/choisissez_vos_thematiqe"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"/>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
 
+                <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:text="@string/deconnexion"
+                        android:id="@+id/deconnexionButton" />
+            </RelativeLayout>
 
         </LinearLayout>
 

@@ -1,21 +1,22 @@
 package com.example.nowdz.helper
 
 import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
-import com.example.nowdz.ui.activities.AffichageActivity
 import com.example.nowdz.R
 import com.example.nowdz.ui.ArticleActivity
 
 class PopupFct(val context: Context,
                val view: View,
-               val activity: Activity) : PopupMenu(context, view),GlobalHelper {
+               val activity: Activity
+) : PopupMenu(context, view),GlobalHelper {
      fun onCLick() {
          setOnMenuItemClickListener {item ->
             when (item.itemId) {
@@ -61,7 +62,7 @@ class PopupFct(val context: Context,
          this.inflate(R.menu.menu_popup)
 
          try {
-             val fieldMPopup = android.support.v7.widget.PopupMenu::class.java.getDeclaredField("mPopup")
+             val fieldMPopup = androidx.appcompat.widget.PopupMenu::class.java.getDeclaredField("mPopup")
              fieldMPopup.isAccessible = true
              val mPopup = fieldMPopup.get(this)
              mPopup.javaClass

@@ -1,9 +1,8 @@
 package com.example.nowdz.ui.Adapter
 
 import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,15 +17,15 @@ import com.example.nowdz.model.Article
 import com.example.nowdz.ui.activities.AffichageActivity
 
 class ArticleEnregistreAdapter constructor(
-    private val newsList: ArrayList<Article>,
     internal var context: Context,
     var view: View,
     var activity: Activity?
 
 )
-    : RecyclerView.Adapter<ArticleEnregistreAdapter.ArticleViewHolder>(),onWebView,GlobalHelper {
+    : androidx.recyclerview.widget.RecyclerView.Adapter<ArticleEnregistreAdapter.ArticleViewHolder>(),onWebView,GlobalHelper {
     //constructor(newsList: ArrayList<String>,context: Context,view: View) : this(newsList,context,view,null)
 
+    private var newsList : List<Article> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
 
@@ -61,9 +60,13 @@ class ArticleEnregistreAdapter constructor(
         return newsList.size
     }
 
-    inner class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    fun setArticles(articles: List<Article>) {
+        this.newsList = articles
+        notifyDataSetChanged()
+    }
+    inner class ArticleViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
-        internal var card : CardView = view.findViewById(R.id.card_enregistrer)
+        internal var card : androidx.cardview.widget.CardView = view.findViewById(R.id.card_enregistrer)
         internal var logo : ImageView = view.findViewById(R.id.logo)
         internal var titre : TextView = view.findViewById(R.id.titre)
         internal var imageNews : ImageView = view.findViewById(R.id.news_image)

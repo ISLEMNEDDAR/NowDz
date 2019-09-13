@@ -2,13 +2,11 @@ package com.example.nowdz.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.ContextCompat
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.nowdz.R
-import com.example.nowdz.controller.ArticleController
 import com.example.nowdz.model.Article
 
 import kotlinx.android.synthetic.main.activity_affichage.*

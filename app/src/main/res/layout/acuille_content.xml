@@ -25,7 +25,7 @@
             android:layout_marginStart="@dimen/zero_dim"
             android:layout_alignParentLeft="true">
     </FrameLayout>
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/navigation_bar"

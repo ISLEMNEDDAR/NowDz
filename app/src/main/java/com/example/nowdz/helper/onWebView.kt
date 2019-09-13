@@ -1,7 +1,7 @@
 package com.example.nowdz.helper
 
 import android.content.Intent
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import com.example.nowdz.ui.activities.BaseActivity
 
 interface onWebView  {
@@ -9,7 +9,7 @@ interface onWebView  {
         val intent = Intent (activity.applicationContext, cls)
         activity.startActivity(intent)
     }
-    fun showActivity(activity : FragmentActivity,cls : Class<*>){
+    fun showActivity(activity : FragmentActivity, cls : Class<*>){
         val intent = Intent (activity.applicationContext, cls)
         activity.startActivity(intent)
     }

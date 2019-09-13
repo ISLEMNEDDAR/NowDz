@@ -6,7 +6,7 @@
         <item name="colorPrimaryDark">#000</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorWhiteless</item>
-        <item name="android:iconTint">@color/colorWhiteless</item>
+        <item name="iconTint">@color/colorWhiteless</item>
 
     </style>
 </resources>

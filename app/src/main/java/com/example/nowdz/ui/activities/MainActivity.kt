@@ -3,14 +3,14 @@ package com.example.nowdz.ui.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.Toolbar
+import androidx.fragment.app.Fragment
+import androidx.appcompat.widget.Toolbar
 import android.content.Intent
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.SearchView
+import com.google.android.material.navigation.NavigationView
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -27,7 +27,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import kotlinx.android.synthetic.main.acuille_content.*
 
 
-class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListener,SharedPreferenceInterface {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener,SharedPreferenceInterface {
     private var settingMenu : ImageView?=null
     private var mGoogleSignInClient : GoogleSignInClient? = null
     private var pref: SharedPreferencesHelper? = null

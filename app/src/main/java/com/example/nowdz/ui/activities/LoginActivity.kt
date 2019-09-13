@@ -2,13 +2,10 @@ package com.example.nowdz.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log
 import android.widget.Toast
-import com.example.nowdz.Google_Token
-import com.example.nowdz.NOM_FICHER_LOGIN
-import com.example.nowdz.R
-import com.example.nowdz.RC_SIGN_IN
+import com.example.nowdz.*
 import com.example.nowdz.Service.AuthService
 import com.example.nowdz.Service.ServiceBuilder
 import com.example.nowdz.helper.SharedPreferenceInterface
@@ -69,21 +66,21 @@ class LoginActivity : AppCompatActivity(),SharedPreferenceInterface {
     fun connxionSuccefulGoogle(account : GoogleSignInAccount){
         // la communication
         val token = account.idToken
-
+        Log.i("token : ",token)
         /**
          * avoir id prenom nom
          */
         saveInfoGoogle(account)
-        val automobiliste = User(account.id!!,account.givenName!!)
-
+        val user = User(account.id!!,account.givenName!!)
+        println()
         /**
          * la requete de retrofit
          */
 
         val authService = ServiceBuilder.buildService(AuthService::class.java)
-        /*val requestCall = authService.setToken("${NOM_INIT_AUTH} ${LETTRE_GOOGLE_AUTH} ${token}",automobiliste)
-        requestCall.enqueue(object : Callback<Automobiliste> {
-            override fun onResponse(call: Call<Automobiliste>, response: Response<Automobiliste>) {
+        val requestCall = authService.setToken("${NOM_INIT_AUTH} ${token}",user)
+        requestCall.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
                 if(response.isSuccessful){
                     dejaConnecte()
                 }else{
@@ -91,10 +88,10 @@ class LoginActivity : AppCompatActivity(),SharedPreferenceInterface {
                 }
 
             }
-            override fun onFailure(call: Call<Automobiliste>, t: Throwable) {
+            override fun onFailure(call: Call<User>, t: Throwable) {
                 Toast.makeText(this@LoginActivity,"Failed", Toast.LENGTH_LONG)
             }
-        })*/
+        })
 
 
 

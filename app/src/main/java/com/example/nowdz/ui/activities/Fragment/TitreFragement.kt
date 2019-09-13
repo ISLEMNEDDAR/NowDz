@@ -1,13 +1,13 @@
 package com.example.nowdz.ui.activities.Fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.nowdz.R
 import com.nshmura.recyclertablayout.RecyclerTabLayout
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import com.example.nowdz.ui.Adapter.TitlePagerAdapter
 import com.example.nowdz.controller.CategorieController
 
@@ -26,6 +26,7 @@ class TitreFragement : Fragment() {
         //tronsformer les id en string
         val listTitre = ArrayList<String>()
         for (numCat in listNumCat){
+
             listTitre.add(getString(numCat))
             println(listTitre.toString())
         }
