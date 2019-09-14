@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.nowdz.R
 import com.example.nowdz.model.Article
+import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.activity_affichage.*
 
@@ -66,7 +67,7 @@ class AffichageActivity : BaseActivity() {
         if (intent != null){
             val article = intent.getParcelableExtra<Article>("article")
             if(article != null){
-                image_news!!.setImageResource(article.urltoImage!!)
+                Picasso.get().load(article.urltoImage).into(image_news)
                 titre!!.text = article.titre
                 date!!.text = article.published_at.toString()
                 contenu!!.text = article.content

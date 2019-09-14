@@ -7,6 +7,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Source (
      var name : String?,
-     var urlJourrnal : String?,
-     var logo : Int?
+     var urlJournal : String?,
+     var logo : String?
 ) : Parcelable

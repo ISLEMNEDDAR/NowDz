@@ -39,7 +39,7 @@ class ArticleEnregistreAdapter constructor(
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = newsList[position]
         val suivi = holder.favoris
-        toggleSuivi(article.suivi,suivi,R.drawable.ic_saved,R.drawable.ic_save)
+        toggleSuivi(article.suivi!!,suivi,R.drawable.ic_saved,R.drawable.ic_save)
         holder.card.setOnClickListener {
             switchActivityExtra(this.context, AffichageActivity::class.java,activity!!,"article",article)
         }

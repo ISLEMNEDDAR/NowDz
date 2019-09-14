@@ -28,6 +28,9 @@ interface ArticleDao {
     @Query("SELECT * FROM article_table LIMIT (SELECT COUNT(*) FROM article_table) OFFSET 2")
     fun getRestFavoris() : LiveData<List<Article>>
 
+    @Query("SELECT * FROM article_table where titre=:titre and name=:name")
+    fun articleExist(titre : String,name : String) : LiveData<List<Article>>
+
 
 
 

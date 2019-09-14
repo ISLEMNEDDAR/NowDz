@@ -44,7 +44,12 @@
                             android:layout_weight="2"
                             android:id="@+id/recycle_news_acuille"/>
 
-
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_donut_large_black_24dp"
+                            android:visibility="gone"
+                            android:id="@+id/wait_list"/>
                 </LinearLayout>
             </ScrollView>
 

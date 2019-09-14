@@ -14,7 +14,7 @@ import com.example.nowdz.model.Converters
 import com.example.nowdz.model.Dao.ArticleDao
 import com.example.nowdz.model.Dao.CategoryDao
 
-@Database(entities = [Article::class,Categories::class],version = 3)
+@Database(entities = [Article::class,Categories::class],version = 7)
 @TypeConverters(Converters::class)
 abstract class ArticleDatebase : RoomDatabase() {
     abstract fun articleDao() : ArticleDao

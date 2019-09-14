@@ -22,7 +22,7 @@ import com.example.nowdz.ui.activities.AffichageActivity
 import com.example.nowdz.viewModel.ArticleViewModel
 
 class NewAdapter constructor(
-    private val newsList: ArrayList<Article>,
+    private var newsList: ArrayList<Article>,
     internal var context: Context,
     var view: View,
     var activity: FragmentActivity?
@@ -47,7 +47,7 @@ class NewAdapter constructor(
         val article = newsList[position]
         val classement = position+2
         val suivi = holder.favoris
-        toggleSuivi(article.suivi,suivi,R.drawable.ic_saved,R.drawable.ic_save)
+        toggleSuivi(article.suivi!!,suivi,R.drawable.ic_saved,R.drawable.ic_save)
         holder.posiotion.text = "$classement."
         holder.card.setOnClickListener {
             switchActivityExtra(this.context, AffichageActivity::class.java,activity!!,"article",article)
@@ -59,12 +59,12 @@ class NewAdapter constructor(
         }
         suivi.setOnClickListener {
             suiviProc(suivi,article)
-            if (article.suivi){
+            if (article.suivi!!){
                 /**
                  * update article to unsuive
                  */
                 article.suivi = false
-                articleViewModel.deleteArticle(article.id)
+                articleViewModel.deleteArticle(article.id!!)
             }else{
                 article.suivi = true
                 articleViewModel.insert(article)
@@ -78,6 +78,15 @@ class NewAdapter constructor(
         return newsList.size
     }
 
+    fun setNews(news : List<Article>){
+        this.newsList.clear()
+        this.newsList = news as ArrayList<Article>
+        notifyDataSetChanged()
+    }
+    fun addNews(news : List<Article>){
+        this.newsList.addAll(news)
+        notifyDataSetChanged()
+    }
     inner class NewsViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         internal var card : androidx.cardview.widget.CardView = view.findViewById(R.id.card_secondaire)
         internal var posiotion : TextView = view.findViewById(R.id.clasement_news)

@@ -72,7 +72,7 @@ class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(), Recy
         notifyDataSetChanged()
     }
     private fun initRvNews(v: View,category: Int){
-        listArticle = ArticleController.ListPerCategory(category)
+        listArticle = ArticleController.ListPerCategory(activity!!.getString(category))
         Log.i("les articles : ",listArticle.toString())
         newsAdapter = NewAdapter(listArticle,v.context,v,activity)
         initLineaire(v,R.id.title_content_rv,

@@ -49,6 +49,10 @@ class ArticleRepository(application: Application) {
     fun getRestFavoris() : LiveData<List<Article>>{
         return articleDao.getRestFavoris()
     }
+
+    fun articleExist(titre : String,name : String):LiveData<List<Article>>{
+        return articleDao.articleExist(titre,name)
+    }
     private class InsertArticleAsyncTask(articleDao : ArticleDao) : AsyncTask<Article, Unit, Unit>(){
         val articleDao = articleDao
         override fun doInBackground(vararg p0: Article?) {

@@ -37,4 +37,8 @@ class ArticleViewModel(application: Application) : AndroidViewModel(application)
     fun getRestArticle() : LiveData<List<Article>>{
         return repository.getRestFavoris()
     }
+
+    fun articleExist(titre : String,name :String) : LiveData<List<Article>>{
+        return repository.articleExist(titre,name)
+    }
 }

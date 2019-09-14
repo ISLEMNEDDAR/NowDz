@@ -26,7 +26,7 @@ interface GlobalHelper{
      * le system de suive qui retourne un tableau de favoris
      */
     fun suiviProc(suivi : ImageView,article : Article):ArrayList<Article>{
-        if (article.suivi){
+        if (article.suivi!!){
             //faire le desabonnement
             processusSuivre(R.drawable.ic_save,suivi,"nonSuivi")
 

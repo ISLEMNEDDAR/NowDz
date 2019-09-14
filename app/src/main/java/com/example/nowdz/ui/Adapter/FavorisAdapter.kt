@@ -35,14 +35,13 @@ class FavorisAdapter constructor(
         //inflate the layout file
         val newView =
             LayoutInflater.from(parent.context).inflate(R.layout.card_news_favorite, parent, false)
-
         return ArticleViewHolder(newView)
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = newsList[position]
         val suivi = holder.favoris
-        toggleSuivi(article.suivi,suivi,R.drawable.ic_saved,R.drawable.ic_save)
+        toggleSuivi(article.suivi!!,suivi,R.drawable.ic_saved,R.drawable.ic_save)
         holder.card.setOnClickListener {
             switchActivityExtra(this.context, AffichageActivity::class.java,activity!!,"article",article)
         }
@@ -59,7 +58,7 @@ class FavorisAdapter constructor(
             suiviProc(suivi,article)
             var articleViewModel = ViewModelProviders.of(context as FragmentActivity).get(
                 ArticleViewModel::class.java)
-            articleViewModel.deleteArticle(article.id)
+            articleViewModel.deleteArticle(article.id!!)
 
             articleViewModel.getTwoArticle().observe(
                 context as FragmentActivity,

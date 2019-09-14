@@ -18,7 +18,7 @@ data class Article (
     var author : String?,
     var titre : String?,
     var url : String?,
-    var urltoImage : Int?,
+    var urltoImage : String?,
     var published_at : Date?,
     var content : String?,
     var categorie : String?,
