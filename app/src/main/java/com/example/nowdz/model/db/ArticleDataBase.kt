@@ -7,15 +7,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.nowdz.R
 import com.example.nowdz.model.Article
+import com.example.nowdz.model.Categories
 import com.example.nowdz.model.Converters
 import com.example.nowdz.model.Dao.ArticleDao
+import com.example.nowdz.model.Dao.CategoryDao
 
-@Database(entities = [Article::class],version = 1)
+@Database(entities = [Article::class,Categories::class],version = 3)
 @TypeConverters(Converters::class)
 abstract class ArticleDatebase : RoomDatabase() {
     abstract fun articleDao() : ArticleDao
-
+    abstract fun categoryDao() : CategoryDao
 
     companion object{
         private var instance : ArticleDatebase? = null
@@ -46,9 +49,16 @@ abstract class ArticleDatebase : RoomDatabase() {
 
         class PopulateDbAsyncTask(db: ArticleDatebase?) : AsyncTask<Unit, Unit, Unit>() {
             private val articleDao = db?.articleDao()
+            private val categoryDao = db?.categoryDao()
             override fun doInBackground(vararg p0: Unit?) {
-
-
+                categoryDao?.insert(Categories(R.string.international,1,0))
+                categoryDao?.insert(Categories(R.string.algerie,1,0))
+                categoryDao?.insert(Categories(R.string.sport,1,0))
+                categoryDao?.insert(Categories(R.string.sante,1,0))
+                categoryDao?.insert(Categories(R.string.emploi,1,0))
+                categoryDao?.insert(Categories(R.string.culture,1,0))
+                categoryDao?.insert(Categories(R.string.politics,1,0))
+                categoryDao?.insert(Categories(R.string.economie,1,0))
             }
 
         }

@@ -87,9 +87,6 @@ class NewAdapter constructor(
         internal var date : TextView = view.findViewById(R.id.cadr1_date)
         internal var popup : ImageView = view.findViewById(R.id.card2_menu)
         internal var favoris : ImageView = view.findViewById(R.id.favoris_card)
-
-
-
     }
 
 }

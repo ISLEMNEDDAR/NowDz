@@ -14,18 +14,18 @@ import java.util.*
 @Entity(tableName = "article_table")
 data class Article (
     @Embedded
-    var journal : Source,
+    var journal : Source?,
     var author : String?,
     var titre : String?,
     var url : String?,
     var urltoImage : Int?,
     var published_at : Date?,
     var content : String?,
-    var categorie : String,
-    var suivi : Boolean
+    var categorie : String?,
+    var suivi : Boolean?
 ): Parcelable {
     @PrimaryKey(autoGenerate = true)
-    var id : Int = 0
+    var id : Int? = 0
 }
 
 class Converters {

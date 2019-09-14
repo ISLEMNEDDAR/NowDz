@@ -1,5 +1,6 @@
 package com.example.nowdz.ui.Adapter
 
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager.widget.PagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,16 +61,19 @@ class TitlePagerAdapter(var activity : FragmentActivity?) : PagerAdapter(), Recy
     }
 
     fun addAllNum(items: List<Int>) {
+        numItems.clear()
         numItems = ArrayList(items)
+        notifyDataSetChanged()
     }
 
     fun addAllTitle(item : List<String>){
+        titleItem.clear()
         titleItem = ArrayList(item)
+        notifyDataSetChanged()
     }
     private fun initRvNews(v: View,category: Int){
-        println(category)
         listArticle = ArticleController.ListPerCategory(category)
-        println(listArticle.toString())
+        Log.i("les articles : ",listArticle.toString())
         newsAdapter = NewAdapter(listArticle,v.context,v,activity)
         initLineaire(v,R.id.title_content_rv,
             androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,newsAdapter as androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>)

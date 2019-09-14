@@ -2,6 +2,7 @@ package com.example.nowdz.model.Dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Ignore
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.nowdz.model.Article
