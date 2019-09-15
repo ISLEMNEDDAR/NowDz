@@ -5,13 +5,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.android.application'
 
 
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.nowdz"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -76,4 +77,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     kapt 'androidx.room:room-compiler:2.0.0'
 
+    //notif
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-messaging:18.0.0'
+    implementation 'com.pusher:push-notifications-android:1.4.3'
+
 }
+apply plugin: 'com.google.gms.google-services'

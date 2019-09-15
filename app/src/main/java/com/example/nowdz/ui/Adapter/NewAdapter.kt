@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.nowdz.R
 import com.example.nowdz.controller.ArticleController
@@ -47,8 +48,32 @@ class NewAdapter constructor(
         val article = newsList[position]
         val classement = position+2
         val suivi = holder.favoris
-        toggleSuivi(article.suivi!!,suivi,R.drawable.ic_saved,R.drawable.ic_save)
-        holder.posiotion.text = "$classement."
+        articleViewModel.articleExist(article.titre!!,article.journal!!.name!!).observe(
+            activity!!,
+            Observer {
+
+                article.suivi = it.size>0
+                if(article.suivi!!) article.id = it[0].id
+                toggleSuivi(article.suivi!!,suivi,R.drawable.ic_saved,R.drawable.ic_save)
+                holder.posiotion.text = "$classement."
+                suivi.setOnClickListener {
+                    suiviProc(suivi,article)
+                    if (article.suivi!!){
+                        /**
+                         * update article to unsuive
+                         */
+                        article.suivi = false
+                        println(article.id)
+                        articleViewModel.deleteArticle(article.id!!)
+                    }else{
+                        article.suivi = true
+                        articleViewModel.insert(article)
+                    }
+
+                }
+                ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+            }
+        )
         holder.card.setOnClickListener {
             switchActivityExtra(this.context, AffichageActivity::class.java,activity!!,"article",article)
         }
@@ -57,21 +82,8 @@ class NewAdapter constructor(
             popupMenu.onCLick()
             popupMenu.inflat(R.menu.menu_popup)
         }
-        suivi.setOnClickListener {
-            suiviProc(suivi,article)
-            if (article.suivi!!){
-                /**
-                 * update article to unsuive
-                 */
-                article.suivi = false
-                articleViewModel.deleteArticle(article.id!!)
-            }else{
-                article.suivi = true
-                articleViewModel.insert(article)
-            }
 
-        }
-        ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+
     }
 
     override fun getItemCount(): Int {

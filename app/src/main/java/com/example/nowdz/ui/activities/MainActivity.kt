@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.Toolbar
 import android.content.Intent
+import android.util.Log
 import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,12 +20,16 @@ import com.example.nowdz.ui.activities.Fragment.AcuilleFragment
 import com.example.nowdz.ui.activities.Fragment.FavorisFragment
 import com.example.nowdz.ui.activities.Fragment.TitreFragement
 import com.example.nowdz.R
+import com.example.nowdz.helper.BeamsNotif
 import com.example.nowdz.helper.SharedPreferenceInterface
 import com.example.nowdz.helper.SharedPreferencesHelper
 import com.example.nowdz.ui.activities.Fragment.PreferenceFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.pusher.pushnotifications.BeamsCallback
+import com.pusher.pushnotifications.PushNotifications
+import com.pusher.pushnotifications.PusherCallbackError
 import kotlinx.android.synthetic.main.acuille_content.*
 
 
@@ -46,10 +51,26 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         /**
          * Methode
          */
+        PushNotifications.start(applicationContext,"2d3f5328-bba4-4d85-8320-a33ede693d08")
+
+        //PushNotifications.addDeviceInterest("hello")
         chargerFagment(AcuilleFragment())
         setToolbar()
         initDrawerMenu()
         navigation()
+        PushNotifications.setUserId(
+            avoirIdUser(applicationContext).toString(),
+            BeamsNotif.tokenProvider(avoirIdUser(applicationContext).toString()),
+            object : BeamsCallback<Void,PusherCallbackError>{
+                override fun onSuccess(vararg values: Void) {
+                    Log.i("BeamsAuth", "Beams login success");
+                }
+
+                override fun onFailure(error: PusherCallbackError) {
+                    Log.e("BeamsAuth", "Could not login to Beams: ${error.message}");
+                }
+            }
+        )
     }
     /**
      *

@@ -23,9 +23,12 @@ object ArticleController {
             private var listArticleFavoris = ArrayList<Article>()
 
    fun setArticle(articles : List<Article>){
+        this.listArticle.clear()
         this.listArticle.addAll(articles)
    }
-
+    fun addArticles(articles : List<Article>){
+        this.listArticle.addAll(articles)
+    }
 
 
 

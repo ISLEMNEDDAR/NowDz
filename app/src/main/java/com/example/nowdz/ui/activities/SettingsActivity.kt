@@ -16,6 +16,7 @@ import com.example.nowdz.viewModel.CategoryViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.pusher.pushnotifications.PushNotifications
 import kotlinx.android.synthetic.main.activity_setting.*
 
 
@@ -150,6 +151,7 @@ class SettingsActivity : BaseActivity(),ModeInterface {
          * Pour Deconnecter
          */
         private fun deconnecter(){
+            PushNotifications.clearAllState()
             val login = Intent(this@SettingsActivity, LoginActivity::class.java)
             startActivity(login)
             this@SettingsActivity.finish()

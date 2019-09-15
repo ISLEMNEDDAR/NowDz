@@ -27,4 +27,13 @@ interface SharedPreferenceInterface {
         val pref = sharedPref(context, NOM_FICHER_LOGIN)
         return pref.avoirIdUser()
     }
+    public fun avoirSuivi(context: Context,nomFichier: String) : Boolean{
+        val pref = sharedPref(context,nomFichier)
+        return pref.getJournalSuivi(nomFichier)
+    }
+
+    public fun setSuivi(context: Context,nomFichier: String,suivi:Boolean){
+        val sharedPreference = sharedPref(context,nomFichier)
+        sharedPreference.setJournalSuivi(suivi,nomFichier)
+    }
 }

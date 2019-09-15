@@ -150,8 +150,14 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
                         it.suivi = false
                     }
 
-                    if(currentPage==0)  newsAdapter!!.setNews(listArticle)
-                    else newsAdapter!!.addNews(listArticle)
+                    if(currentPage==0)  {
+                        newsAdapter!!.setNews(listArticle)
+                        ArticleController.setArticle(listArticle)
+                    }
+                    else {
+                        newsAdapter!!.addNews(listArticle)
+                        ArticleController.addArticles(listArticle)
+                    }
                     Log.i("list Article",listArticle.toString())
                     if(currentPage == 0) progress!!.dismiss()
                     else wait!!.visibility = View.GONE

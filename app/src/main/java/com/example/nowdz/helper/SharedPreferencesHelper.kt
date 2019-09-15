@@ -39,7 +39,16 @@ class SharedPreferencesHelper(internal var context: Context,nom_fichier : String
         val id = pref.getString("idUser",null)
         return id!!
     }
-
+    fun setJournalSuivi(suivi : Boolean,nom_fichier: String){
+        val sharedPreference = context.getSharedPreferences(nom_fichier, Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putBoolean("suivi",suivi)
+        editor.apply()
+    }
+    fun getJournalSuivi(nom_fichier: String): Boolean{
+        val sharedPreference = context.getSharedPreferences(nom_fichier, Context.MODE_PRIVATE)
+        return sharedPreference.getBoolean("suivi",false)
+    }
     companion object {
         private val TAG = "SharedPreferencesHelper"
     }

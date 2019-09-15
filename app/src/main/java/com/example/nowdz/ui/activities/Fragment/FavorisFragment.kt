@@ -52,14 +52,16 @@ class FavorisFragment : Fragment(),GlobalHelper, RecycleViewHelper {
                 nombreArticle =  favorisAdapeter!!.itemCount
 
                 Log.i("nombreArticle : ", nombreArticle.toString())
-                if (nombreArticle<2){
-                    linktext!!.visibility = View.GONE
-                }else{
-                    linktext!!.visibility = View.VISIBLE
-
-                }
+                if (nombreArticle<=2) linktext!!.visibility = View.GONE
+                articleViewModel.getRestArticle().observe(
+                    this,
+                    Observer {
+                        if(it.size>0 ) linktext!!.visibility = View.VISIBLE
+                    }
+                )
             }
         )
+
 
 
         linktext!!.setOnClickListener{
