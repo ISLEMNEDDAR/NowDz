@@ -10,7 +10,7 @@ object ServiceBuilder {
 
     // the Base adresse
     private const val URL = //"http://192.168.137.1/api/"
-        "http://d568b38f.ngrok.io/api/"
+        "http://affc071e.ngrok.io/api/"
 
 
     val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
