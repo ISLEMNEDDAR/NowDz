@@ -258,4 +258,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         startActivity(login)
         this@MainActivity.finish()
     }
+
+    
+    private fun getAllFavoris(){
+
+    }
 }

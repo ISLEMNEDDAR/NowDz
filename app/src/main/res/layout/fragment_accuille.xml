@@ -30,12 +30,12 @@
                         android:weightSum="3"
                         android:orientation="vertical">
 
-                    <include
+                    <!--<include
                             android:layout_marginTop="10dp"
                             layout="@layout/card_news_une"
                             android:layout_height="0dp"
                             android:layout_width="match_parent"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"/>-->
 
                     <androidx.recyclerview.widget.RecyclerView
                             android:layout_marginTop="10dp"

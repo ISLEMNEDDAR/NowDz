@@ -12,13 +12,17 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.nowdz.R
+import com.example.nowdz.Service.ArticleService
+import com.example.nowdz.Service.ServiceBuilder
 import com.example.nowdz.controller.ArticleController
-import com.example.nowdz.helper.GlobalHelper
-import com.example.nowdz.helper.PopupFct
-import com.example.nowdz.helper.onWebView
+import com.example.nowdz.helper.*
 import com.example.nowdz.model.Article
+import com.example.nowdz.model.RequestFavoris
 import com.example.nowdz.ui.activities.AffichageActivity
 import com.example.nowdz.viewModel.ArticleViewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FavorisAdapter constructor(
 
@@ -26,7 +30,7 @@ class FavorisAdapter constructor(
     var view: View,
     var activity: Activity?
 
-) : androidx.recyclerview.widget.RecyclerView.Adapter<FavorisAdapter.ArticleViewHolder>(), onWebView, GlobalHelper {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<FavorisAdapter.ArticleViewHolder>(), onWebView, GlobalHelper,SharedPreferenceInterface {
     //constructor(newsList: ArrayList<String>,context: Context,view: View) : this(newsList,context,view,null)
     private var newsList : List<Article> = ArrayList()
 
@@ -45,6 +49,7 @@ class FavorisAdapter constructor(
         holder.card.setOnClickListener {
             switchActivityExtra(this.context, AffichageActivity::class.java,activity!!,"article",article)
         }
+        var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         holder.popup.setOnClickListener {
             val popupMenu = PopupFct(context, it,activity!!)
             popupMenu.onCLick()
@@ -54,22 +59,10 @@ class FavorisAdapter constructor(
             /**
              * desuivre
              */
-            article.suivi = false
-            suiviProc(suivi,article)
-            var articleViewModel = ViewModelProviders.of(context as FragmentActivity).get(
-                ArticleViewModel::class.java)
-            articleViewModel.deleteArticle(article.id!!)
+            removeFavoris(articleService,article,holder,suivi)
 
-            articleViewModel.getTwoArticle().observe(
-                context as FragmentActivity,
-                Observer<List<Article>> {
-                    setArticles(it!!)
-
-                }
-            )
-            notifyDataSetChanged()
         }
-        ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+
 
 
     }
@@ -91,6 +84,38 @@ class FavorisAdapter constructor(
         internal var date : TextView = view.findViewById(R.id.cadr1_date)
         internal var popup : ImageView = view.findViewById(R.id.card2_menu)
         internal var favoris : ImageView = view.findViewById(R.id.favoris_card)
+    }
+    fun removeFavoris(articleService : ArticleService, article : Article, holder : FavorisAdapter.ArticleViewHolder,suivi : ImageView){
+        var request = articleService.removeFavoris(avoirIdUser(context).toString(),
+            RequestFavoris(article.journal!!.name!!,article.titre!!)
+        )
+        request.enqueue(object : Callback<Any> {
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                if(response.isSuccessful){
+                    article.suivi = false
+                    suiviProc(suivi,article)
+                    var articleViewModel = ViewModelProviders.of(context as FragmentActivity).get(
+                        ArticleViewModel::class.java)
+                    articleViewModel.deleteArticle(article.id!!)
+
+                    articleViewModel.getTwoArticle().observe(
+                        context as FragmentActivity,
+                        Observer<List<Article>> {
+                            setArticles(it!!)
+
+                        }
+                    )
+                    notifyDataSetChanged()
+                    ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+                }else{
+                    removeFavoris(articleService,article,holder,suivi)
+                }
+
+            }
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                removeFavoris(articleService,article,holder,suivi)
+            }
+        })
     }
 
 }
