@@ -8,8 +8,9 @@
     <string name="nom_article">مقالة</string>
     <string name="recherche_nom">بحث</string>
     <string name="save_nom">حفظ في وقت لاحق</string>
-    <string name="share_nom">مشاركة</string>
+    <string name="share_nom">مشاركةعن طريق رسالة نصية</string>
     <string name="acess_nom">الوصول إلى</string>
+    <string name="share_nom_mail">مشاركة بالبريد الالكتروني</string>
     <string name="hide_nom">إخفاء المقالات</string>
     <string name="accuille_nom">الرئيسية</string>
     <string name="title_nom">الموضوعات</string>

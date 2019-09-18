@@ -2,6 +2,7 @@ package com.example.nowdz.ui.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -90,10 +92,11 @@ class NewAdapter constructor(
             switchActivityExtra(this.context, AffichageActivity::class.java,activity!!,"article",article)
         }
         holder.popup.setOnClickListener {
-            val popupMenu = PopupFct(context, it,activity!!)
+            val popupMenu = PopupFct(context, it,activity!! as AppCompatActivity)
             popupMenu.onCLick()
             popupMenu.inflat(R.menu.menu_popup)
         }
+        ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
 
 
     }
@@ -109,6 +112,7 @@ class NewAdapter constructor(
     }
     fun addNews(news : List<Article>){
         this.newsList.addAll(news)
+        Log.i("dataChanged : ", this.newsList.size.toString())
         notifyDataSetChanged()
     }
     inner class NewsViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
@@ -132,7 +136,7 @@ class NewAdapter constructor(
                     article.suivi = false
                     println(article.id)
                     articleViewModel.deleteArticle(article.id!!)
-                    ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+
 
                 }else{
                     removeFavoris(articleService,article,holder)
@@ -154,7 +158,7 @@ class NewAdapter constructor(
                 if(response.isSuccessful){
                     article.suivi = true
                     articleViewModel.insert(article)
-                    ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+
                 }else{
                     addFavoris(articleService,article,holder)
                 }

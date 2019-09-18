@@ -13,6 +13,7 @@ object ServiceBuilder {
         "http://c10169ac.ngrok.io/api/"
 
 
+
     val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
     //Create Okhttp Client

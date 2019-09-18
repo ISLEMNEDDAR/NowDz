@@ -56,7 +56,7 @@ class ArticleEnregistreAdapter constructor(
         }
         var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         holder.popup.setOnClickListener {
-            val popupMenu = PopupFct(context, it,activity!!)
+            val popupMenu = PopupFct(context, it,activity!! as AppCompatActivity)
             popupMenu.onCLick()
             popupMenu.inflat(R.menu.menu_popup)
         }

@@ -4,24 +4,28 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.telephony.SmsManager
 import androidx.core.content.ContextCompat
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
+import com.example.nowdz.MAX_SMS_MESSAGE_LENGTH
 import com.example.nowdz.R
 import com.example.nowdz.ui.ArticleActivity
 
 class PopupFct(val context: Context,
                val view: View,
-               val activity: Activity
+               val activity: AppCompatActivity
 ) : PopupMenu(context, view),GlobalHelper {
      fun onCLick() {
          setOnMenuItemClickListener {item ->
             when (item.itemId) {
                 R.id.menu_popup_share -> {
-                    val shareintent = Intent(Intent.ACTION_SEND)
+                   /* val shareintent = Intent(Intent.ACTION_SEND)
                     shareintent.type="type/palin"
                     val sharebody ="The body"
                     val sharesub= "The subject"
@@ -32,9 +36,20 @@ class PopupFct(val context: Context,
                         Intent.createChooser(shareintent, "Share article"),
                         Bundle()
                     )
+                    */
+
+                    val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+                    activity.startActivityForResult(intent, 1)
 
 
 
+                    Toast.makeText(context, "Showing Share Toast!", Toast.LENGTH_LONG).show()
+                    true
+                }
+                R.id.menu_popup_share_mail -> {
+
+
+                    sendEmail()
                     Toast.makeText(context, "Showing Share Toast!", Toast.LENGTH_LONG).show()
                     true
                 }
@@ -55,6 +70,51 @@ class PopupFct(val context: Context,
                 }
                 else -> false
             }
+        }
+
+    }
+
+
+    fun sendSMS(phoneNumber: String, message: String) {
+
+        val smsManager = SmsManager.getDefault()
+
+        val length = message.length
+        if (length > MAX_SMS_MESSAGE_LENGTH) {
+            val messagelist = smsManager.divideMessage(message)
+            smsManager.sendMultipartTextMessage(phoneNumber, null, messagelist, null, null)
+        } else
+            smsManager.sendTextMessage(phoneNumber, null, message, null, null)
+    }
+
+
+    fun sendEmail() {
+
+        Log.i("Send email", "")
+
+        val TO = arrayOf("fh_abouchamala@esi.dz")
+        val CC = arrayOf("fn_islem@esi.dz")
+        val emailbody = "Url"
+        val emailtitle = "Title"
+        val emailIntent = Intent(Intent.ACTION_SEND)
+        emailIntent.data = Uri.parse("mailto:")
+        emailIntent.type = "text/plain"
+
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO)
+        emailIntent.putExtra(Intent.EXTRA_CC, CC)
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT,emailtitle)
+        emailIntent.putExtra(Intent.EXTRA_TEXT, emailbody)
+
+        try {
+            activity.startActivity(Intent.createChooser(emailIntent, "Send mail..."))
+            activity.finish()
+            Log.i("Finished sending email", "")
+        } catch (ex: android.content.ActivityNotFoundException) {
+            Toast.makeText(
+                context,
+                "There is no email client installed.", Toast.LENGTH_SHORT
+            ).show()
         }
 
     }

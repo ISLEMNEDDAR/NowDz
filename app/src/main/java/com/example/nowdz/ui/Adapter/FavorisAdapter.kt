@@ -51,7 +51,7 @@ class FavorisAdapter constructor(
         }
         var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         holder.popup.setOnClickListener {
-            val popupMenu = PopupFct(context, it,activity!!)
+            val popupMenu = PopupFct(context, it,activity!! as AppCompatActivity)
             popupMenu.onCLick()
             popupMenu.inflat(R.menu.menu_popup)
         }
@@ -62,7 +62,7 @@ class FavorisAdapter constructor(
             removeFavoris(articleService,article,holder,suivi)
 
         }
-
+        ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
 
 
     }
@@ -106,7 +106,7 @@ class FavorisAdapter constructor(
                         }
                     )
                     notifyDataSetChanged()
-                    ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+
                 }else{
                     removeFavoris(articleService,article,holder,suivi)
                 }
