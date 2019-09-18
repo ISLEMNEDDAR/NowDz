@@ -13,6 +13,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nowdz.R
+import com.example.nowdz.Service.ArticleService
+import com.example.nowdz.Service.ServiceBuilder
 import com.example.nowdz.helper.GlobalHelper
 import com.example.nowdz.helper.SharedPreferenceInterface
 import com.example.nowdz.helper.SharedPreferencesHelper
@@ -42,6 +44,7 @@ class SiteAdapter(
         var imageSuivi = holder.suivieImage
         holder.nomTheme.text = sites.name
         toggleSuivi(avoirSuivi(context,sites.name!!),imageSuivi, R.drawable.ic_saved, R.drawable.ic_save)
+        var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         holder.suivieImage.setOnClickListener {
             if (holder.suivieImage.tag == "nonSuivi"){
                 /**

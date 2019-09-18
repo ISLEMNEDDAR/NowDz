@@ -10,17 +10,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.nowdz.R
+import com.example.nowdz.Service.ArticleService
+import com.example.nowdz.Service.ServiceBuilder
 import com.example.nowdz.controller.ArticleController
-import com.example.nowdz.helper.GlobalHelper
-import com.example.nowdz.helper.PopupFct
-import com.example.nowdz.helper.onWebView
+import com.example.nowdz.helper.*
 import com.example.nowdz.model.Article
+import com.example.nowdz.model.RequestFavoris
+import com.example.nowdz.model.User
 import com.example.nowdz.ui.activities.AffichageActivity
 import com.example.nowdz.viewModel.ArticleViewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class NewAdapter constructor(
     private var newsList: ArrayList<Article>,
@@ -28,7 +34,10 @@ class NewAdapter constructor(
     var view: View,
     var activity: FragmentActivity?
 )
-    : androidx.recyclerview.widget.RecyclerView.Adapter<NewAdapter.NewsViewHolder>(),onWebView,GlobalHelper {
+    : androidx.recyclerview.widget.RecyclerView.Adapter<NewAdapter.NewsViewHolder>()
+    ,onWebView,GlobalHelper,SharedPreferenceInterface{
+
+
 
     private lateinit var articleViewModel: ArticleViewModel
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
@@ -48,6 +57,7 @@ class NewAdapter constructor(
         val article = newsList[position]
         val classement = position+2
         val suivi = holder.favoris
+        var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         articleViewModel.articleExist(article.titre!!,article.journal!!.name!!).observe(
             activity!!,
             Observer {
@@ -62,16 +72,18 @@ class NewAdapter constructor(
                         /**
                          * update article to unsuive
                          */
-                        article.suivi = false
-                        println(article.id)
-                        articleViewModel.deleteArticle(article.id!!)
+                            removeFavoris(articleService,article,holder)
+
+
                     }else{
-                        article.suivi = true
-                        articleViewModel.insert(article)
+                        /**
+                         * suivre article
+                         */
+                       addFavoris(articleService,article,holder)
+
                     }
 
                 }
-                ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
             }
         )
         holder.card.setOnClickListener {
@@ -108,6 +120,50 @@ class NewAdapter constructor(
         internal var date : TextView = view.findViewById(R.id.cadr1_date)
         internal var popup : ImageView = view.findViewById(R.id.card2_menu)
         internal var favoris : ImageView = view.findViewById(R.id.favoris_card)
+    }
+
+    fun removeFavoris(articleService : ArticleService,article : Article,holder :NewsViewHolder){
+        var request = articleService.removeFavoris(avoirIdUser(context).toString(),
+            RequestFavoris(article.journal!!.name!!,article.titre!!)
+        )
+        request.enqueue(object : Callback<Any> {
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                if(response.isSuccessful){
+                    article.suivi = false
+                    println(article.id)
+                    articleViewModel.deleteArticle(article.id!!)
+                    ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+
+                }else{
+                    removeFavoris(articleService,article,holder)
+                }
+
+            }
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                removeFavoris(articleService,article,holder)
+            }
+        })
+    }
+
+    fun addFavoris(articleService : ArticleService,article : Article,holder :NewsViewHolder){
+        var request = articleService.removeFavoris(avoirIdUser(context).toString(),
+            RequestFavoris(article.journal!!.name!!,article.titre!!)
+        )
+        request.enqueue(object : Callback<Any> {
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                if(response.isSuccessful){
+                    article.suivi = true
+                    articleViewModel.insert(article)
+                    ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
+                }else{
+                    addFavoris(articleService,article,holder)
+                }
+
+            }
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                addFavoris(articleService,article,holder)
+            }
+        })
     }
 
 }
