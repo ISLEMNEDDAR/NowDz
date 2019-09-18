@@ -34,7 +34,8 @@ class NewAdapter constructor(
     var view: View,
     var activity: FragmentActivity?
 )
-    : androidx.recyclerview.widget.RecyclerView.Adapter<NewAdapter.NewsViewHolder>(),onWebView,GlobalHelper,SharedPreferenceInterface{
+    : androidx.recyclerview.widget.RecyclerView.Adapter<NewAdapter.NewsViewHolder>()
+    ,onWebView,GlobalHelper,SharedPreferenceInterface{
 
 
 

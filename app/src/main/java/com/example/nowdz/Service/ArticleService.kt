@@ -35,4 +35,7 @@ interface ArticleService {
     @POST("site/remove")
     fun removeSite(@Query("id")id : String,@Body site : String): Call<Any>
 
+    @GET("user/articles")
+    fun getAllFavoris(@Query("id")id : String) : Call<ArrayList<Article>>
+
 }

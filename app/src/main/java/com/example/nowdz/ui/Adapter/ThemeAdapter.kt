@@ -13,11 +13,15 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nowdz.R
+import com.example.nowdz.Service.ArticleService
 import com.example.nowdz.Service.ServiceBuilder
+import com.example.nowdz.controller.ArticleController
 import com.example.nowdz.helper.GlobalHelper
+import com.example.nowdz.helper.SharedPreferenceInterface
 import com.example.nowdz.helper.onWebView
 import com.example.nowdz.model.Article
 import com.example.nowdz.model.Categories
+import com.example.nowdz.model.RequestFavoris
 import com.example.nowdz.viewModel.CategoryViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,7 +32,7 @@ class ThemeAdapter(
     var view: View,
     var activity: Activity?)
     : RecyclerView.Adapter<ThemeAdapter.ThemeViewHolder>(),
-    GlobalHelper {
+    GlobalHelper, SharedPreferenceInterface {
     private var categorieList : List<Categories> = ArrayList()
     var categoryViewModel = ViewModelProviders.of(context as FragmentActivity).get(
         CategoryViewModel::class.java)
@@ -48,20 +52,18 @@ class ThemeAdapter(
         var suivi = false
         if(categories.suivi == 1) suivi = true
         toggleSuivi(suivi,imageSuivi,R.drawable.ic_saved,R.drawable.ic_save)
+        var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         holder.suivieImage.setOnClickListener {
             if (holder.suivieImage.tag == "nonSuivi"){
                 /**
                  * faire l'abonnement
                  */
-                categoryViewModel.updateSuivi(1,categories.categoryId)
-                processusSuivre(R.drawable.ic_saved,imageSuivi,"Suivi")
+               addTheme(articleService,categories,holder,imageSuivi)
             }else{
                 /**
                  * desabonner
                  */
-                categoryViewModel.updateSuivi(0,categories.categoryId)
-                processusSuivre(R.drawable.ic_save,imageSuivi,"nonSuivi")
-
+                removeTheme(articleService,categories,holder,imageSuivi)
             }
         }
     }
@@ -77,4 +79,44 @@ class ThemeAdapter(
         internal var suivieImage = view.findViewById<ImageView>(R.id.im_image_theme)
         internal var nomTheme = view.findViewById<TextView>(R.id.im_text_theme)
     }
+
+    fun removeTheme(articleService : ArticleService, categories : Categories, holder : ThemeAdapter.ThemeViewHolder,imageSuivi : ImageView){
+        var request = articleService.removeTheme(avoirIdUser(context).toString(),activity!!.getString(categories.categoryId)
+
+        )
+        request.enqueue(object : Callback<Any> {
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                if(response.isSuccessful){
+                    categoryViewModel.updateSuivi(0,categories.categoryId)
+                    processusSuivre(R.drawable.ic_save,imageSuivi,"nonSuivi")
+                }else{
+                    removeTheme(articleService,categories,holder,imageSuivi)
+                }
+
+            }
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                removeTheme(articleService,categories,holder,imageSuivi)
+            }
+        })
+    }
+
+    fun addTheme(articleService : ArticleService, categories : Categories, holder : ThemeAdapter.ThemeViewHolder,imageSuivi : ImageView){
+        var request = articleService.removeTheme(avoirIdUser(context).toString(),
+            activity!!.getString(categories.categoryId)
+        )
+        request.enqueue(object : Callback<Any> {
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                if(response.isSuccessful){
+                    categoryViewModel.updateSuivi(1,categories.categoryId)
+                    processusSuivre(R.drawable.ic_saved,imageSuivi,"Suivi")
+                }else{
+                    addTheme(articleService,categories,holder,imageSuivi)
+                }
+            }
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                addTheme(articleService,categories,holder,imageSuivi)
+            }
+        })
+    }
+
 }

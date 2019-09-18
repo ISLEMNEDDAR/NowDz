@@ -15,15 +15,23 @@ import androidx.appcompat.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.nowdz.Google_Token
 import com.example.nowdz.ui.activities.Fragment.AcuilleFragment
 import com.example.nowdz.ui.activities.Fragment.FavorisFragment
 import com.example.nowdz.ui.activities.Fragment.TitreFragement
 import com.example.nowdz.R
+import com.example.nowdz.Service.ArticleService
+import com.example.nowdz.Service.ServiceBuilder
+import com.example.nowdz.controller.ArticleController
 import com.example.nowdz.helper.BeamsNotif
 import com.example.nowdz.helper.SharedPreferenceInterface
 import com.example.nowdz.helper.SharedPreferencesHelper
+import com.example.nowdz.model.Article
+import com.example.nowdz.model.RequestFavoris
 import com.example.nowdz.ui.activities.Fragment.PreferenceFragment
+import com.example.nowdz.viewModel.ArticleViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -31,6 +39,9 @@ import com.pusher.pushnotifications.BeamsCallback
 import com.pusher.pushnotifications.PushNotifications
 import com.pusher.pushnotifications.PusherCallbackError
 import kotlinx.android.synthetic.main.acuille_content.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener,SharedPreferenceInterface {
@@ -38,10 +49,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private var mGoogleSignInClient : GoogleSignInClient? = null
     private var pref: SharedPreferencesHelper? = null
     private var topToolbar: Toolbar? = null
+    private lateinit var articleViewModel: ArticleViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        articleViewModel = ViewModelProviders.of(this@MainActivity).get(
+            ArticleViewModel::class.java
+        )
         /**
          * Initialisation
          */
@@ -58,6 +73,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setToolbar()
         initDrawerMenu()
         navigation()
+        getAllFavoris()
         PushNotifications.setUserId(
             avoirIdUser(applicationContext).toString(),
             BeamsNotif.tokenProvider(avoirIdUser(applicationContext).toString()),
@@ -259,8 +275,37 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         this@MainActivity.finish()
     }
 
-    
+
     private fun getAllFavoris(){
+        var articleService = ServiceBuilder.buildService(ArticleService::class.java)
+        var request = articleService.getAllFavoris(avoirIdUser(this@MainActivity).toString())
+        request.enqueue(object : Callback<ArrayList<Article>> {
+            override fun onResponse(call: Call<ArrayList<Article>>, response: Response<ArrayList<Article>>) {
+                if(response.isSuccessful){
+                    var listArticle = response.body()!!
+                    listArticle.forEach {
+                        article ->
+                            article.suivi = true
+                        articleViewModel.articleExist(article.titre!!,article.journal!!.name!!).observe(
+                            this@MainActivity!!,
+                            Observer {
+
+                                if(it.size == 0){
+                                    articleViewModel.insert(article)
+                                }
+                            }
+                        )
+                    }
+
+                    }else{
+                    getAllFavoris()
+                }
+
+            }
+            override fun onFailure(call: Call<ArrayList<Article>>, t: Throwable) {
+                getAllFavoris()
+            }
+        })
 
     }
 }
