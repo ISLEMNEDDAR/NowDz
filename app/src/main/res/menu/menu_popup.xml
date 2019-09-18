@@ -10,6 +10,14 @@
         android:icon="@drawable/ic_share"
         app:showAsAction="withText"
 />
+
+ <item
+            android:id="@+id/menu_popup_share_mail"
+            android:title="@string/share_nom_mail"
+            android:icon="@drawable/ic_share"
+            app:showAsAction="withText"
+/>
+
 <item
         android:id="@+id/menu_popup_access"
         android:title="Accéder au Site"

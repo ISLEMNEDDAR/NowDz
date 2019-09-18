@@ -7,7 +7,8 @@
     <string name="nom_article">Article</string>
     <string name="recherche_nom">search</string>
     <string name="save_nom">enregistrer pour plus tard</string>
-    <string name="share_nom">Partager</string>
+    <string name="share_nom">Partager par SMS</string>
+    <string name="share_nom_mail">Partager par Mail</string>
     <string name="acess_nom">Acceder à</string>
     <string name="hide_nom">Masquer les articles</string>
     <string name="accuille_nom">Acceuil</string>
