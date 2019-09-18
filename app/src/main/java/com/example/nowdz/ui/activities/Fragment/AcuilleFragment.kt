@@ -5,11 +5,16 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.nowdz.ui.Adapter.NewAdapter
 import com.example.nowdz.R
@@ -19,6 +24,7 @@ import com.example.nowdz.controller.ArticleController
 import com.example.nowdz.helper.*
 import com.example.nowdz.model.Article
 import com.example.nowdz.model.ResponseArticles
+import com.example.nowdz.ui.activities.AffichageActivity
 import com.example.nowdz.viewModel.ArticleViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,8 +64,20 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
         wait = v.findViewById(R.id.wait_list)
 
         initRvNews(v)
+        //ajouterNews(ArticleController.getRestArticle())
         addNews(currentPage)
-
+        /*toggleSuivi(ArticleController.getFirstArticle().suivi,suivi,R.drawable.ic_saved,R.drawable.ic_save)
+        (v.findViewById<androidx.cardview.widget.CardView>(R.id.card1_accuille)).setOnClickListener {
+            switchActivityExtra(this.context!!, AffichageActivity::class.java,activity!!,"article",ArticleController.getFirstArticle())
+        }
+        (v.findViewById<ImageView>(R.id.card1_menu)).setOnClickListener {
+            val popupMenu = PopupFct(this.context!!, it, activity!!)
+            popupMenu.onCLick()
+            popupMenu.inflat(R.menu.menu_popup)
+        }
+        (suivi).setOnClickListener{
+            suiviProc(suivi,ArticleController.getFirstArticle())
+        }*/
         /***/
         return v
 
@@ -80,6 +98,7 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
         )
         rv!!.layoutManager = horizontalLayoutManager
         rv.adapter = newsAdapter
+        val layoutManager = horizontalLayoutManager
 
         /**
          * ajudter le recycler view
@@ -91,9 +110,9 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
 
             override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val visibleItemCount = horizontalLayoutManager.childCount
-                val totalItemCount = horizontalLayoutManager.itemCount
-                val firstVisibleItemPosition = horizontalLayoutManager.findFirstVisibleItemPosition()
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
                 if (!isLoading && !isLastPage) {
                     if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
@@ -118,7 +137,7 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
         addNews(currentPage)
     }
 
-    private fun addNews(page : Int){
+    fun addNews(page : Int){
         val newsRequest = newsService.getArticles(page)
         var progress : ProgressDialog? = null
         if(currentPage == 0) progress = DialogHelper.showProgressBar(context!!,"Avoir les Nouvelle information",false)
@@ -126,7 +145,6 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
         newsRequest.enqueue(object : Callback<ResponseArticles> {
             override fun onResponse(call: Call<ResponseArticles>, response: Response<ResponseArticles>) {
                 if(response.isSuccessful){
-
                     var listArticle = response.body()!!.articles
                     listArticle.forEach {
                         it.suivi = false
@@ -134,7 +152,6 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
 
                     if(currentPage==0)  {
                         newsAdapter!!.setNews(listArticle)
-                        Log.i("dataChanged : ", listArticle.size.toString())
                         ArticleController.setArticle(listArticle)
                     }
                     else {
