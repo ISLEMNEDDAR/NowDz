@@ -56,7 +56,7 @@ class ArticleEnregistreAdapter constructor(
         }
         var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         holder.popup.setOnClickListener {
-            val popupMenu = PopupFct(context, it,activity!! as AppCompatActivity)
+            val popupMenu = PopupFct(context, it,activity!! as AppCompatActivity,article)
             popupMenu.onCLick()
             popupMenu.inflat(R.menu.menu_popup)
         }
@@ -101,7 +101,6 @@ class ArticleEnregistreAdapter constructor(
                         ArticleViewModel::class.java)
                     articleViewModel.deleteArticle(article.id!!)
                     notifyDataSetChanged()
-                    ArticleController.construireArticle(article,holder.imageNews,holder.logo,holder.titre,holder.date)
                 }else{
                     removeFavoris(articleService,article,holder,suivi)
                 }

@@ -64,20 +64,8 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
         wait = v.findViewById(R.id.wait_list)
 
         initRvNews(v)
-        //ajouterNews(ArticleController.getRestArticle())
         addNews(currentPage)
-        /*toggleSuivi(ArticleController.getFirstArticle().suivi,suivi,R.drawable.ic_saved,R.drawable.ic_save)
-        (v.findViewById<androidx.cardview.widget.CardView>(R.id.card1_accuille)).setOnClickListener {
-            switchActivityExtra(this.context!!, AffichageActivity::class.java,activity!!,"article",ArticleController.getFirstArticle())
-        }
-        (v.findViewById<ImageView>(R.id.card1_menu)).setOnClickListener {
-            val popupMenu = PopupFct(this.context!!, it, activity!!)
-            popupMenu.onCLick()
-            popupMenu.inflat(R.menu.menu_popup)
-        }
-        (suivi).setOnClickListener{
-            suiviProc(suivi,ArticleController.getFirstArticle())
-        }*/
+
         /***/
         return v
 
@@ -138,13 +126,16 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
     }
 
     fun addNews(page : Int){
+        Log.i("addNews",currentPage.toString())
         val newsRequest = newsService.getArticles(page)
         var progress : ProgressDialog? = null
         if(currentPage == 0) progress = DialogHelper.showProgressBar(context!!,"Avoir les Nouvelle information",false)
         else wait!!.visibility = View.VISIBLE
+        Log.i("addNews before",currentPage.toString())
         newsRequest.enqueue(object : Callback<ResponseArticles> {
             override fun onResponse(call: Call<ResponseArticles>, response: Response<ResponseArticles>) {
                 if(response.isSuccessful){
+                    Log.i("addNews succes",currentPage.toString())
                     var listArticle = response.body()!!.articles
                     listArticle.forEach {
                         it.suivi = false
@@ -163,6 +154,7 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
                     else wait!!.visibility = View.GONE
 
                 }else{
+                    Log.i("addNews failure",currentPage.toString())
                     if(currentPage == 0) progress!!.dismiss()
                     else wait!!.visibility = View.GONE
                     Log.i("probleme de connexion","fdfs")
@@ -170,9 +162,10 @@ class AcuilleFragment : Fragment(),onWebView,GlobalHelper, RecycleViewHelper {
             }
 
             override fun onFailure(call: Call<ResponseArticles>, t: Throwable) {
+                Log.i("addNews probleme",t.message)
                 if(currentPage == 0) progress!!.dismiss()
                 else wait!!.visibility = View.GONE
-                println(t.message)
+                println(t.cause)
 
             }
         })

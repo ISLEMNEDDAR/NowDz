@@ -51,7 +51,7 @@ class FavorisAdapter constructor(
         }
         var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         holder.popup.setOnClickListener {
-            val popupMenu = PopupFct(context, it,activity!! as AppCompatActivity)
+            val popupMenu = PopupFct(context, it,activity!! as AppCompatActivity,article)
             popupMenu.onCLick()
             popupMenu.inflat(R.menu.menu_popup)
         }

@@ -15,39 +15,29 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import com.example.nowdz.MAX_SMS_MESSAGE_LENGTH
 import com.example.nowdz.R
+import com.example.nowdz.controller.ArticleController
+import com.example.nowdz.model.Article
 import com.example.nowdz.ui.ArticleActivity
 
 class PopupFct(val context: Context,
                val view: View,
-               val activity: AppCompatActivity
+               val activity: AppCompatActivity,
+               var article : Article
 ) : PopupMenu(context, view),GlobalHelper {
      fun onCLick() {
          setOnMenuItemClickListener {item ->
+             ArticleController.currentUrl(article.url!!)
+             ArticleController.currentTitle(article.titre!!)
             when (item.itemId) {
                 R.id.menu_popup_share -> {
-                   /* val shareintent = Intent(Intent.ACTION_SEND)
-                    shareintent.type="type/palin"
-                    val sharebody ="The body"
-                    val sharesub= "The subject"
-                    shareintent.putExtra(Intent.EXTRA_SUBJECT,sharebody)
-                    shareintent.putExtra(Intent.EXTRA_TEXT,sharesub)
-                    ContextCompat.startActivity(
-                        context,
-                        Intent.createChooser(shareintent, "Share article"),
-                        Bundle()
-                    )
-                    */
 
                     val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
                     activity.startActivityForResult(intent, 1)
-
-
 
                     Toast.makeText(context, "Showing Share Toast!", Toast.LENGTH_LONG).show()
                     true
                 }
                 R.id.menu_popup_share_mail -> {
-
 
                     sendEmail()
                     Toast.makeText(context, "Showing Share Toast!", Toast.LENGTH_LONG).show()
@@ -75,27 +65,17 @@ class PopupFct(val context: Context,
     }
 
 
-    fun sendSMS(phoneNumber: String, message: String) {
 
-        val smsManager = SmsManager.getDefault()
-
-        val length = message.length
-        if (length > MAX_SMS_MESSAGE_LENGTH) {
-            val messagelist = smsManager.divideMessage(message)
-            smsManager.sendMultipartTextMessage(phoneNumber, null, messagelist, null, null)
-        } else
-            smsManager.sendTextMessage(phoneNumber, null, message, null, null)
-    }
 
 
     fun sendEmail() {
 
         Log.i("Send email", "")
 
-        val TO = arrayOf("fh_abouchamala@esi.dz")
-        val CC = arrayOf("fn_islem@esi.dz")
-        val emailbody = "Url"
-        val emailtitle = "Title"
+        val TO = arrayOf("")
+        val CC = arrayOf("")
+        val emailbody = ArticleController.getCurrentUrl()
+        val emailtitle = "DzNow : ${ArticleController.getCurrentTitle()}"
         val emailIntent = Intent(Intent.ACTION_SEND)
         emailIntent.data = Uri.parse("mailto:")
         emailIntent.type = "text/plain"

@@ -32,11 +32,13 @@ import com.example.nowdz.R
 import com.example.nowdz.Service.ArticleService
 import com.example.nowdz.Service.ServiceBuilder
 import com.example.nowdz.SEND_SMS_PERMISSION_REQUEST_CODE
+import com.example.nowdz.controller.ArticleController
 import com.example.nowdz.helper.BeamsNotif
 import com.example.nowdz.helper.SharedPreferenceInterface
 import com.example.nowdz.helper.SharedPreferencesHelper
 import com.example.nowdz.model.Article
 import com.example.nowdz.model.RequestFavoris
+import com.example.nowdz.model.ResponseFavoris
 import com.example.nowdz.ui.activities.Fragment.PreferenceFragment
 import com.example.nowdz.viewModel.ArticleViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -80,7 +82,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setToolbar()
         initDrawerMenu()
         navigation()
-        //getAllFavoris()
+        getAllFavoris()
         PushNotifications.setUserId(
             avoirIdUser(applicationContext).toString(),
             BeamsNotif.tokenProvider(avoirIdUser(applicationContext).toString()),
@@ -147,7 +149,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     Log.i("msg","pas de permissinon")
 
                 }
-                else {sendSMS(phoneNumber,"Hi from android")}
+                else {sendSMS(phoneNumber,ArticleController.getCurrentUrl())}
 
                 // val smsManager = SmsManager.getDefault()
                 // smsManager.sendTextMessage(phoneNumber, null,"Hhhhh", null, null)
@@ -369,10 +371,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private fun getAllFavoris(){
         var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         var request = articleService.getAllFavoris(avoirIdUser(this@MainActivity).toString())
-        request.enqueue(object : Callback<ArrayList<Article>> {
-            override fun onResponse(call: Call<ArrayList<Article>>, response: Response<ArrayList<Article>>) {
+        request.enqueue(object : Callback<ResponseFavoris> {
+            override fun onResponse(call: Call<ResponseFavoris>, response: Response<ResponseFavoris>) {
                 if(response.isSuccessful){
-                    var listArticle = response.body()!!
+                    var listArticle = response.body()!!.articlesFavoris
                     listArticle.forEach {
                         article ->
                             article.suivi = true
@@ -388,11 +390,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     }
 
                     }else{
+                    Log.i("erreur failure : ",avoirIdUser(this@MainActivity).toString())
                     getAllFavoris()
                 }
 
             }
-            override fun onFailure(call: Call<ArrayList<Article>>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseFavoris>, t: Throwable) {
+                Log.i("erreur failure : ", t.cause.toString())
                 getAllFavoris()
             }
         })

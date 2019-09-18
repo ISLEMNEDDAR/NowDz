@@ -57,14 +57,14 @@ class NewAdapter constructor(
 
   //      var onlink : NewAdapter.onLink? = null
         val article = newsList[position]
-        val classement = position+2
+        val classement = position+1
         val suivi = holder.favoris
         var articleService = ServiceBuilder.buildService(ArticleService::class.java)
         articleViewModel.articleExist(article.titre!!,article.journal!!.name!!).observe(
             activity!!,
             Observer {
-
                 article.suivi = it.size>0
+                Log.i("liste des article : ", it.size.toString())
                 if(article.suivi!!) article.id = it[0].id
                 toggleSuivi(article.suivi!!,suivi,R.drawable.ic_saved,R.drawable.ic_save)
                 holder.posiotion.text = "$classement."
@@ -74,7 +74,7 @@ class NewAdapter constructor(
                         /**
                          * update article to unsuive
                          */
-                            removeFavoris(articleService,article,holder)
+                        removeFavoris(articleService,article,holder)
 
 
                     }else{
@@ -92,7 +92,7 @@ class NewAdapter constructor(
             switchActivityExtra(this.context, AffichageActivity::class.java,activity!!,"article",article)
         }
         holder.popup.setOnClickListener {
-            val popupMenu = PopupFct(context, it,activity!! as AppCompatActivity)
+            val popupMenu = PopupFct(context, it,activity!! as AppCompatActivity,article)
             popupMenu.onCLick()
             popupMenu.inflat(R.menu.menu_popup)
         }
@@ -136,8 +136,6 @@ class NewAdapter constructor(
                     article.suivi = false
                     println(article.id)
                     articleViewModel.deleteArticle(article.id!!)
-
-
                 }else{
                     removeFavoris(articleService,article,holder)
                 }
@@ -150,9 +148,7 @@ class NewAdapter constructor(
     }
 
     fun addFavoris(articleService : ArticleService,article : Article,holder :NewsViewHolder){
-        var request = articleService.removeFavoris(avoirIdUser(context).toString(),
-            RequestFavoris(article.journal!!.name!!,article.titre!!)
-        )
+        var request = articleService.addFavoris(avoirIdUser(context).toString(),article)
         request.enqueue(object : Callback<Any> {
             override fun onResponse(call: Call<Any>, response: Response<Any>) {
                 if(response.isSuccessful){
